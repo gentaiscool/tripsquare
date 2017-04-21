@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <base href="/" />
+        <title>Scotch Cars</title>
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+        <link rel="stylesheet" href="fonts.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <div class="header mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <span class="title mdl-layout-title">
+                    <a href="../dashboard">
+                        logo
+                    </a>
+                </span>
+
+                <div class="header-spacer mdl-layout-spacer"></div>
+
+                <div class="navigation-container">
+                    <nav class="navigation mdl-navigation">
+                        <a id="get-started" class="mdl-navigation__link mdl-typography--text-uppercase" href="#login">Get Started</a>
+                            <div id="get-started-reminder" class="mdl-js-snackbar mdl-snackbar">
+                                <div class="mdl-snackbar__text"></div>
+                                <button class="mdl-snackbar__action" type="button"></button>
+                            </div>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#about">Who is Susan?</a>
+                    </nav>
+                </div>
+                <span class="mobile-title mdl-layout-title">
+                    <img class="susan-logo-image" src="assets/images/susan-logo.png">
+                </span>
+            </div>
+        </div>
+
+        <!--Container for React rendering-->
+        <div class="mdl-layout__content" style="margin:0;padding:0;padding-right:0px;width:100%;height:547px;overflow:hidden;">
+            <div id="container"></div>
+        </div>
+
+        <!--Bundled file-->
+        <script src="bundle.js"></script>
+    </body>
+</html>

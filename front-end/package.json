@@ -1,0 +1,35 @@
+{
+  "name": "letrip",
+  "version": "1.0.0",
+  "description": "letrip",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack -d --watch",
+    "build": "webpack",
+    "serve": "serve ./public",
+    "start": "nodemon"
+  },
+  "author": "Genta Indra Winata",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.28.0",
+    "serve": "^1.4.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "express": "^4.14.0",
+    "history": "^3.0.0",
+    "material-ui": "^0.17.4",
+    "react": "^15.3.0",
+    "react-custom-scrollbars": "^4.1.0",
+    "react-dom": "^15.3.0",
+    "react-flexbox-grid": "^1.0.2",
+    "react-router": "^2.6.1",
+    "react-tap-event-plugin": "^2.0.1"
+  }
+}
