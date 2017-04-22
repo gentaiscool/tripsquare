@@ -32,39 +32,109 @@ class Itinerary extends Component {
   }
 
   render() {
+    let items = this.props.items;
+
+    let cities = {};
+    let landmarks = {};
+
+    let cityJSON = require('../json/city.json').default;
+    let landmarkJSON = require('../json/landmark.json').default;
+
+    for(let i=0; i<cityJSON.length; i++){
+      cities[cityJSON[i]["id"]] = cityJSON[i];
+    }
+
+    for(let i=0; i<landmarkJSON.length; i++){
+      landmarks[landmarkJSON[i]["id"]] = landmarkJSON[i];
+    }
+
+    const content = [];
+    const names = [];
+    for(let i=0; i<items.length; i++){
+      var id = items[i].id;
+      var time = items[i].time;
+      var date = items[i].date;
+
+      if(cities.hasOwnProperty(id)){
+        var cityName = cities[id]["city"];
+        var imageUrl = cities[id]["cityImageUrl"];
+        var desc = cities[id]["desc"];
+
+        if(i > 0){
+          content.push(
+            [
+              <Transport
+                departure={names[i-1]}
+                arrival={cityName}
+                socket={socket}
+                />
+            ]
+          )
+        }
+
+        content.push(
+          [
+          <div style={{marginTop:"10px"}}>
+            <City 
+            cityName={cityName}
+            imageUrl={imageUrl}
+            desc={desc}
+            date={date}
+            time={time}
+            onDetailsClickCallback={this.onDetailsClickHandler.bind(this, id)}
+            id={id}
+            />
+          </div>
+          ]
+        )
+        names.push(cityName);
+      } else{
+        var cityName = landmarks[id]["cityName"];
+        var landmarkName = landmarks[id]["landmark"];
+        var imageUrl = landmarks[id]["landmarkImageUrl"];
+        var desc = landmarks[id]["desc"];
+
+        if(i > 0){
+          content.push(
+            [
+              <Transport
+                departure={names[i-1]}
+                arrival={landmarkName}
+                socket={socket}
+                />
+            ]
+          )
+        }
+
+        content.push(
+          [
+          <div style={{marginTop:"10px"}}>
+            <div style={{marginTop:"10px"}}>
+              <Landmark 
+              cityName={cityName}
+              landmarkName={landmarkName}
+              imageUrl={imageUrl}
+              desc={desc}
+              date={date}
+              time={time}
+              id={id}
+              onDetailsClickCallback={this.onDetailsClickHandler.bind(this, id)}
+              />
+            </div>
+          </div>
+        ]
+        )
+        names.push(landmarkName);
+      }
+    }
+
     return (
       <MuiThemeProvider>
         <Grid fluid style={{padding:'0px'}}>
           <Row>
             <Col xs={12} style={{}}>
               <Scrollbars style={{height:'480px',paddingRight:'0px'}}>
-                <div style={{marginTop:"10px"}}>
-                  <City 
-                  cityName="Shenzhen, China" 
-                  imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg"
-                  desc="One of China's wealthiest cities"
-                  onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "city_1")}
-                  id="city_1"
-                  />
-                </div>
-                <Transport
-                  type="train"
-                  details="via Huanzhong Line"
-                  time="54 min."
-                  departure="Shenzhen, China"
-                  arrival="Shenzhen Safari Park"
-                  socket={socket}
-                  />
-                <div style={{marginTop:"10px"}}>
-                  <Landmark 
-                  cityName="Shenzhen, China" 
-                  landmarkName="Shenzhen Safari Park" 
-                  imageUrl="http://static.hk.groupon-content.net/07/82/1332308568207.jpg"
-                  desc="first zoo in China to uncage animals"
-                  id="landmark_2"
-                  onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "landmark_2")}
-                  />
-                </div>
+                {content}
               </Scrollbars>
             </Col>
           </Row>

@@ -145,17 +145,12 @@ class City extends Component {
                 </Row>
                 <Row style={{marginTop:'-1px', marginLeft: '-10px', padding:'7px', borderBottomRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
               <Col xs={7}>
-                <ThumbUpSVG style={{marginRight:"10px", width:'20px', height:'20px'}} color="#feb24c"
-                onClick={this.onClickUpHandler.bind(this)}/>
-                <span style={{marginRight:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{numUp}</span>
-                <ThumbDownSVG style={{width:'20px', height:'20px'}} color="#969696"
-                onClick={this.onClickDownHandler.bind(this)}/>
-                <span style={{marginLeft:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{numDown}</span>
+                
               </Col>
               <Col xs={5} style={{display:"flex"}}>
-                <p style={dateStyle}>25 Apr 2017</p>
+                <p style={dateStyle}>{this.props.date}</p>
                 <InsertInvitationSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
-                <p style={timeStyle}>03.00 PM</p>
+                <p style={timeStyle}>{this.props.time}</p>
                 <ScheduleSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
               </Col>
                 </Row>

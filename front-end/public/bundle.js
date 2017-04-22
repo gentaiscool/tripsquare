@@ -70,15 +70,15 @@
 
 	var _places_component2 = _interopRequireDefault(_places_component);
 
-	var _carComponent = __webpack_require__(740);
+	var _carComponent = __webpack_require__(739);
 
 	var _carComponent2 = _interopRequireDefault(_carComponent);
 
-	var _carDetailComponent = __webpack_require__(741);
+	var _carDetailComponent = __webpack_require__(740);
 
 	var _carDetailComponent2 = _interopRequireDefault(_carDetailComponent);
 
-	var _reactTapEventPlugin = __webpack_require__(742);
+	var _reactTapEventPlugin = __webpack_require__(741);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
@@ -27726,15 +27726,15 @@
 
 	var _chat_console_component2 = _interopRequireDefault(_chat_console_component);
 
-	var _http_request_component = __webpack_require__(730);
+	var _http_request_component = __webpack_require__(729);
 
 	var _http_request_component2 = _interopRequireDefault(_http_request_component);
 
-	var _sidebar_component = __webpack_require__(734);
+	var _sidebar_component = __webpack_require__(733);
 
 	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
 
-	var _detailbar_component = __webpack_require__(738);
+	var _detailbar_component = __webpack_require__(737);
 
 	var _detailbar_component2 = _interopRequireDefault(_detailbar_component);
 
@@ -27754,13 +27754,13 @@
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _chromeReaderMode = __webpack_require__(739);
+	var _chromeReaderMode = __webpack_require__(738);
 
 	var _chromeReaderMode2 = _interopRequireDefault(_chromeReaderMode);
 
 	var _reactFlexboxGrid = __webpack_require__(452);
 
-	var _reactHttpRequest = __webpack_require__(731);
+	var _reactHttpRequest = __webpack_require__(730);
 
 	var _reactHttpRequest2 = _interopRequireDefault(_reactHttpRequest);
 
@@ -75212,6 +75212,92 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var items = this.props.items;
+
+	      var cities = {};
+	      var landmarks = {};
+
+	      var cityJSON = __webpack_require__(655).default;
+	      var landmarkJSON = __webpack_require__(656).default;
+
+	      for (var i = 0; i < cityJSON.length; i++) {
+	        cities[cityJSON[i]["id"]] = cityJSON[i];
+	      }
+
+	      for (var _i = 0; _i < landmarkJSON.length; _i++) {
+	        landmarks[landmarkJSON[_i]["id"]] = landmarkJSON[_i];
+	      }
+
+	      var content = [];
+	      var names = [];
+	      for (var _i2 = 0; _i2 < items.length; _i2++) {
+	        var id = items[_i2].id;
+	        var time = items[_i2].time;
+	        var date = items[_i2].date;
+
+	        if (cities.hasOwnProperty(id)) {
+	          var cityName = cities[id]["city"];
+	          var imageUrl = cities[id]["cityImageUrl"];
+	          var desc = cities[id]["desc"];
+
+	          if (_i2 > 0) {
+	            content.push([_react2.default.createElement(_transport_itinerary_component2.default, {
+	              departure: names[_i2 - 1],
+	              arrival: cityName,
+	              socket: socket
+	            })]);
+	          }
+
+	          content.push([_react2.default.createElement(
+	            'div',
+	            { style: { marginTop: "10px" } },
+	            _react2.default.createElement(_city_itinerary_component2.default, {
+	              cityName: cityName,
+	              imageUrl: imageUrl,
+	              desc: desc,
+	              date: date,
+	              time: time,
+	              onDetailsClickCallback: this.onDetailsClickHandler.bind(this, id),
+	              id: id
+	            })
+	          )]);
+	          names.push(cityName);
+	        } else {
+	          var cityName = landmarks[id]["cityName"];
+	          var landmarkName = landmarks[id]["landmark"];
+	          var imageUrl = landmarks[id]["landmarkImageUrl"];
+	          var desc = landmarks[id]["desc"];
+
+	          if (_i2 > 0) {
+	            content.push([_react2.default.createElement(_transport_itinerary_component2.default, {
+	              departure: names[_i2 - 1],
+	              arrival: landmarkName,
+	              socket: socket
+	            })]);
+	          }
+
+	          content.push([_react2.default.createElement(
+	            'div',
+	            { style: { marginTop: "10px" } },
+	            _react2.default.createElement(
+	              'div',
+	              { style: { marginTop: "10px" } },
+	              _react2.default.createElement(_landmark_itinerary_component2.default, {
+	                cityName: cityName,
+	                landmarkName: landmarkName,
+	                imageUrl: imageUrl,
+	                desc: desc,
+	                date: date,
+	                time: time,
+	                id: id,
+	                onDetailsClickCallback: this.onDetailsClickHandler.bind(this, id)
+	              })
+	            )
+	          )]);
+	          names.push(landmarkName);
+	        }
+	      }
+
 	      return _react2.default.createElement(
 	        _MuiThemeProvider2.default,
 	        null,
@@ -75227,37 +75313,7 @@
 	              _react2.default.createElement(
 	                _reactCustomScrollbars.Scrollbars,
 	                { style: { height: '480px', paddingRight: '0px' } },
-	                _react2.default.createElement(
-	                  'div',
-	                  { style: { marginTop: "10px" } },
-	                  _react2.default.createElement(_city_itinerary_component2.default, {
-	                    cityName: 'Shenzhen, China',
-	                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg',
-	                    desc: 'One of China\'s wealthiest cities',
-	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "city_1"),
-	                    id: 'city_1'
-	                  })
-	                ),
-	                _react2.default.createElement(_transport_itinerary_component2.default, {
-	                  type: 'train',
-	                  details: 'via Huanzhong Line',
-	                  time: '54 min.',
-	                  departure: 'Shenzhen, China',
-	                  arrival: 'Shenzhen Safari Park',
-	                  socket: socket
-	                }),
-	                _react2.default.createElement(
-	                  'div',
-	                  { style: { marginTop: "10px" } },
-	                  _react2.default.createElement(_landmark_itinerary_component2.default, {
-	                    cityName: 'Shenzhen, China',
-	                    landmarkName: 'Shenzhen Safari Park',
-	                    imageUrl: 'http://static.hk.groupon-content.net/07/82/1332308568207.jpg',
-	                    desc: 'first zoo in China to uncage animals',
-	                    id: 'landmark_2',
-	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "landmark_2")
-	                  })
-	                )
+	                content
 	              )
 	            )
 	          )
@@ -75492,37 +75548,20 @@
 	            _react2.default.createElement(
 	              _reactFlexboxGrid.Row,
 	              { style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
-	              _react2.default.createElement(
-	                _reactFlexboxGrid.Col,
-	                { xs: 7 },
-	                _react2.default.createElement(_thumbUp2.default, { style: { marginRight: "10px", width: '20px', height: '20px' }, color: '#feb24c',
-	                  onClick: this.onClickUpHandler.bind(this) }),
-	                _react2.default.createElement(
-	                  'span',
-	                  { style: { marginRight: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
-	                  numUp
-	                ),
-	                _react2.default.createElement(_thumbDown2.default, { style: { width: '20px', height: '20px' }, color: '#969696',
-	                  onClick: this.onClickDownHandler.bind(this) }),
-	                _react2.default.createElement(
-	                  'span',
-	                  { style: { marginLeft: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
-	                  numDown
-	                )
-	              ),
+	              _react2.default.createElement(_reactFlexboxGrid.Col, { xs: 7 }),
 	              _react2.default.createElement(
 	                _reactFlexboxGrid.Col,
 	                { xs: 5, style: { display: "flex" } },
 	                _react2.default.createElement(
 	                  'p',
 	                  { style: dateStyle },
-	                  '25 Apr 2017'
+	                  this.props.date
 	                ),
 	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
 	                _react2.default.createElement(
 	                  'p',
 	                  { style: timeStyle },
-	                  '03.00 PM'
+	                  this.props.time
 	                ),
 	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
 	              )
@@ -75784,13 +75823,13 @@
 	                _react2.default.createElement(
 	                  'p',
 	                  { style: dateStyle },
-	                  '25 Apr 2017'
+	                  this.props.date
 	                ),
 	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
 	                _react2.default.createElement(
 	                  'p',
 	                  { style: timeStyle },
-	                  '03.00 PM'
+	                  this.props.time
 	                ),
 	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
 	              )
@@ -77430,7 +77469,7 @@
 	 */
 
 	exports.Manager = __webpack_require__(694);
-	exports.Socket = __webpack_require__(725);
+	exports.Socket = __webpack_require__(724);
 
 
 /***/ }),
@@ -80297,14 +80336,14 @@
 	 */
 
 	var eio = __webpack_require__(695);
-	var Socket = __webpack_require__(725);
+	var Socket = __webpack_require__(724);
 	var Emitter = __webpack_require__(713);
 	var parser = __webpack_require__(684);
-	var on = __webpack_require__(727);
-	var bind = __webpack_require__(728);
+	var on = __webpack_require__(726);
+	var bind = __webpack_require__(727);
 	var debug = __webpack_require__(681)('socket.io-client:manager');
-	var indexOf = __webpack_require__(723);
-	var Backoff = __webpack_require__(729);
+	var indexOf = __webpack_require__(722);
+	var Backoff = __webpack_require__(728);
 
 	/**
 	 * IE6+ hasOwnProperty
@@ -80888,10 +80927,10 @@
 	var transports = __webpack_require__(698);
 	var Emitter = __webpack_require__(713);
 	var debug = __webpack_require__(717)('engine.io-client:socket');
-	var index = __webpack_require__(723);
+	var index = __webpack_require__(722);
 	var parser = __webpack_require__(704);
 	var parseuri = __webpack_require__(680);
-	var parsejson = __webpack_require__(724);
+	var parsejson = __webpack_require__(723);
 	var parseqs = __webpack_require__(714);
 
 	/**
@@ -81632,8 +81671,8 @@
 
 	var XMLHttpRequest = __webpack_require__(699);
 	var XHR = __webpack_require__(701);
-	var JSONP = __webpack_require__(720);
-	var websocket = __webpack_require__(721);
+	var JSONP = __webpack_require__(719);
+	var websocket = __webpack_require__(720);
 
 	/**
 	 * Export transports.
@@ -84293,7 +84332,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(719);
+	exports.humanize = __webpack_require__(683);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -84484,161 +84523,6 @@
 
 /***/ }),
 /* 719 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Helpers.
-	 */
-
-	var s = 1000
-	var m = s * 60
-	var h = m * 60
-	var d = h * 24
-	var y = d * 365.25
-
-	/**
-	 * Parse or format the given `val`.
-	 *
-	 * Options:
-	 *
-	 *  - `long` verbose formatting [false]
-	 *
-	 * @param {String|Number} val
-	 * @param {Object} options
-	 * @throws {Error} throw an error if val is not a non-empty string or a number
-	 * @return {String|Number}
-	 * @api public
-	 */
-
-	module.exports = function (val, options) {
-	  options = options || {}
-	  var type = typeof val
-	  if (type === 'string' && val.length > 0) {
-	    return parse(val)
-	  } else if (type === 'number' && isNaN(val) === false) {
-	    return options.long ?
-				fmtLong(val) :
-				fmtShort(val)
-	  }
-	  throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val))
-	}
-
-	/**
-	 * Parse the given `str` and return milliseconds.
-	 *
-	 * @param {String} str
-	 * @return {Number}
-	 * @api private
-	 */
-
-	function parse(str) {
-	  str = String(str)
-	  if (str.length > 10000) {
-	    return
-	  }
-	  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str)
-	  if (!match) {
-	    return
-	  }
-	  var n = parseFloat(match[1])
-	  var type = (match[2] || 'ms').toLowerCase()
-	  switch (type) {
-	    case 'years':
-	    case 'year':
-	    case 'yrs':
-	    case 'yr':
-	    case 'y':
-	      return n * y
-	    case 'days':
-	    case 'day':
-	    case 'd':
-	      return n * d
-	    case 'hours':
-	    case 'hour':
-	    case 'hrs':
-	    case 'hr':
-	    case 'h':
-	      return n * h
-	    case 'minutes':
-	    case 'minute':
-	    case 'mins':
-	    case 'min':
-	    case 'm':
-	      return n * m
-	    case 'seconds':
-	    case 'second':
-	    case 'secs':
-	    case 'sec':
-	    case 's':
-	      return n * s
-	    case 'milliseconds':
-	    case 'millisecond':
-	    case 'msecs':
-	    case 'msec':
-	    case 'ms':
-	      return n
-	    default:
-	      return undefined
-	  }
-	}
-
-	/**
-	 * Short format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function fmtShort(ms) {
-	  if (ms >= d) {
-	    return Math.round(ms / d) + 'd'
-	  }
-	  if (ms >= h) {
-	    return Math.round(ms / h) + 'h'
-	  }
-	  if (ms >= m) {
-	    return Math.round(ms / m) + 'm'
-	  }
-	  if (ms >= s) {
-	    return Math.round(ms / s) + 's'
-	  }
-	  return ms + 'ms'
-	}
-
-	/**
-	 * Long format for `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {String}
-	 * @api private
-	 */
-
-	function fmtLong(ms) {
-	  return plural(ms, d, 'day') ||
-	    plural(ms, h, 'hour') ||
-	    plural(ms, m, 'minute') ||
-	    plural(ms, s, 'second') ||
-	    ms + ' ms'
-	}
-
-	/**
-	 * Pluralization helper.
-	 */
-
-	function plural(ms, n, name) {
-	  if (ms < n) {
-	    return
-	  }
-	  if (ms < n * 1.5) {
-	    return Math.floor(ms / n) + ' ' + name
-	  }
-	  return Math.ceil(ms / n) + ' ' + name + 's'
-	}
-
-
-/***/ }),
-/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -84876,7 +84760,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 721 */
+/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -84893,7 +84777,7 @@
 	var NodeWebSocket;
 	if (typeof window === 'undefined') {
 	  try {
-	    NodeWebSocket = __webpack_require__(722);
+	    NodeWebSocket = __webpack_require__(721);
 	  } catch (e) { }
 	}
 
@@ -85168,13 +85052,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 722 */
+/* 721 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }),
-/* 723 */
+/* 722 */
 /***/ (function(module, exports) {
 
 	
@@ -85189,7 +85073,7 @@
 	};
 
 /***/ }),
-/* 724 */
+/* 723 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -85227,7 +85111,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 725 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -85237,9 +85121,9 @@
 
 	var parser = __webpack_require__(684);
 	var Emitter = __webpack_require__(713);
-	var toArray = __webpack_require__(726);
-	var on = __webpack_require__(727);
-	var bind = __webpack_require__(728);
+	var toArray = __webpack_require__(725);
+	var on = __webpack_require__(726);
+	var bind = __webpack_require__(727);
 	var debug = __webpack_require__(681)('socket.io-client:socket');
 	var hasBin = __webpack_require__(706);
 
@@ -85652,7 +85536,7 @@
 
 
 /***/ }),
-/* 726 */
+/* 725 */
 /***/ (function(module, exports) {
 
 	module.exports = toArray
@@ -85671,7 +85555,7 @@
 
 
 /***/ }),
-/* 727 */
+/* 726 */
 /***/ (function(module, exports) {
 
 	
@@ -85701,7 +85585,7 @@
 
 
 /***/ }),
-/* 728 */
+/* 727 */
 /***/ (function(module, exports) {
 
 	/**
@@ -85730,7 +85614,7 @@
 
 
 /***/ }),
-/* 729 */
+/* 728 */
 /***/ (function(module, exports) {
 
 	
@@ -85821,7 +85705,7 @@
 
 
 /***/ }),
-/* 730 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85836,7 +85720,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactHttpRequest = __webpack_require__(731);
+	var _reactHttpRequest = __webpack_require__(730);
 
 	var _reactHttpRequest2 = _interopRequireDefault(_reactHttpRequest);
 
@@ -85902,7 +85786,7 @@
 	exports.default = HttpRequest;
 
 /***/ }),
-/* 731 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85917,7 +85801,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(732);
+	var _superagent = __webpack_require__(731);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -86106,7 +85990,7 @@
 	exports.default = Request;
 
 /***/ }),
-/* 732 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -86114,7 +85998,7 @@
 	 */
 
 	var Emitter = __webpack_require__(713);
-	var reduce = __webpack_require__(733);
+	var reduce = __webpack_require__(732);
 
 	/**
 	 * Root reference for iframes.
@@ -87303,7 +87187,7 @@
 
 
 /***/ }),
-/* 733 */
+/* 732 */
 /***/ (function(module, exports) {
 
 	
@@ -87332,7 +87216,7 @@
 	};
 
 /***/ }),
-/* 734 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87359,15 +87243,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(735);
+	var _accountBox = __webpack_require__(734);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(736);
+	var _list = __webpack_require__(735);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(737);
+	var _viewQuilt = __webpack_require__(736);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -87776,7 +87660,7 @@
 	exports.default = Sidebar;
 
 /***/ }),
-/* 735 */
+/* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87813,7 +87697,7 @@
 	exports.default = ActionAccountBox;
 
 /***/ }),
-/* 736 */
+/* 735 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87850,7 +87734,7 @@
 	exports.default = ActionList;
 
 /***/ }),
-/* 737 */
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87887,7 +87771,7 @@
 	exports.default = ActionViewQuilt;
 
 /***/ }),
-/* 738 */
+/* 737 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87914,15 +87798,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(735);
+	var _accountBox = __webpack_require__(734);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(736);
+	var _list = __webpack_require__(735);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(737);
+	var _viewQuilt = __webpack_require__(736);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -88096,7 +87980,7 @@
 	exports.default = Detailbar;
 
 /***/ }),
-/* 739 */
+/* 738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88133,7 +88017,7 @@
 	exports.default = ActionChromeReaderMode;
 
 /***/ }),
-/* 740 */
+/* 739 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88206,7 +88090,7 @@
 	exports.default = Car;
 
 /***/ }),
-/* 741 */
+/* 740 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88348,11 +88232,11 @@
 	exports.default = CarDetail;
 
 /***/ }),
-/* 742 */
+/* 741 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(8);
-	var defaultClickRejectionStrategy = __webpack_require__(743);
+	var defaultClickRejectionStrategy = __webpack_require__(742);
 
 	var alreadyInjected = false;
 
@@ -88374,14 +88258,14 @@
 	  alreadyInjected = true;
 
 	  __webpack_require__(46).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(744)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(743)(shouldRejectClick)
 	  });
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 743 */
+/* 742 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -88392,7 +88276,7 @@
 
 
 /***/ }),
-/* 744 */
+/* 743 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -88416,14 +88300,14 @@
 
 	"use strict";
 
-	var EventConstants = __webpack_require__(745);
+	var EventConstants = __webpack_require__(744);
 	var EventPluginUtils = __webpack_require__(48);
 	var EventPropagators = __webpack_require__(45);
 	var SyntheticUIEvent = __webpack_require__(79);
-	var TouchEventUtils = __webpack_require__(746);
+	var TouchEventUtils = __webpack_require__(745);
 	var ViewportMetrics = __webpack_require__(80);
 
-	var keyOf = __webpack_require__(747);
+	var keyOf = __webpack_require__(746);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -88569,7 +88453,7 @@
 
 
 /***/ }),
-/* 745 */
+/* 744 */
 /***/ (function(module, exports) {
 
 	/**
@@ -88665,7 +88549,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 746 */
+/* 745 */
 /***/ (function(module, exports) {
 
 	/**
@@ -88713,7 +88597,7 @@
 
 
 /***/ }),
-/* 747 */
+/* 746 */
 /***/ (function(module, exports) {
 
 	"use strict";
