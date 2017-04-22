@@ -80,7 +80,8 @@ const headerStyle = {
 	margin: '0px',
 	marginTop: '0px',
 	padding: '0px',
-	lineHeight: '14px'
+	lineHeight: '14px',
+	fontStyle: 'italic'
 }
 
 const descStyle = {
@@ -126,8 +127,8 @@ class RecommendationPlanner extends Component {
 							<Col xs={12}>
 								<Row>
 									<Col xs={9} style={{padding:'0px', margin:'0px'}}>
-										<p style={headerStyle}>Don't miss this</p> 
-										<p style={cityNameStyle}>"HK Disneyland"</p>
+										<p style={headerStyle}>Don't miss this:</p> 
+										<p style={cityNameStyle}>HK Disneyland</p>
 									</Col>
 									<Col xs={1}>
 									</Col>

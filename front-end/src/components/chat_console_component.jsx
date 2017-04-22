@@ -81,24 +81,26 @@ class ChatConsole extends Component {
       }
     }
 
-  changeMessage(event, message){
-      console.log("change: " + message);   
-      this.setState({message: message});
-    }
+  changeMessage(event){
+      //console.log("change: " + message);   
+      this.setState({message: event.target.value});
+  }
 
-  sendMessage(message){
+  sendMessage(){
       var object = {
         'name': this.state.name,
         'imageUrl': this.state.imageUrl,
         'email': this.state.email,
-        'message': message,
+        'message': this.state.message,
         'channelId': this.state.channelId
       }
 
       var arr = this.state.chatMessages;
       arr.push(object);
+      this.setState({message: ''});
       this.setState({chatMessages: arr});
 
+      console.log(this.state.chatMessages[this.state.chatMessages.length-1]['str']);
       console.log(this.state.chatMessages.length);
 
       socket.emit("message", object);
@@ -107,9 +109,6 @@ class ChatConsole extends Component {
     }
 
     render(){
-      var messages = this.state.chatMessages.map((message) =>
-          <MessageBox />
-      )
       return (
        		<MuiThemeProvider>
     				<Grid fluid style={headerStyle}>
@@ -130,7 +129,7 @@ class ChatConsole extends Component {
                   <Scrollbars style={{margin:'0px', marginTop:'5px', height:'350px', padding:'0px'}}>
                     {
                       this.state.chatMessages.map((message) =>
-                        <MessageBox imageUrl={this.state.imageUrl} message={this.state.message} />
+                        <MessageBox imageUrl={message.imageUrl} message={message.message} />
                       )
                     }
                   </Scrollbars>
@@ -141,7 +140,7 @@ class ChatConsole extends Component {
                 </Col>
                 <Col xs={7}>
                   <TextField hintText="Message" style={{marginRight:'10px', width:'90%'}}
-                    onChange={this.changeMessage.bind(this)}
+                    value={this.state.message} onChange={this.changeMessage.bind(this)}
                   />
                 </Col>
                 <Col xs={3} style={{padding:'10px'}}>
@@ -149,7 +148,7 @@ class ChatConsole extends Component {
                       backgroundColor="#a4c639"
                       label={<span style={{padding:'0px', fontFamily: 'Roboto Regular', color: '#ffffff'}}>Send</span>}
                       style={{}}
-                      onClick={this.sendMessage.bind(this, this.state.message)}
+                      onClick={this.sendMessage.bind(this)}
                     />
                 </Col>
               </Row>
@@ -159,4 +158,4 @@ class ChatConsole extends Component {
     }
 }
 
-export default withCookies(ChatConsole)
+export default ChatConsole

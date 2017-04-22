@@ -50,31 +50,30 @@ const memberStyle = {
 class MessageBox extends Component {
 	constructor(props) {
 		super(props);
-		//this.props = props;
 	}
     render(){
        return (
        		<MuiThemeProvider>
-				<Row
-                  style={{margin:'10px', marginLeft:'20px', marginRight:'10px', display: 'inlineBlock', width:'auto', color: 'rgba(40,40,40,1.0)'}}>
-                  <Col xs={12} style={{padding:"0px"}}>
-                    <Row style={{padding:'0px', margin:'0px'}}>
-                      <Col xs={2} style={{padding:'0px', display:'flex',alignItems:'center',justifyContent:'left'}}>
-                        <Avatar
-                          src={this.props.imageUrl}
-                          size={50}
-                          style={imageStyle}
-                        />
-                      </Col>
-                      <Col xs={10}>
-                        <div style={{display:'inline-block', width: 'auto', minWidth:'30px', padding:'10px', borderRadius:'12px', background: 'rgba(250,250,250,1.0)'}}>
-	                        <p style={{width:'auto', minWidth:'30px', margin:'0px', fontFamily:'Roboto Regular'}}>{this.props.message}</p>
-	                        <p style={{width:'auto', minWidth:'30px', margin:'0px', fontSize:'10px', fontFamily:'Roboto Regular'}}>13.00</p>
-                        </div>
-                      </Col>
-                    </Row>
+				    <Row
+              style={{margin:'10px', marginLeft:'20px', marginRight:'10px', display: 'inlineBlock', width:'auto', color: 'rgba(40,40,40,1.0)'}}>
+              <Col xs={12} style={{padding:"0px"}}>
+                <Row style={{padding:'0px', margin:'0px'}}>
+                  <Col xs={2} style={{padding:'0px', display:'flex',alignItems:'center',justifyContent:'left'}}>
+                    <Avatar
+                      src={this.props.imageUrl}
+                      size={50}
+                      style={imageStyle}
+                    />
+                  </Col>
+                  <Col xs={10}>
+                    <div style={{display:'inline-block', width: 'auto', minWidth:'30px', padding:'10px', borderRadius:'12px', background: 'rgba(250,250,250,1.0)'}}>
+                      <p style={{width:'auto', minWidth:'30px', margin:'0px', fontFamily:'Roboto Regular'}}>{this.props.message}</p>
+                      <p style={{width:'auto', minWidth:'30px', margin:'0px', fontSize:'10px', fontFamily:'Roboto Regular'}}>13.00</p>
+                    </div>
                   </Col>
                 </Row>
+              </Col>
+            </Row>
 			</MuiThemeProvider>
        )
     }

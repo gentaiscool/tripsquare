@@ -46966,7 +46966,8 @@
 		margin: '0px',
 		marginTop: '0px',
 		padding: '0px',
-		lineHeight: '14px'
+		lineHeight: '14px',
+		fontStyle: 'italic'
 	};
 
 	var descStyle = {
@@ -47039,12 +47040,12 @@
 											_react2.default.createElement(
 												'p',
 												{ style: headerStyle },
-												'Don\'t miss this'
+												'Don\'t miss this:'
 											),
 											_react2.default.createElement(
 												'p',
 												{ style: cityNameStyle },
-												'"HK Disneyland"'
+												'HK Disneyland'
 											)
 										),
 										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 1 }),
@@ -75774,25 +75775,27 @@
 
 	  _createClass(ChatConsole, [{
 	    key: 'changeMessage',
-	    value: function changeMessage(event, message) {
-	      console.log("change: " + message);
-	      this.setState({ message: message });
+	    value: function changeMessage(event) {
+	      //console.log("change: " + message);   
+	      this.setState({ message: event.target.value });
 	    }
 	  }, {
 	    key: 'sendMessage',
-	    value: function sendMessage(message) {
+	    value: function sendMessage() {
 	      var object = {
 	        'name': this.state.name,
 	        'imageUrl': this.state.imageUrl,
 	        'email': this.state.email,
-	        'message': message,
+	        'message': this.state.message,
 	        'channelId': this.state.channelId
 	      };
 
 	      var arr = this.state.chatMessages;
 	      arr.push(object);
+	      this.setState({ message: '' });
 	      this.setState({ chatMessages: arr });
 
+	      console.log(this.state.chatMessages[this.state.chatMessages.length - 1]['str']);
 	      console.log(this.state.chatMessages.length);
 
 	      socket.emit("message", object);
@@ -75802,11 +75805,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
-	      var messages = this.state.chatMessages.map(function (message) {
-	        return _react2.default.createElement(_message_box_component2.default, null);
-	      });
 	      return _react2.default.createElement(
 	        _MuiThemeProvider2.default,
 	        null,
@@ -75845,7 +75843,7 @@
 	                _reactCustomScrollbars.Scrollbars,
 	                { style: { margin: '0px', marginTop: '5px', height: '350px', padding: '0px' } },
 	                this.state.chatMessages.map(function (message) {
-	                  return _react2.default.createElement(_message_box_component2.default, { imageUrl: _this2.state.imageUrl, message: _this2.state.message });
+	                  return _react2.default.createElement(_message_box_component2.default, { imageUrl: message.imageUrl, message: message.message });
 	                })
 	              )
 	            )
@@ -75858,7 +75856,7 @@
 	              _reactFlexboxGrid.Col,
 	              { xs: 7 },
 	              _react2.default.createElement(_TextField2.default, { hintText: 'Message', style: { marginRight: '10px', width: '90%' },
-	                onChange: this.changeMessage.bind(this)
+	                value: this.state.message, onChange: this.changeMessage.bind(this)
 	              })
 	            ),
 	            _react2.default.createElement(
@@ -75872,7 +75870,7 @@
 	                  'Send'
 	                ),
 	                style: {},
-	                onClick: this.sendMessage.bind(this, this.state.message)
+	                onClick: this.sendMessage.bind(this)
 	              })
 	            )
 	          )
@@ -75884,7 +75882,7 @@
 	  return ChatConsole;
 	}(_react.Component);
 
-	exports.default = (0, _reactCookie.withCookies)(ChatConsole);
+	exports.default = ChatConsole;
 
 /***/ }),
 /* 661 */
@@ -76564,7 +76562,6 @@
 	    _classCallCheck(this, MessageBox);
 
 	    return _possibleConstructorReturn(this, (MessageBox.__proto__ || Object.getPrototypeOf(MessageBox)).call(this, props));
-	    //this.props = props;
 	  }
 
 	  _createClass(MessageBox, [{
