@@ -70,15 +70,15 @@
 
 	var _places_component2 = _interopRequireDefault(_places_component);
 
-	var _carComponent = __webpack_require__(727);
+	var _carComponent = __webpack_require__(730);
 
 	var _carComponent2 = _interopRequireDefault(_carComponent);
 
-	var _carDetailComponent = __webpack_require__(728);
+	var _carDetailComponent = __webpack_require__(731);
 
 	var _carDetailComponent2 = _interopRequireDefault(_carDetailComponent);
 
-	var _reactTapEventPlugin = __webpack_require__(729);
+	var _reactTapEventPlugin = __webpack_require__(732);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
@@ -27702,15 +27702,19 @@
 
 	var _planner_component2 = _interopRequireDefault(_planner_component);
 
-	var _chat_console_component = __webpack_require__(656);
+	var _itinerary_component = __webpack_require__(656);
+
+	var _itinerary_component2 = _interopRequireDefault(_itinerary_component);
+
+	var _chat_console_component = __webpack_require__(659);
 
 	var _chat_console_component2 = _interopRequireDefault(_chat_console_component);
 
-	var _sidebar_component = __webpack_require__(721);
+	var _sidebar_component = __webpack_require__(724);
 
 	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
 
-	var _detailbar_component = __webpack_require__(725);
+	var _detailbar_component = __webpack_require__(728);
 
 	var _detailbar_component2 = _interopRequireDefault(_detailbar_component);
 
@@ -27730,15 +27734,15 @@
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _chromeReaderMode = __webpack_require__(726);
+	var _chromeReaderMode = __webpack_require__(729);
 
 	var _chromeReaderMode2 = _interopRequireDefault(_chromeReaderMode);
 
 	var _reactFlexboxGrid = __webpack_require__(250);
 
-	var _socket = __webpack_require__(667);
+	var _socket = __webpack_require__(670);
 
-	var _socket2 = __webpack_require__(670);
+	var _socket2 = __webpack_require__(673);
 
 	var _socket3 = _interopRequireDefault(_socket2);
 
@@ -27798,7 +27802,8 @@
 			_this.state = {
 				consoleClosed: true,
 				dataDetailbar: {},
-				items: []
+				items: [],
+				rightBoxPlanner: true
 			};
 			return _this;
 		}
@@ -27840,10 +27845,22 @@
 				this.setState({ dataDetailbar: dataDetailbar });
 			}
 		}, {
+			key: 'onPlannerClickHandler',
+			value: function onPlannerClickHandler() {
+				this.setState({ rightBoxPlanner: true });
+			}
+		}, {
+			key: 'onItineraryClickHandler',
+			value: function onItineraryClickHandler() {
+				console.log("places: onItineraryClickHandler");
+				this.setState({ rightBoxPlanner: false });
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var consoleClosed = this.state.consoleClosed;
 				var dataDetailbar = this.state.dataDetailbar;
+				var rightBoxPlanner = this.state.rightBoxPlanner;
 
 				return _react2.default.createElement(
 					_MuiThemeProvider2.default,
@@ -27857,9 +27874,13 @@
 							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 2, style: {} },
-								_react2.default.createElement(_sidebar_component2.default, null)
+								_react2.default.createElement(_sidebar_component2.default, {
+									onPlannerClickCallback: this.onPlannerClickHandler.bind(this),
+									onItineraryClickCallback: this.onItineraryClickHandler.bind(this)
+								})
 							),
-							!consoleClosed ? _react2.default.createElement(
+							!consoleClosed ? /* IF CHATBOX IS CLOSED */
+							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 10, style: {} },
 								_react2.default.createElement(
@@ -27892,7 +27913,13 @@
 											icon: _react2.default.createElement(_chromeReaderMode2.default, { color: 'rgba(240,240,240,1.0)', style: { marginBottom: '3px' } }),
 											label: _react2.default.createElement(
 												'span',
-												{ style: { fontFamily: "Roboto Regular", color: "rgba(70,70,70,1.0)", padding: '0px', margin: '0px', marginLeft: '5px' } },
+												{ style: {
+														fontFamily: "Roboto Regular",
+														color: "rgba(70,70,70,1.0)",
+														padding: '0px',
+														margin: '0px',
+														marginLeft: '5px'
+													} },
 												'Chat'
 											),
 											onClick: this.toggleConsole.bind(this)
@@ -27905,7 +27932,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										_react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -27913,7 +27940,8 @@
 										_react2.default.createElement(_chat_console_component2.default, null)
 									)
 								)
-							) : _react2.default.createElement(
+							) : /* IF CHATBOX IS OPENED */
+							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 10, style: {} },
 								_react2.default.createElement(
@@ -27959,7 +27987,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										_react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -28105,7 +28133,8 @@
 		_createClass(Planner, [{
 			key: 'onDetailsClickHandler',
 			value: function onDetailsClickHandler(id) {
-				this.props.onDetailClickCallback(id);
+				//console.log("planner");
+				this.props.onDetailsClickCallback(id);
 			}
 		}, {
 			key: 'onUpClickHandler',
@@ -74588,11 +74617,672 @@
 
 	var _reactFlexboxGrid = __webpack_require__(250);
 
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _city_itinerary_component = __webpack_require__(657);
+
+	var _city_itinerary_component2 = _interopRequireDefault(_city_itinerary_component);
+
+	var _landmark_itinerary_component = __webpack_require__(658);
+
+	var _landmark_itinerary_component2 = _interopRequireDefault(_landmark_itinerary_component);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Itinerary = function (_Component) {
+	  _inherits(Itinerary, _Component);
+
+	  function Itinerary(props) {
+	    _classCallCheck(this, Itinerary);
+
+	    return _possibleConstructorReturn(this, (Itinerary.__proto__ || Object.getPrototypeOf(Itinerary)).call(this, props));
+	  }
+
+	  _createClass(Itinerary, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      // console.log("Itinerary");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Grid,
+	          { fluid: true, style: { padding: '0px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            null,
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 12, style: {} },
+	              _react2.default.createElement(
+	                _reactCustomScrollbars.Scrollbars,
+	                { style: { height: '480px', paddingRight: '0px' } },
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { marginTop: "10px" } },
+	                  _react2.default.createElement(_city_itinerary_component2.default, {
+	                    cityName: 'Shenzhen, China',
+	                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg',
+	                    desc: 'One of China\'s wealthiest cities',
+	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "city_1"),
+	                    id: 'city_1'
+	                  })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { marginTop: "10px" } },
+	                  _react2.default.createElement(_landmark_itinerary_component2.default, {
+	                    cityName: 'Shenzhen, China',
+	                    landmarkName: 'Shenzhen Safari Park',
+	                    imageUrl: 'http://static.hk.groupon-content.net/07/82/1332308568207.jpg',
+	                    desc: 'first zoo in China to uncage animals',
+	                    id: 'landmark_2',
+	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "landmark_2")
+	                  })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Itinerary;
+	}(_react.Component);
+
+	exports.default = Itinerary;
+
+/***/ }),
+/* 657 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Avatar = __webpack_require__(441);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _thumbUp = __webpack_require__(443);
+
+	var _thumbUp2 = _interopRequireDefault(_thumbUp);
+
+	var _thumbDown = __webpack_require__(456);
+
+	var _thumbDown2 = _interopRequireDefault(_thumbDown);
+
+	var _schedule = __webpack_require__(457);
+
+	var _schedule2 = _interopRequireDefault(_schedule);
+
+	var _insertInvitation = __webpack_require__(458);
+
+	var _insertInvitation2 = _interopRequireDefault(_insertInvitation);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var containerStyle = {
+	  background: 'rgba(250,250,250,1.0)'
+	};
+
+	var headerStyle = {
+	  fontFamily: 'Roboto Bold',
+	  background: 'rgba(40, 40, 40, 1.0)',
+	  color: 'rgba(250, 250, 250, 1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingTop: '5px',
+	  paddingBottom: '5px',
+	  paddingLeft: '27px',
+	  paddingRight: '10px',
+	  borderColor: 'rgba(240,240,240,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  marginRight: '0px',
+	  width: '100%'
+	};
+
+	var boxStyle = {
+	  background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))'
+	};
+
+	var imageBoxStyle = {
+	  display: 'flex',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,1.0)',
+	  background: 'rgba(250,250,250,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  borderTopLeftRadius: '10px',
+	  borderBottomLeftRadius: '10px'
+	};
+
+	var imageStyle = {
+	  maxWidth: '100%',
+	  maxHeight: '100%',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,0.8)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid'
+	};
+
+	var dateStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px'
+	};
+
+	var timeStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px',
+	  marginLeft: '10px'
+	};
+
+	var cityNameStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '25px',
+	  margin: '0px',
+	  padding: '0px'
+	};
+
+	var descStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  margin: '0px',
+	  marginTop: '5px',
+	  padding: '0px'
+	};
+
+	var City = function (_Component) {
+	  _inherits(City, _Component);
+
+	  function City(props) {
+	    _classCallCheck(this, City);
+
+	    var _this = _possibleConstructorReturn(this, (City.__proto__ || Object.getPrototypeOf(City)).call(this, props));
+
+	    _this.state = {
+	      up: 0,
+	      down: 0
+	    };
+	    return _this;
+	  }
+
+	  _createClass(City, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      //console.log("city");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'onClickUpHandler',
+	    value: function onClickUpHandler() {
+	      this.setState({ up: this.state.up + 1 });
+	    }
+	  }, {
+	    key: 'onClickDownHandler',
+	    value: function onClickDownHandler() {
+	      this.setState({ down: this.state.down + 1 });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var numUp = this.state.up;
+	      var numDown = this.state.down;
+
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Row,
+	          { style: { width: '100%', paddingLeft: '17px', borderRadius: '10px', paddingRight: '12px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 2, style: imageBoxStyle, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	            _react2.default.createElement(_Avatar2.default, {
+	              src: this.props.imageUrl,
+	              size: 80,
+	              style: imageStyle
+	            })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 10, style: boxStyle },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    'p',
+	                    { style: cityNameStyle },
+	                    this.props.cityName
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    'p',
+	                    { style: descStyle },
+	                    this.props.desc
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 7 },
+	                _react2.default.createElement(_thumbUp2.default, { style: { marginRight: "10px", width: '20px', height: '20px' }, color: '#feb24c',
+	                  onClick: this.onClickUpHandler.bind(this) }),
+	                _react2.default.createElement(
+	                  'span',
+	                  { style: { marginRight: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
+	                  numUp
+	                ),
+	                _react2.default.createElement(_thumbDown2.default, { style: { width: '20px', height: '20px' }, color: '#969696',
+	                  onClick: this.onClickDownHandler.bind(this) }),
+	                _react2.default.createElement(
+	                  'span',
+	                  { style: { marginLeft: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
+	                  numDown
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 5, style: { display: "flex" } },
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: dateStyle },
+	                  '25 Apr 2017'
+	                ),
+	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: timeStyle },
+	                  '03.00 PM'
+	                ),
+	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return City;
+	}(_react.Component);
+
+	exports.default = City;
+
+/***/ }),
+/* 658 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Avatar = __webpack_require__(441);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _thumbUp = __webpack_require__(443);
+
+	var _thumbUp2 = _interopRequireDefault(_thumbUp);
+
+	var _thumbDown = __webpack_require__(456);
+
+	var _thumbDown2 = _interopRequireDefault(_thumbDown);
+
+	var _schedule = __webpack_require__(457);
+
+	var _schedule2 = _interopRequireDefault(_schedule);
+
+	var _delete = __webpack_require__(491);
+
+	var _delete2 = _interopRequireDefault(_delete);
+
+	var _insertInvitation = __webpack_require__(458);
+
+	var _insertInvitation2 = _interopRequireDefault(_insertInvitation);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var containerStyle = {
+	  background: 'rgba(250,250,250,1.0)'
+	};
+
+	var headerStyle = {
+	  fontFamily: 'Roboto Bold',
+	  background: 'rgba(40, 40, 40, 1.0)',
+	  color: 'rgba(250, 250, 250, 1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingTop: '5px',
+	  paddingBottom: '5px',
+	  paddingLeft: '27px',
+	  paddingRight: '10px',
+	  borderColor: 'rgba(240,240,240,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  marginRight: '0px',
+	  width: '100%'
+	};
+
+	var boxStyle = {
+	  background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))'
+	};
+
+	var imageBoxStyle = {
+	  display: 'flex',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,1.0)',
+	  background: 'rgba(210,210,210,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  borderTopLeftRadius: '10px',
+	  borderBottomLeftRadius: '10px'
+	};
+
+	var imageStyle = {
+	  maxWidth: '100%',
+	  maxHeight: '100%',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,0.8)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid'
+	};
+
+	var dateStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px'
+	};
+
+	var timeStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px',
+	  marginLeft: '10px'
+	};
+
+	var landmarkNameStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '25px',
+	  margin: '0px',
+	  padding: '0px'
+	};
+
+	var descStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  margin: '0px',
+	  marginTop: '5px',
+	  padding: '0px'
+	};
+
+	var Landmark = function (_Component) {
+	  _inherits(Landmark, _Component);
+
+	  function Landmark(props) {
+	    _classCallCheck(this, Landmark);
+
+	    var _this = _possibleConstructorReturn(this, (Landmark.__proto__ || Object.getPrototypeOf(Landmark)).call(this, props));
+
+	    _this.state = {
+	      up: 0,
+	      down: 0
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Landmark, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      //console.log("landmark");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'onClickUpHandler',
+	    value: function onClickUpHandler() {
+	      this.setState({ up: this.state.up + 1 });
+	    }
+	  }, {
+	    key: 'onClickDownHandler',
+	    value: function onClickDownHandler() {
+	      this.setState({ down: this.state.down + 1 });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Row,
+	          { style: { width: '100%', paddingLeft: '17px', borderRadius: '10px', paddingRight: '12px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 2, style: imageBoxStyle, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	            _react2.default.createElement(_Avatar2.default, {
+	              src: this.props.imageUrl,
+	              size: 80,
+	              style: imageStyle
+	            })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 10, style: boxStyle },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 9, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: landmarkNameStyle },
+	                      this.props.landmarkName
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 3, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: { fontFamily: 'Roboto Bold', padding: '0px', margin: '0px' } },
+	                      this.props.cityName
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 9, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: descStyle },
+	                      this.props.desc
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 3, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { style: { fontFamily: 'Roboto Light', fontSize: '12px', padding: '0px', margin: '0px' } },
+	                      'added by you'
+	                    ),
+	                    _react2.default.createElement(_delete2.default, { style: { width: '20px', height: '20px', marginLeft: '5px' }, color: '#969696' })
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, style: { display: "flex" } },
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: dateStyle },
+	                  '25 Apr 2017'
+	                ),
+	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: timeStyle },
+	                  '03.00 PM'
+	                ),
+	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Landmark;
+	}(_react.Component);
+
+	exports.default = Landmark;
+
+/***/ }),
+/* 659 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
 	var _reactCustomScrollbars = __webpack_require__(412);
 
 	var _propTypes = __webpack_require__(353);
 
-	var _reactCookie = __webpack_require__(657);
+	var _reactCookie = __webpack_require__(660);
 
 	var _Divider = __webpack_require__(523);
 
@@ -74616,13 +75306,13 @@
 
 	var _List = __webpack_require__(459);
 
-	var _message_box_component = __webpack_require__(666);
+	var _message_box_component = __webpack_require__(669);
 
 	var _message_box_component2 = _interopRequireDefault(_message_box_component);
 
-	var _socket = __webpack_require__(667);
+	var _socket = __webpack_require__(670);
 
-	var _socket2 = __webpack_require__(670);
+	var _socket2 = __webpack_require__(673);
 
 	var _socket3 = _interopRequireDefault(_socket2);
 
@@ -74821,7 +75511,7 @@
 	exports.default = (0, _reactCookie.withCookies)(ChatConsole);
 
 /***/ }),
-/* 657 */
+/* 660 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74830,7 +75520,7 @@
 	  value: true
 	});
 
-	var _Cookies = __webpack_require__(658);
+	var _Cookies = __webpack_require__(661);
 
 	Object.defineProperty(exports, 'Cookies', {
 	  enumerable: true,
@@ -74839,7 +75529,7 @@
 	  }
 	});
 
-	var _CookiesProvider = __webpack_require__(664);
+	var _CookiesProvider = __webpack_require__(667);
 
 	Object.defineProperty(exports, 'CookiesProvider', {
 	  enumerable: true,
@@ -74848,7 +75538,7 @@
 	  }
 	});
 
-	var _withCookies = __webpack_require__(665);
+	var _withCookies = __webpack_require__(668);
 
 	Object.defineProperty(exports, 'withCookies', {
 	  enumerable: true,
@@ -74860,7 +75550,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 658 */
+/* 661 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74869,7 +75559,7 @@
 	  value: true
 	});
 
-	var _universalCookie = __webpack_require__(659);
+	var _universalCookie = __webpack_require__(662);
 
 	var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -74879,7 +75569,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 659 */
+/* 662 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74888,7 +75578,7 @@
 	  value: true
 	});
 
-	var _Cookies = __webpack_require__(660);
+	var _Cookies = __webpack_require__(663);
 
 	var _Cookies2 = _interopRequireDefault(_Cookies);
 
@@ -74898,7 +75588,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 660 */
+/* 663 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74911,7 +75601,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _cookie = __webpack_require__(661);
+	var _cookie = __webpack_require__(664);
 
 	var _cookie2 = _interopRequireDefault(_cookie);
 
@@ -74919,7 +75609,7 @@
 
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-	var _utils = __webpack_require__(662);
+	var _utils = __webpack_require__(665);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -75032,7 +75722,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 661 */
+/* 664 */
 /***/ (function(module, exports) {
 
 	/*!
@@ -75233,7 +75923,7 @@
 
 
 /***/ }),
-/* 662 */
+/* 665 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
@@ -75244,7 +75934,7 @@
 	exports.isNode = isNode;
 	exports.cleanCookies = cleanCookies;
 
-	var _isNode = __webpack_require__(663);
+	var _isNode = __webpack_require__(666);
 
 	var _isNode2 = _interopRequireDefault(_isNode);
 
@@ -75262,7 +75952,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }())))
 
 /***/ }),
-/* 663 */
+/* 666 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Coding standard for this project defined @ https://github.com/MatthewSH/standards/blob/master/JavaScript.md
@@ -75273,7 +75963,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 664 */
+/* 667 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75288,11 +75978,11 @@
 
 	var _propTypes = __webpack_require__(353);
 
-	var _universalCookie = __webpack_require__(659);
+	var _universalCookie = __webpack_require__(662);
 
 	var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
-	var _utils = __webpack_require__(662);
+	var _utils = __webpack_require__(665);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -75350,7 +76040,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 665 */
+/* 668 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75369,7 +76059,7 @@
 
 	var _propTypes = __webpack_require__(353);
 
-	var _universalCookie = __webpack_require__(659);
+	var _universalCookie = __webpack_require__(662);
 
 	var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -75410,7 +76100,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 666 */
+/* 669 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75557,7 +76247,7 @@
 	exports.default = MessageBox;
 
 /***/ }),
-/* 667 */
+/* 670 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75567,11 +76257,11 @@
 	});
 	exports.socketConnect = exports.SocketProvider = undefined;
 
-	var _SocketProvider = __webpack_require__(668);
+	var _SocketProvider = __webpack_require__(671);
 
 	var _SocketProvider2 = _interopRequireDefault(_SocketProvider);
 
-	var _socketConnect = __webpack_require__(669);
+	var _socketConnect = __webpack_require__(672);
 
 	var _socketConnect2 = _interopRequireDefault(_socketConnect);
 
@@ -75581,7 +76271,7 @@
 	exports.socketConnect = _socketConnect2.default;
 
 /***/ }),
-/* 668 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75642,7 +76332,7 @@
 	exports.default = SocketProvider;
 
 /***/ }),
-/* 669 */
+/* 672 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75674,7 +76364,7 @@
 	exports.default = socketConnect;
 
 /***/ }),
-/* 670 */
+/* 673 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -75682,10 +76372,10 @@
 	 * Module dependencies.
 	 */
 
-	var url = __webpack_require__(671);
-	var parser = __webpack_require__(676);
-	var Manager = __webpack_require__(686);
-	var debug = __webpack_require__(673)('socket.io-client');
+	var url = __webpack_require__(674);
+	var parser = __webpack_require__(679);
+	var Manager = __webpack_require__(689);
+	var debug = __webpack_require__(676)('socket.io-client');
 
 	/**
 	 * Module exports.
@@ -75784,12 +76474,12 @@
 	 * @api public
 	 */
 
-	exports.Manager = __webpack_require__(686);
-	exports.Socket = __webpack_require__(716);
+	exports.Manager = __webpack_require__(689);
+	exports.Socket = __webpack_require__(719);
 
 
 /***/ }),
-/* 671 */
+/* 674 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -75797,8 +76487,8 @@
 	 * Module dependencies.
 	 */
 
-	var parseuri = __webpack_require__(672);
-	var debug = __webpack_require__(673)('socket.io-client:url');
+	var parseuri = __webpack_require__(675);
+	var debug = __webpack_require__(676)('socket.io-client:url');
 
 	/**
 	 * Module exports.
@@ -75871,7 +76561,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 672 */
+/* 675 */
 /***/ (function(module, exports) {
 
 	/**
@@ -75916,7 +76606,7 @@
 
 
 /***/ }),
-/* 673 */
+/* 676 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -75926,7 +76616,7 @@
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(674);
+	exports = module.exports = __webpack_require__(677);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -76100,7 +76790,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 674 */
+/* 677 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -76116,7 +76806,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(675);
+	exports.humanize = __webpack_require__(678);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -76306,7 +76996,7 @@
 
 
 /***/ }),
-/* 675 */
+/* 678 */
 /***/ (function(module, exports) {
 
 	/**
@@ -76461,7 +77151,7 @@
 
 
 /***/ }),
-/* 676 */
+/* 679 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -76469,11 +77159,11 @@
 	 * Module dependencies.
 	 */
 
-	var debug = __webpack_require__(677)('socket.io-parser');
-	var json = __webpack_require__(680);
-	var Emitter = __webpack_require__(682);
-	var binary = __webpack_require__(683);
-	var isBuf = __webpack_require__(685);
+	var debug = __webpack_require__(680)('socket.io-parser');
+	var json = __webpack_require__(683);
+	var Emitter = __webpack_require__(685);
+	var binary = __webpack_require__(686);
+	var isBuf = __webpack_require__(688);
 
 	/**
 	 * Protocol version.
@@ -76871,7 +77561,7 @@
 
 
 /***/ }),
-/* 677 */
+/* 680 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -76881,7 +77571,7 @@
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(678);
+	exports = module.exports = __webpack_require__(681);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -77045,7 +77735,7 @@
 
 
 /***/ }),
-/* 678 */
+/* 681 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -77061,7 +77751,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(679);
+	exports.humanize = __webpack_require__(682);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -77248,7 +77938,7 @@
 
 
 /***/ }),
-/* 679 */
+/* 682 */
 /***/ (function(module, exports) {
 
 	/**
@@ -77379,14 +78069,14 @@
 
 
 /***/ }),
-/* 680 */
+/* 683 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 	;(function () {
 	  // Detect the `define` function exposed by asynchronous module loaders. The
 	  // strict `define` check is necessary for compatibility with `r.js`.
-	  var isLoader = "function" === "function" && __webpack_require__(681);
+	  var isLoader = "function" === "function" && __webpack_require__(684);
 
 	  // A set of types used to distinguish objects from primitives.
 	  var objectTypes = {
@@ -78288,7 +78978,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(367)(module), (function() { return this; }())))
 
 /***/ }),
-/* 681 */
+/* 684 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -78296,7 +78986,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 682 */
+/* 685 */
 /***/ (function(module, exports) {
 
 	
@@ -78466,7 +79156,7 @@
 
 
 /***/ }),
-/* 683 */
+/* 686 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -78475,8 +79165,8 @@
 	 * Module requirements
 	 */
 
-	var isArray = __webpack_require__(684);
-	var isBuf = __webpack_require__(685);
+	var isArray = __webpack_require__(687);
+	var isBuf = __webpack_require__(688);
 
 	/**
 	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -78614,7 +79304,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 684 */
+/* 687 */
 /***/ (function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -78623,7 +79313,7 @@
 
 
 /***/ }),
-/* 685 */
+/* 688 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -78643,7 +79333,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 686 */
+/* 689 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -78651,15 +79341,15 @@
 	 * Module dependencies.
 	 */
 
-	var eio = __webpack_require__(687);
-	var Socket = __webpack_require__(716);
-	var Emitter = __webpack_require__(705);
-	var parser = __webpack_require__(676);
-	var on = __webpack_require__(718);
-	var bind = __webpack_require__(719);
-	var debug = __webpack_require__(673)('socket.io-client:manager');
-	var indexOf = __webpack_require__(714);
-	var Backoff = __webpack_require__(720);
+	var eio = __webpack_require__(690);
+	var Socket = __webpack_require__(719);
+	var Emitter = __webpack_require__(708);
+	var parser = __webpack_require__(679);
+	var on = __webpack_require__(721);
+	var bind = __webpack_require__(722);
+	var debug = __webpack_require__(676)('socket.io-client:manager');
+	var indexOf = __webpack_require__(717);
+	var Backoff = __webpack_require__(723);
 
 	/**
 	 * IE6+ hasOwnProperty
@@ -79209,19 +79899,19 @@
 
 
 /***/ }),
-/* 687 */
+/* 690 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(688);
+	module.exports = __webpack_require__(691);
 
 
 /***/ }),
-/* 688 */
+/* 691 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(689);
+	module.exports = __webpack_require__(692);
 
 	/**
 	 * Exports parser
@@ -79229,25 +79919,25 @@
 	 * @api public
 	 *
 	 */
-	module.exports.parser = __webpack_require__(696);
+	module.exports.parser = __webpack_require__(699);
 
 
 /***/ }),
-/* 689 */
+/* 692 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var transports = __webpack_require__(690);
-	var Emitter = __webpack_require__(705);
-	var debug = __webpack_require__(709)('engine.io-client:socket');
-	var index = __webpack_require__(714);
-	var parser = __webpack_require__(696);
-	var parseuri = __webpack_require__(672);
-	var parsejson = __webpack_require__(715);
-	var parseqs = __webpack_require__(706);
+	var transports = __webpack_require__(693);
+	var Emitter = __webpack_require__(708);
+	var debug = __webpack_require__(712)('engine.io-client:socket');
+	var index = __webpack_require__(717);
+	var parser = __webpack_require__(699);
+	var parseuri = __webpack_require__(675);
+	var parsejson = __webpack_require__(718);
+	var parseqs = __webpack_require__(709);
 
 	/**
 	 * Module exports.
@@ -79379,9 +80069,9 @@
 	 */
 
 	Socket.Socket = Socket;
-	Socket.Transport = __webpack_require__(695);
-	Socket.transports = __webpack_require__(690);
-	Socket.parser = __webpack_require__(696);
+	Socket.Transport = __webpack_require__(698);
+	Socket.transports = __webpack_require__(693);
+	Socket.parser = __webpack_require__(699);
 
 	/**
 	 * Creates transport of the given type.
@@ -79978,17 +80668,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 690 */
+/* 693 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies
 	 */
 
-	var XMLHttpRequest = __webpack_require__(691);
-	var XHR = __webpack_require__(693);
-	var JSONP = __webpack_require__(711);
-	var websocket = __webpack_require__(712);
+	var XMLHttpRequest = __webpack_require__(694);
+	var XHR = __webpack_require__(696);
+	var JSONP = __webpack_require__(714);
+	var websocket = __webpack_require__(715);
 
 	/**
 	 * Export transports.
@@ -80038,12 +80728,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 691 */
+/* 694 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-	var hasCORS = __webpack_require__(692);
+	var hasCORS = __webpack_require__(695);
 
 	module.exports = function (opts) {
 	  var xdomain = opts.xdomain;
@@ -80082,7 +80772,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 692 */
+/* 695 */
 /***/ (function(module, exports) {
 
 	
@@ -80105,18 +80795,18 @@
 
 
 /***/ }),
-/* 693 */
+/* 696 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module requirements.
 	 */
 
-	var XMLHttpRequest = __webpack_require__(691);
-	var Polling = __webpack_require__(694);
-	var Emitter = __webpack_require__(705);
-	var inherit = __webpack_require__(707);
-	var debug = __webpack_require__(709)('engine.io-client:polling-xhr');
+	var XMLHttpRequest = __webpack_require__(694);
+	var Polling = __webpack_require__(697);
+	var Emitter = __webpack_require__(708);
+	var inherit = __webpack_require__(710);
+	var debug = __webpack_require__(712)('engine.io-client:polling-xhr');
 
 	/**
 	 * Module exports.
@@ -80536,19 +81226,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 694 */
+/* 697 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Transport = __webpack_require__(695);
-	var parseqs = __webpack_require__(706);
-	var parser = __webpack_require__(696);
-	var inherit = __webpack_require__(707);
-	var yeast = __webpack_require__(708);
-	var debug = __webpack_require__(709)('engine.io-client:polling');
+	var Transport = __webpack_require__(698);
+	var parseqs = __webpack_require__(709);
+	var parser = __webpack_require__(699);
+	var inherit = __webpack_require__(710);
+	var yeast = __webpack_require__(711);
+	var debug = __webpack_require__(712)('engine.io-client:polling');
 
 	/**
 	 * Module exports.
@@ -80561,7 +81251,7 @@
 	 */
 
 	var hasXHR2 = (function () {
-	  var XMLHttpRequest = __webpack_require__(691);
+	  var XMLHttpRequest = __webpack_require__(694);
 	  var xhr = new XMLHttpRequest({ xdomain: false });
 	  return null != xhr.responseType;
 	})();
@@ -80787,15 +81477,15 @@
 
 
 /***/ }),
-/* 695 */
+/* 698 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var parser = __webpack_require__(696);
-	var Emitter = __webpack_require__(705);
+	var parser = __webpack_require__(699);
+	var Emitter = __webpack_require__(708);
 
 	/**
 	 * Module exports.
@@ -80950,22 +81640,22 @@
 
 
 /***/ }),
-/* 696 */
+/* 699 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var keys = __webpack_require__(697);
-	var hasBinary = __webpack_require__(698);
-	var sliceBuffer = __webpack_require__(700);
-	var after = __webpack_require__(701);
-	var utf8 = __webpack_require__(702);
+	var keys = __webpack_require__(700);
+	var hasBinary = __webpack_require__(701);
+	var sliceBuffer = __webpack_require__(703);
+	var after = __webpack_require__(704);
+	var utf8 = __webpack_require__(705);
 
 	var base64encoder;
 	if (global && global.ArrayBuffer) {
-	  base64encoder = __webpack_require__(703);
+	  base64encoder = __webpack_require__(706);
 	}
 
 	/**
@@ -81023,7 +81713,7 @@
 	 * Create a blob api even for blob builder when vendor prefixes exist
 	 */
 
-	var Blob = __webpack_require__(704);
+	var Blob = __webpack_require__(707);
 
 	/**
 	 * Encodes a packet.
@@ -81566,7 +82256,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 697 */
+/* 700 */
 /***/ (function(module, exports) {
 
 	
@@ -81591,7 +82281,7 @@
 
 
 /***/ }),
-/* 698 */
+/* 701 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -81599,7 +82289,7 @@
 	 * Module requirements.
 	 */
 
-	var isArray = __webpack_require__(699);
+	var isArray = __webpack_require__(702);
 
 	/**
 	 * Module exports.
@@ -81657,7 +82347,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 699 */
+/* 702 */
 /***/ (function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -81666,7 +82356,7 @@
 
 
 /***/ }),
-/* 700 */
+/* 703 */
 /***/ (function(module, exports) {
 
 	/**
@@ -81701,7 +82391,7 @@
 
 
 /***/ }),
-/* 701 */
+/* 704 */
 /***/ (function(module, exports) {
 
 	module.exports = after
@@ -81735,7 +82425,7 @@
 
 
 /***/ }),
-/* 702 */
+/* 705 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/wtf8 v1.0.0 by @mathias */
@@ -81974,7 +82664,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(367)(module), (function() { return this; }())))
 
 /***/ }),
-/* 703 */
+/* 706 */
 /***/ (function(module, exports) {
 
 	/*
@@ -82047,7 +82737,7 @@
 
 
 /***/ }),
-/* 704 */
+/* 707 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -82150,7 +82840,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 705 */
+/* 708 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -82319,7 +83009,7 @@
 
 
 /***/ }),
-/* 706 */
+/* 709 */
 /***/ (function(module, exports) {
 
 	/**
@@ -82362,7 +83052,7 @@
 
 
 /***/ }),
-/* 707 */
+/* 710 */
 /***/ (function(module, exports) {
 
 	
@@ -82374,7 +83064,7 @@
 	};
 
 /***/ }),
-/* 708 */
+/* 711 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -82448,7 +83138,7 @@
 
 
 /***/ }),
-/* 709 */
+/* 712 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -82458,7 +83148,7 @@
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(710);
+	exports = module.exports = __webpack_require__(713);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -82632,7 +83322,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 710 */
+/* 713 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -82648,7 +83338,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(675);
+	exports.humanize = __webpack_require__(678);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -82838,7 +83528,7 @@
 
 
 /***/ }),
-/* 711 */
+/* 714 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -82846,8 +83536,8 @@
 	 * Module requirements.
 	 */
 
-	var Polling = __webpack_require__(694);
-	var inherit = __webpack_require__(707);
+	var Polling = __webpack_require__(697);
+	var inherit = __webpack_require__(710);
 
 	/**
 	 * Module exports.
@@ -83076,24 +83766,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 712 */
+/* 715 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 
-	var Transport = __webpack_require__(695);
-	var parser = __webpack_require__(696);
-	var parseqs = __webpack_require__(706);
-	var inherit = __webpack_require__(707);
-	var yeast = __webpack_require__(708);
-	var debug = __webpack_require__(709)('engine.io-client:websocket');
+	var Transport = __webpack_require__(698);
+	var parser = __webpack_require__(699);
+	var parseqs = __webpack_require__(709);
+	var inherit = __webpack_require__(710);
+	var yeast = __webpack_require__(711);
+	var debug = __webpack_require__(712)('engine.io-client:websocket');
 	var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 	var NodeWebSocket;
 	if (typeof window === 'undefined') {
 	  try {
-	    NodeWebSocket = __webpack_require__(713);
+	    NodeWebSocket = __webpack_require__(716);
 	  } catch (e) { }
 	}
 
@@ -83368,13 +84058,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 713 */
+/* 716 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }),
-/* 714 */
+/* 717 */
 /***/ (function(module, exports) {
 
 	
@@ -83389,7 +84079,7 @@
 	};
 
 /***/ }),
-/* 715 */
+/* 718 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -83427,7 +84117,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 716 */
+/* 719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -83435,13 +84125,13 @@
 	 * Module dependencies.
 	 */
 
-	var parser = __webpack_require__(676);
-	var Emitter = __webpack_require__(705);
-	var toArray = __webpack_require__(717);
-	var on = __webpack_require__(718);
-	var bind = __webpack_require__(719);
-	var debug = __webpack_require__(673)('socket.io-client:socket');
-	var hasBin = __webpack_require__(698);
+	var parser = __webpack_require__(679);
+	var Emitter = __webpack_require__(708);
+	var toArray = __webpack_require__(720);
+	var on = __webpack_require__(721);
+	var bind = __webpack_require__(722);
+	var debug = __webpack_require__(676)('socket.io-client:socket');
+	var hasBin = __webpack_require__(701);
 
 	/**
 	 * Module exports.
@@ -83852,7 +84542,7 @@
 
 
 /***/ }),
-/* 717 */
+/* 720 */
 /***/ (function(module, exports) {
 
 	module.exports = toArray
@@ -83871,7 +84561,7 @@
 
 
 /***/ }),
-/* 718 */
+/* 721 */
 /***/ (function(module, exports) {
 
 	
@@ -83901,7 +84591,7 @@
 
 
 /***/ }),
-/* 719 */
+/* 722 */
 /***/ (function(module, exports) {
 
 	/**
@@ -83930,7 +84620,7 @@
 
 
 /***/ }),
-/* 720 */
+/* 723 */
 /***/ (function(module, exports) {
 
 	
@@ -84021,7 +84711,7 @@
 
 
 /***/ }),
-/* 721 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84048,15 +84738,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(722);
+	var _accountBox = __webpack_require__(725);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(723);
+	var _list = __webpack_require__(726);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(724);
+	var _viewQuilt = __webpack_require__(727);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -84088,6 +84778,15 @@
 	  paddingRight: '20px'
 	};
 
+	var usernameStyle = {
+	  fontFamily: 'Roboto Regular',
+	  fontSize: '14px',
+	  color: 'rgba(240,240,240,1.0)',
+	  textAlign: 'left',
+	  paddingLeft: '7px',
+	  paddingRight: '4px'
+	};
+
 	var headerStyle = {
 	  fontFamily: 'Roboto Regular',
 	  color: 'rgba(240,240,240,1.0)',
@@ -84108,25 +84807,64 @@
 	  paddingBottom: '5px'
 	};
 
+	var onlineIconStyle = {
+	  width: '10px', height: '10px', marginTop: '6px'
+	};
+
+	var notifIconStyle = {
+	  display: 'flex',
+	  justifyContent: 'right',
+	  width: '20px',
+	  height: '20px',
+	  alignItems: 'right',
+	  flexDirection: 'row',
+	  paddingTop: '5px',
+	  paddingRight: '20px',
+	  paddingLeft: '15px',
+	  marginRight: '10px'
+	};
+
+	var notifTextStyle = {
+	  position: 'absolute',
+	  fontFamily: 'Roboto Bold',
+	  color: 'rgba(240,240,240,1.0)',
+	  fontSize: '12px',
+	  marginLeft: '21px',
+	  marginTop: '2px'
+	};
+
 	var memberStyle = {
+	  justifyContent: 'center',
+	  display: 'flex',
 	  fontFamily: 'Roboto Regular',
 	  color: 'rgba(240,240,240,1.0)',
 	  fontSize: '12px',
-	  padding: '0px',
 	  margin: '0px',
-	  paddingTop: '5px',
-	  paddingBottom: '5px'
+	  paddingBottom: '10px',
+	  flexDirection: 'row'
 	};
 
-	var nameStyle = {
+	var tripNameStyle = {
+	  display: 'flex',
+	  flexDirection: 'row',
 	  fontFamily: 'Roboto Light',
 	  color: 'rgba(240,240,240,1.0)',
 	  fontSize: '14px',
-	  padding: '0px',
 	  margin: '0px',
-	  paddingTop: '5px',
 	  paddingBottom: '5px',
-	  paddingLeft: '20px'
+	  paddingTop: '4px',
+	  paddingLeft: '15px',
+	  paddingRight: '4px'
+	};
+
+	var memberNameStyle = {
+	  display: 'flex',
+	  flexDirection: 'row',
+	  fontFamily: 'Roboto Light',
+	  color: 'rgba(240,240,240,1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingLeft: '7px'
 	};
 
 	var Sidebar = function (_Component) {
@@ -84137,7 +84875,10 @@
 
 	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
-	    _this.state = { hover_flag: false };
+	    _this.state = {
+	      hover_flag_plan: false,
+	      hover_flag_itinerary: false
+	    };
 	    return _this;
 	  }
 
@@ -84152,24 +84893,50 @@
 	    key: 'getInitialState',
 	    value: function getInitialState() {
 	      return {
-	        hover_flag: false
+	        hover_flag_plan: false,
+	        hover_flag_itinerary: false
 	      };
 	    }
 	  }, {
-	    key: 'hoverEvent',
-	    value: function hoverEvent() {
-	      this.setState({ hover_flag: !this.state.hover_flag });
+	    key: 'hoverPlanEvent',
+	    value: function hoverPlanEvent() {
+	      this.setState({ hover_flag_plan: !this.state.hover_flag_plan });
+	    }
+	  }, {
+	    key: 'hoverItineraryEvent',
+	    value: function hoverItineraryEvent() {
+	      this.setState({ hover_flag_itinerary: !this.state.hover_flag_itinerary });
+	    }
+	  }, {
+	    key: 'onItineraryClickHandler',
+	    value: function onItineraryClickHandler() {
+	      console.log("sidebar: onItineraryClickHandler");
+	      this.props.onItineraryClickCallback();
+	    }
+	  }, {
+	    key: 'onPlannerClickHandler',
+	    value: function onPlannerClickHandler() {
+	      this.props.onPlannerClickCallback();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var liStyle = {
+	      var planStyle = {
 	        background: 'rgba(0,0,0,0)',
 	        paddingLeft: '10px'
 	      };
 
-	      if (this.state.hover_flag) {
-	        liStyle['background'] = '#880000';
+	      if (this.state.hover_flag_plan) {
+	        planStyle['background'] = '#880000';
+	      }
+
+	      var itiStyle = {
+	        background: 'rgba(0,0,0,0)',
+	        paddingLeft: '10px'
+	      };
+
+	      if (this.state.hover_flag_itinerary) {
+	        itiStyle['background'] = '#880000';
 	      }
 
 	      return _react2.default.createElement(
@@ -84198,10 +84965,23 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'https://img.clipartfest.com/7fbf9e3baf7de5640dbbc57f5e373374_clip-art-green-trademark-clip-clipart-green-circle_600-600.png',
+	              style: onlineIconStyle
+	            }),
+	            _react2.default.createElement(
+	              'p',
+	              { style: usernameStyle },
+	              '@kharisds'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
 	            {
-	              onMouseEnter: this.hoverEvent.bind(this),
-	              onMouseLeave: this.hoverEvent.bind(this),
-	              style: liStyle },
+	              onMouseEnter: this.hoverPlanEvent.bind(this),
+	              onMouseLeave: this.hoverPlanEvent.bind(this),
+	              style: planStyle,
+	              onClick: this.onPlannerClickHandler.bind(this) },
 	            _react2.default.createElement(_viewQuilt2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
@@ -84212,7 +84992,10 @@
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
 	            {
-	              style: { paddingLeft: '10px' } },
+	              onMouseEnter: this.hoverItineraryEvent.bind(this),
+	              onMouseLeave: this.hoverItineraryEvent.bind(this),
+	              style: itiStyle,
+	              onClick: this.onItineraryClickHandler.bind(this) },
 	            _react2.default.createElement(_list2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
@@ -84226,44 +85009,139 @@
 	              style: { paddingLeft: '10px', marginTop: "15px" } },
 	            _react2.default.createElement(
 	              'p',
-	              { style: memberStyle },
+	              { style: optionStyle },
+	              'TRIPS'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Bali Trip'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 3 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: notifTextStyle },
+	                '1'
+	              ),
+	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	                style: notifIconStyle
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Trip to Hong Kong'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 3 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: notifTextStyle },
+	                '4'
+	              ),
+	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	                style: notifIconStyle
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Bangkok Trip'
+	              )
+	            ),
+	            _react2.default.createElement(_reactFlexboxGrid.Col, { xs: 3 })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            {
+	              style: { paddingLeft: '10px', marginTop: "15px" } },
+	            _react2.default.createElement(
+	              'p',
+	              { style: optionStyle },
 	              'MEMBERS'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'https://img.clipartfest.com/7fbf9e3baf7de5640dbbc57f5e373374_clip-art-green-trademark-clip-clipart-green-circle_600-600.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman'
+	              { style: memberNameStyle },
+	              'Genta'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman1'
+	              { style: memberNameStyle },
+	              'Felicia'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman2'
+	              { style: memberNameStyle },
+	              'Jane'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman3'
+	              { style: memberNameStyle },
+	              'Johnny'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement(
+	              'p',
+	              { style: optionStyle },
+	              '+ Invite people'
 	            )
 	          )
 	        )
@@ -84277,7 +85155,7 @@
 	exports.default = Sidebar;
 
 /***/ }),
-/* 722 */
+/* 725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84314,7 +85192,7 @@
 	exports.default = ActionAccountBox;
 
 /***/ }),
-/* 723 */
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84351,7 +85229,7 @@
 	exports.default = ActionList;
 
 /***/ }),
-/* 724 */
+/* 727 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84388,7 +85266,7 @@
 	exports.default = ActionViewQuilt;
 
 /***/ }),
-/* 725 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84415,15 +85293,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(722);
+	var _accountBox = __webpack_require__(725);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(723);
+	var _list = __webpack_require__(726);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(724);
+	var _viewQuilt = __webpack_require__(727);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -84597,7 +85475,7 @@
 	exports.default = Detailbar;
 
 /***/ }),
-/* 726 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84634,7 +85512,7 @@
 	exports.default = ActionChromeReaderMode;
 
 /***/ }),
-/* 727 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84707,7 +85585,7 @@
 	exports.default = Car;
 
 /***/ }),
-/* 728 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -84849,11 +85727,11 @@
 	exports.default = CarDetail;
 
 /***/ }),
-/* 729 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(8);
-	var defaultClickRejectionStrategy = __webpack_require__(730);
+	var defaultClickRejectionStrategy = __webpack_require__(733);
 
 	var alreadyInjected = false;
 
@@ -84875,14 +85753,14 @@
 	  alreadyInjected = true;
 
 	  __webpack_require__(46).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(731)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(734)(shouldRejectClick)
 	  });
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 730 */
+/* 733 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -84893,7 +85771,7 @@
 
 
 /***/ }),
-/* 731 */
+/* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -84917,14 +85795,14 @@
 
 	"use strict";
 
-	var EventConstants = __webpack_require__(732);
+	var EventConstants = __webpack_require__(735);
 	var EventPluginUtils = __webpack_require__(48);
 	var EventPropagators = __webpack_require__(45);
 	var SyntheticUIEvent = __webpack_require__(79);
-	var TouchEventUtils = __webpack_require__(733);
+	var TouchEventUtils = __webpack_require__(736);
 	var ViewportMetrics = __webpack_require__(80);
 
-	var keyOf = __webpack_require__(734);
+	var keyOf = __webpack_require__(737);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -85070,7 +85948,7 @@
 
 
 /***/ }),
-/* 732 */
+/* 735 */
 /***/ (function(module, exports) {
 
 	/**
@@ -85166,7 +86044,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 733 */
+/* 736 */
 /***/ (function(module, exports) {
 
 	/**
@@ -85214,7 +86092,7 @@
 
 
 /***/ }),
-/* 734 */
+/* 737 */
 /***/ (function(module, exports) {
 
 	"use strict";

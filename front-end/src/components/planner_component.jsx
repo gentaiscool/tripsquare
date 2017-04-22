@@ -84,7 +84,8 @@ class Planner extends Component {
 	}
 
 	onDetailsClickHandler(id){
-		this.props.onDetailClickCallback(id);
+		//console.log("planner");
+		this.props.onDetailsClickCallback(id);
 	}
 
 	onUpClickHandler(id){

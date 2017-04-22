@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Planner from '../components/planner_component.jsx';
+import Itinerary from '../components/itinerary_component.jsx';
 import ChatConsole from '../components/chat_console_component.jsx';
 
 /* PLACES */
@@ -59,7 +60,8 @@ class Places extends Component {
 		this.state = {
 			consoleClosed: true,
 			dataDetailbar: {},
-			items: []
+			items: [],
+			rightBoxPlanner: true
 		};
 	}
 
@@ -96,19 +98,33 @@ class Places extends Component {
 		this.setState({dataDetailbar: dataDetailbar});
 	}
 
+	onPlannerClickHandler() {
+		this.setState({rightBoxPlanner: true});
+	}
+
+	onItineraryClickHandler() {
+		console.log("places: onItineraryClickHandler")
+		this.setState({rightBoxPlanner: false});
+	}
+
     render(){
     	const consoleClosed = this.state.consoleClosed;
     	const dataDetailbar = this.state.dataDetailbar;
+    	const rightBoxPlanner = this.state.rightBoxPlanner;
 
         return (
         	<MuiThemeProvider>
 				<Grid fluid style={{padding:'0px'}}>
 					<Row style={{padding:'0px'}}>
 						<Col xs={2} style={{}}>
-							<Sidebar/>
+							<Sidebar 
+								onPlannerClickCallback={this.onPlannerClickHandler.bind(this)}
+								onItineraryClickCallback={this.onItineraryClickHandler.bind(this)}
+							/>
 						</Col>
-						{!consoleClosed ? (
+						{!consoleClosed ? ( /* IF CHATBOX IS CLOSED */
 						<Col xs={10} style={{}}>
+							{/* HEADER */}
 							<Row style={headerStyle}>
 								<Col xs={4} style={{paddingTop:'7px',paddingBottom:'2px',margin:0}}>
 									<p style={optionStyle}>PLACES</p>
@@ -121,21 +137,38 @@ class Places extends Component {
 									<RaisedButton
 								      backgroundColor="#aaaaaa"
 								      icon={<ChromeReaderModeSVG color="rgba(240,240,240,1.0)" style={{marginBottom: '3px'}} />}
-								      label={<span style={{fontFamily: "Roboto Regular", color:"rgba(70,70,70,1.0)", padding:'0px', margin:'0px', marginLeft:'5px'}}>Chat</span>}
+								      label={<span style={{
+								      	fontFamily: "Roboto Regular", 
+								      	color:"rgba(70,70,70,1.0)", 
+								      	padding:'0px', 
+								      	margin:'0px', 
+								      	marginLeft:'5px'
+								      }}>Chat</span>}
 								      onClick={this.toggleConsole.bind(this)}
 								    />
 								</Col>
 							</Row>
+
+
 							<Row>
 								<Col xs={7} style={rightBox}>
-									<Planner items={this.state.items} style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
+									{rightBoxPlanner ? (
+											<Planner items={this.state.items}  style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+										) : (
+											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+										)
+									}
 								</Col>
+
+								{/* RIGHT BOX */}
 								<Col xs={5} style={{paddingLeft:'0px'}}>
 									<ChatConsole/>
 								</Col>
 							</Row>
+
+
 						</Col>
-							) : (
+							) : ( /* IF CHATBOX IS OPENED */
 						<Col xs={10} style={{}}>
 							<Row style={headerStyle}>
 								<Col xs={4} style={{paddingTop:'7px',paddingBottom:'2px',margin:0}}>
@@ -155,12 +188,21 @@ class Places extends Component {
 								</Col>
 							</Row>
 							<Row>
+								{/* LEFT BOX */}
 								<Col xs={7} style={rightBox}>
-									<Planner items={this.state.items} style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
+								{rightBoxPlanner ? (
+											<Planner items={this.state.items} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+										) : (
+											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+										)
+									}
 								</Col>
+
+								{/* RIGHT BOX */}
 								<Col xs={5} style={{paddingLeft:'0px'}}>
 									<Detailbar title={dataDetailbar.title} desc={dataDetailbar.desc} imageUrl={dataDetailbar.imageUrl} />
 								</Col>
+
 							</Row>
 						</Col>
 						)}
