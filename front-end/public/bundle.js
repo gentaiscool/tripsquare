@@ -48956,6 +48956,15 @@
 	  paddingRight: '20px'
 	};
 
+	var usernameStyle = {
+	  fontFamily: 'Roboto Regular',
+	  fontSize: '14px',
+	  color: 'rgba(240,240,240,1.0)',
+	  textAlign: 'left',
+	  paddingLeft: '7px',
+	  paddingRight: '4px'
+	};
+
 	var headerStyle = {
 	  fontFamily: 'Roboto Regular',
 	  color: 'rgba(240,240,240,1.0)',
@@ -48976,25 +48985,64 @@
 	  paddingBottom: '5px'
 	};
 
+	var onlineIconStyle = {
+	  width: '10px', height: '10px', marginTop: '6px'
+	};
+
+	var notifIconStyle = {
+	  display: 'flex',
+	  justifyContent: 'right',
+	  width: '20px',
+	  height: '20px',
+	  alignItems: 'right',
+	  flexDirection: 'row',
+	  paddingTop: '5px',
+	  paddingRight: '20px',
+	  paddingLeft: '15px',
+	  marginRight: '10px'
+	};
+
+	var notifTextStyle = {
+	  position: 'absolute',
+	  fontFamily: 'Roboto Bold',
+	  color: 'rgba(240,240,240,1.0)',
+	  fontSize: '12px',
+	  marginLeft: '21px',
+	  marginTop: '2px'
+	};
+
 	var memberStyle = {
+	  justifyContent: 'center',
+	  display: 'flex',
 	  fontFamily: 'Roboto Regular',
 	  color: 'rgba(240,240,240,1.0)',
 	  fontSize: '12px',
-	  padding: '0px',
 	  margin: '0px',
-	  paddingTop: '5px',
-	  paddingBottom: '5px'
+	  paddingBottom: '10px',
+	  flexDirection: 'row'
 	};
 
-	var nameStyle = {
+	var tripNameStyle = {
+	  display: 'flex',
+	  flexDirection: 'row',
 	  fontFamily: 'Roboto Light',
 	  color: 'rgba(240,240,240,1.0)',
 	  fontSize: '14px',
-	  padding: '0px',
 	  margin: '0px',
-	  paddingTop: '5px',
 	  paddingBottom: '5px',
-	  paddingLeft: '20px'
+	  paddingTop: '4px',
+	  paddingLeft: '15px',
+	  paddingRight: '4px'
+	};
+
+	var memberNameStyle = {
+	  display: 'flex',
+	  flexDirection: 'row',
+	  fontFamily: 'Roboto Light',
+	  color: 'rgba(240,240,240,1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingLeft: '7px'
 	};
 
 	var Sidebar = function (_Component) {
@@ -49066,6 +49114,18 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'https://img.clipartfest.com/7fbf9e3baf7de5640dbbc57f5e373374_clip-art-green-trademark-clip-clipart-green-circle_600-600.png',
+	              style: onlineIconStyle
+	            }),
+	            _react2.default.createElement(
+	              'p',
+	              { style: usernameStyle },
+	              '@kharisds'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
 	            {
 	              onMouseEnter: this.hoverEvent.bind(this),
 	              onMouseLeave: this.hoverEvent.bind(this),
@@ -49080,6 +49140,8 @@
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
 	            {
+	              onMouseEnter: this.hoverEvent.bind(this),
+	              onMouseLeave: this.hoverEvent.bind(this),
 	              style: { paddingLeft: '10px' } },
 	            _react2.default.createElement(_list2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
@@ -49094,44 +49156,139 @@
 	              style: { paddingLeft: '10px', marginTop: "15px" } },
 	            _react2.default.createElement(
 	              'p',
-	              { style: memberStyle },
+	              { style: optionStyle },
+	              'TRIPS'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Bali Trip'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 3 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: notifTextStyle },
+	                '1'
+	              ),
+	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	                style: notifIconStyle
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Trip to Hong Kong'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 3 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: notifTextStyle },
+	                '4'
+	              ),
+	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	                style: notifIconStyle
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { justifyContent: 'center', alignItems: 'left' } },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 9 },
+	              _react2.default.createElement(
+	                'p',
+	                { style: tripNameStyle },
+	                'Bangkok Trip'
+	              )
+	            ),
+	            _react2.default.createElement(_reactFlexboxGrid.Col, { xs: 3 })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            {
+	              style: { paddingLeft: '10px', marginTop: "15px" } },
+	            _react2.default.createElement(
+	              'p',
+	              { style: optionStyle },
 	              'MEMBERS'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'https://img.clipartfest.com/7fbf9e3baf7de5640dbbc57f5e373374_clip-art-green-trademark-clip-clipart-green-circle_600-600.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman'
+	              { style: memberNameStyle },
+	              'Genta'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman1'
+	              { style: memberNameStyle },
+	              'Felicia'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman2'
+	              { style: memberNameStyle },
+	              'Jane'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
-	            null,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/5JqJyJy.png',
+	              style: onlineIconStyle
+	            }),
 	            _react2.default.createElement(
 	              'p',
-	              { style: nameStyle },
-	              'Gentaman3'
+	              { style: memberNameStyle },
+	              'Johnny'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            { style: { paddingLeft: '15px' } },
+	            _react2.default.createElement(
+	              'p',
+	              { style: optionStyle },
+	              '+ Invite people'
 	            )
 	          )
 	        )
