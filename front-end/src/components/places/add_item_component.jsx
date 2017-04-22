@@ -126,7 +126,9 @@ class AddItem extends Component {
     return <AutoComplete
             hintText = "Add city, landmark"
             dataSource    = {this.state.dataSource}
-            onNewRequest = {this.onNewRequest} />
+            onNewRequest = {this.onNewRequest}
+            filter={AutoComplete.caseInsensitiveFilter}
+            openOnFocus={true} />
   }
 }
 

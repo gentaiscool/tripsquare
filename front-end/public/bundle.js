@@ -46993,7 +46993,9 @@
 	      return _react2.default.createElement(_materialUi.AutoComplete, {
 	        hintText: 'Add city, landmark',
 	        dataSource: this.state.dataSource,
-	        onNewRequest: this.onNewRequest });
+	        onNewRequest: this.onNewRequest,
+	        filter: _materialUi.AutoComplete.caseInsensitiveFilter,
+	        openOnFocus: true });
 	    }
 	  }]);
 
