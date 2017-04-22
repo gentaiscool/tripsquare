@@ -148,8 +148,7 @@ class Landmark extends Component {
                   </Col>
 
                   <Col xs={3} style={{padding:'0px', margin:'0px'}}>
-                    <span style={{fontFamily:'Roboto Light', fontSize:'12px', padding:'0px', margin:'0px'}}>added by you</span>
-                    <DeleteSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
+                    
                   </Col>
                 </Row>
               </Col>
