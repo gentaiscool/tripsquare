@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { instanceOf } from 'prop-types';
+import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 
 /* MATERIAL UI */
 import Divider from 'material-ui/Divider';
@@ -14,6 +16,13 @@ import { List, ListItemText, ListItemIcon } from 'material-ui/List';
 
 /* COMPONENT */
 import MessageBox from './chat_console/message_box_component.jsx';
+
+import {
+  SocketProvider,
+  socketConnect,
+} from 'socket.io-react';
+
+import io from 'socket.io-client';
 
 /* STYLE */
 const headerStyle = {
@@ -47,12 +56,60 @@ const titleStyle = {
   paddingBottom: '5px'
 }
 
+const socket = io.connect("localhost:8081");
+socket.on('message', msg => console.log(msg));
+
 class ChatConsole extends Component {
     constructor(props){
       super(props);
+
+      const { cookies } = instanceOf(Cookies).isRequired;
+      console.log(">>");
+      console.log(Cookies);
+
+      this.state = {
+        message: "",
+        chatMessages: [],
+        id: "id",
+        name: "Genta",
+        imageUrl: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAhtAAAAJDZlNmJkNTFhLTdhMzEtNGFjZi1iMjU3LTNkNWE3NjY5YjYzZQ.jpg",
+        email: "gentaindrawinata@gmail.com"
+        /*id: cookies.get('id'),
+        name: cookies.get('name'),
+        imageUrl: cookies.get('imageUrl'),
+        email: cookies.get('email')*/
+      }
+    }
+
+  changeMessage(event, message){
+      console.log("change: " + message);   
+      this.setState({message: message});
+    }
+
+  sendMessage(message){
+      var object = {
+        'name': this.state.name,
+        'imageUrl': this.state.imageUrl,
+        'email': this.state.email,
+        'message': message,
+        'channelId': this.state.channelId
+      }
+
+      var arr = this.state.chatMessages;
+      arr.push(object);
+      this.setState({chatMessages: arr});
+
+      console.log(this.state.chatMessages.length);
+
+      socket.emit("message", object);
+
+      //this.setState({message: ""});
     }
 
     render(){
+      var messages = this.state.chatMessages.map((message) =>
+          <MessageBox />
+      )
       return (
        		<MuiThemeProvider>
     				<Grid fluid style={headerStyle}>
@@ -71,9 +128,11 @@ class ChatConsole extends Component {
               <Row style={{height:'350px', background: 'rgba(235,235,235,1.0)', padding: '0px', margin: '0px'}}>
                 <Col xs={12} style={{padding:'0px', paddingLeft:'-10px', margin:'0px'}}>
                   <Scrollbars style={{margin:'0px', marginTop:'5px', height:'350px', padding:'0px'}}>
-                    <MessageBox />
-                    <MessageBox />
-                    <MessageBox />
+                    {
+                      this.state.chatMessages.map((message) =>
+                        <MessageBox imageUrl={this.state.imageUrl} message={this.state.message} />
+                      )
+                    }
                   </Scrollbars>
                 </Col>
               </Row>
@@ -82,14 +141,16 @@ class ChatConsole extends Component {
                 </Col>
                 <Col xs={7}>
                   <TextField hintText="Message" style={{marginRight:'10px', width:'90%'}}
+                    onChange={this.changeMessage.bind(this)}
                   />
                 </Col>
                 <Col xs={3} style={{padding:'10px'}}>
-                  <RaisedButton
-                    backgroundColor="#a4c639"
-                    label={<span style={{padding:'0px', fontFamily: 'Roboto Regular', color: '#ffffff'}}>Send</span>}
-                    style={{}}
-                  />
+                    <RaisedButton
+                      backgroundColor="#a4c639"
+                      label={<span style={{padding:'0px', fontFamily: 'Roboto Regular', color: '#ffffff'}}>Send</span>}
+                      style={{}}
+                      onClick={this.sendMessage.bind(this, this.state.message)}
+                    />
                 </Col>
               </Row>
     				</Grid>
@@ -98,4 +159,4 @@ class ChatConsole extends Component {
     }
 }
 
-export default ChatConsole
+export default withCookies(ChatConsole)

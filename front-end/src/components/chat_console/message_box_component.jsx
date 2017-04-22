@@ -61,14 +61,14 @@ class MessageBox extends Component {
                     <Row style={{padding:'0px', margin:'0px'}}>
                       <Col xs={2} style={{padding:'0px', display:'flex',alignItems:'center',justifyContent:'left'}}>
                         <Avatar
-                          src="https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F8a6af7a7-1381-47d8-a9b8-c070e14d69e5.jpg"
+                          src={this.props.imageUrl}
                           size={50}
                           style={imageStyle}
                         />
                       </Col>
                       <Col xs={10}>
                         <div style={{display:'inline-block', width: 'auto', minWidth:'30px', padding:'10px', borderRadius:'12px', background: 'rgba(250,250,250,1.0)'}}>
-	                        <p style={{width:'auto', minWidth:'30px', margin:'0px', fontFamily:'Roboto Regular'}}>Hello</p>
+	                        <p style={{width:'auto', minWidth:'30px', margin:'0px', fontFamily:'Roboto Regular'}}>{this.props.message}</p>
 	                        <p style={{width:'auto', minWidth:'30px', margin:'0px', fontSize:'10px', fontFamily:'Roboto Regular'}}>13.00</p>
                         </div>
                       </Col>

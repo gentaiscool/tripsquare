@@ -99,10 +99,6 @@ const descStyle = {
 class City extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			up: 0,
-			down: 0
-		}
 	}
 
 	onDetailsClickHandler(id) {
@@ -110,18 +106,15 @@ class City extends Component {
 		this.props.onDetailsClickCallback(id);
 	}
 
-	onClickUpHandler() {
-		this.setState({up : (this.state.up + 1)});
+	onClickUpHandler(id) {
+		this.props.onUpClickCallback(id);
 	}
 
-	onClickDownHandler() {
-		this.setState({down : (this.state.down + 1)});
+	onClickDownHandler(id) {
+		this.props.onDownClickCallback(id);
 	}
 
     render(){
-    	const numUp = this.state.up;
-    	const numDown = this.state.down;
-
        return (
        		<MuiThemeProvider>
 				<Row style={{width:'100%', paddingLeft:'17px',borderRadius: '10px', paddingRight:'12px'}}>
@@ -136,27 +129,38 @@ class City extends Component {
 						<Row style={{padding:'10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
 							<Col xs={12} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
 								<Row>
-									<p style={cityNameStyle}>{this.props.cityName}</p>
+									<Col xs={9} style={{padding:'0px', margin:'0px'}}>
+										<p style={cityNameStyle}>{this.props.cityName}</p>
+									</Col>
+									<Col xs={1}>
+									</Col>
+									<Col xs={2} style={{padding:'0px', margin:'0px'}}>
+										<FloatingActionButton mini={true} secondary={true} style={{marginLeft:'40px'}}>
+											<ContentAdd />
+										</FloatingActionButton>
+									</Col>
 						       	</Row>
 						       	<Row>
-						       		<p style={descStyle}>{this.props.desc}</p>
+						       		<Col xs={9} style={{padding:'0px', margin:'0px'}}>
+										<p style={descStyle}>{this.props.desc}</p>
+									</Col>
+									<Col xs={3} style={{padding:'0px', margin:'0px'}}>
+										
+									</Col>
 						       	</Row>
 					       	</Col>
 				       	</Row>
 				       	<Row style={{marginTop:'-1px', marginLeft: '-10px', padding:'7px', borderBottomRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
 							<Col xs={7}>
 								<ThumbUpSVG style={{marginRight:"10px", width:'20px', height:'20px'}} color="#feb24c"
-								onClick={this.onClickUpHandler.bind(this)}/>
-								<span style={{marginRight:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{numUp}</span>
+								onClick={this.onClickUpHandler.bind(this, this.props.id)}/>
+								<span style={{marginRight:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{this.props.up}</span>
 								<ThumbDownSVG style={{width:'20px', height:'20px'}} color="#969696"
-								onClick={this.onClickDownHandler.bind(this)}/>
-								<span style={{marginLeft:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{numDown}</span>
+								onClick={this.onClickDownHandler.bind(this, this.props.id)}/>
+								<span style={{marginLeft:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{this.props.down}</span>
 							</Col>
 							<Col xs={5} style={{display:"flex"}}>
-								<p style={dateStyle}>25 Apr 2017</p>
-								<InsertInvitationSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
-								<p style={timeStyle}>03.00 PM</p>
-								<ScheduleSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
+								
 							</Col>
 				       	</Row>
 					</Col>

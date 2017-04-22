@@ -76,40 +76,107 @@ const descStyle = {
 class Planner extends Component {
 	constructor(props){
 		super(props);
+
+		this.state = {
+			ups: {},
+			downs: {}
+		}
 	}
 
-	/*clickHandler(id){
-		if(typeof this.props.onDetailUpdateCallback === "function"){
-			this.props.onDetailUpdateCallback(id);
-		}
-	}*/
-
 	onDetailsClickHandler(id){
-		//console.log("planner");
 		this.props.onDetailClickCallback(id);
 	}
 
+	onUpClickHandler(id){
+		var ups = this.state.ups;
+		if(!ups.hasOwnProperty(id))
+			ups[id] = 0;
+		ups[id] = this.state.ups[id]+1;
+		this.setState({ups: ups});
+		console.log("up>" + ups[id] + " " + id);
+	}
+
+	onDownClickHandler(id){
+		var downs = this.state.downs;
+		if(!downs.hasOwnProperty(id))
+			downs[id] = 0;
+		downs[id] = this.state.downs[id]+1;
+		this.setState({downs: downs});
+		console.log("down>" + downs[id] + " " + id);
+	}
+
     render(){
+      function compare(a, b) {
+      	if(a["up"] < b["up"]){
+      		return 1;
+      	} else if(a["up"] == b["up"]){
+      		return a["down"] > b["down"];
+      	} else{
+      		return -1;
+      	}
+	  }
+
+      //sort items
+      var data = this.props.items;
+
+      for(let i=0; i<data.length; i++){
+      	var itemId = data[i]["id"];
+
+      	if(this.state.ups.hasOwnProperty(itemId))
+	      	data[i]["up"] = this.state.ups[itemId];
+	     else
+	     	data[i]["up"] = 0;
+
+
+      	if(this.state.downs.hasOwnProperty(itemId))
+	      	data[i]["down"] = this.state.downs[itemId];
+	     else
+	     	data[i]["down"] = 0;
+
+      	console.log(">>" + itemId + " " + this.state.ups[itemId] + " " + data[i]["up"]);
+      }
+
+      // /let cloneData = data;
+      //console.log("pret");
+      data.sort(compare);
+      //console.log(data);
+
+      var items = data.map(function(item){
+      	if(item["type"] == "city"){
+      		return  <div style={{marginTop:"10px"}}>
+				<City cityName={item["city"]} 
+				imageUrl={item["cityImageUrl"]}
+				desc="Description"
+				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
+				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
+				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
+				id={item["id"]}
+				up={item["up"]}
+				down={item["down"]}
+				/>
+			</div>
+      	} else{
+      		return <Landmark cityName={item["city"]} 
+				landmarkName={item["landmark"]} 
+				imageUrl={item["landmarkImageUrl"]}
+				desc="Description"
+				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
+				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
+				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
+				id={item["id"]}
+				up={item["up"]}
+				down={item["down"]}
+				/>
+      	}
+      	count += 1;
+      }.bind(this));
        return (
        		<MuiThemeProvider>
 				<Grid fluid style={{padding:'0px'}}>
 					<Row>
 						<Col xs={12} style={{}}>
 							<Scrollbars style={{height:'480px',paddingRight:'0px'}}>
-								<div style={{marginTop:"10px"}}>
-									<City cityName="Shenzhen, China" imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg"
-									desc="One of China's wealthiest cities"
-									onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "city_1")}
-									id="city_1"
-									/>
-								</div>
-								<div style={{marginTop:"10px"}}>
-									<Landmark cityName="Shenzhen, China" landmarkName="Shenzhen Safari Park" imageUrl="http://static.hk.groupon-content.net/07/82/1332308568207.jpg"
-									desc="first zoo in China to uncage animals"
-									id="landmark_2"
-									onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "landmark_2")}
-									/>
-								</div>
+								{items}
 							</Scrollbars>
 						</Col>
 					</Row>

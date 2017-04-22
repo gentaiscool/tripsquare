@@ -1,12 +1,37 @@
 <html>
     <head>
         <base href="/" />
-        <title>Scotch Cars</title>
+        <title>Tripsquare</title>
         <!--Stylesheet-->
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
         <link rel="stylesheet" href="fonts.css" />
         <link rel="stylesheet" href="style.css">
+
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="367702189523-sdl01tbs3rv3l24p4jomovapvkl43ih9.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="/assets/js/js-cookie.js"></script>
     </head>
+    <script>
+        function onSignIn(googleUser) {
+          var profile = googleUser.getBasicProfile();
+          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+          console.log('Name: ' + profile.getName());
+          console.log('Image URL: ' + profile.getImageUrl());
+          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+          var user = { 
+                'id': profile.getId(),
+                'name': profile.getName(),
+                'imageUrl': profile.getImageUrl(),
+                'email': profile.getEmail()
+          };
+          Cookies.set('id', user.id);
+          Cookies.set('name', user.name);
+          Cookies.set('imageUrl', user.imageUrl);
+          Cookies.set('email', user.email);
+        }
+    </script>
     <body>
 
         <!-- HEADER -->
@@ -27,7 +52,9 @@
                                 <div class="mdl-snackbar__text"></div>
                                 <button class="mdl-snackbar__action" type="button"></button>
                             </div>
-                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#about">Who is Susan?</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#about">
+                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        </a>
                     </nav>
                 </div>
                 <span class="mobile-title mdl-layout-title">

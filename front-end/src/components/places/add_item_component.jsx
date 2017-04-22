@@ -12,6 +12,8 @@ import ThumbDownSVG from 'material-ui/svg-icons/action/thumb-down';
 
 import TextField from 'material-ui/TextField';
 
+import { AutoComplete }   from 'material-ui';
+
 import {
   List,
   ListItem,
@@ -70,21 +72,62 @@ const descStyle = {
 	fontSize: '12px'
 }
 
+var cities = {};
+var landmarks = {};
+var autocompleteList = [];
+
 class AddItem extends Component {
 	constructor(props) {
-		super(props);
-		//this.props = props;
-	}
-    render(){
-       return (
-       		<MuiThemeProvider>
-				<TextField
-	                hintText="Add city, landmark"
-	                style={{marginRight:'10px', width:'90%', color:'rgba(210,210,210,1.0)'}}
-	              />
-			</MuiThemeProvider>
-       )
+    super(props);
+    this.onNewRequest = this.onNewRequest.bind(this);
+
+    let cityJSON = require('../../json/city.json').default;
+    let landmarkJSON = require('../../json/landmark.json').default;
+
+    for(let i=0; i<cityJSON.length; i++){
+      cities[cityJSON[i]["city"]] = cityJSON[i];
+      autocompleteList.push(cityJSON[i]["city"]);
     }
+
+    for(let i=0; i<landmarkJSON.length; i++){
+      landmarks[landmarkJSON[i]["landmark"]] = landmarkJSON[i];
+      autocompleteList.push(landmarkJSON[i]["landmark"]);
+    }
+
+    console.log(autocompleteList);
+
+    this.state = {
+      dataSource : autocompleteList,
+      inputValue : ''
+    }
+  }
+
+  onNewRequest(inputValue) {
+    console.log(inputValue);
+    
+    let object = {};
+
+    if(cities.hasOwnProperty(inputValue)){
+      object = cities[inputValue];
+      object["type"] = "city";
+      object["up"] = 0;
+      object["down"] = 0;
+    } else{
+      object = landmarks[inputValue];
+      object["type"] = "landmark";
+      object["up"] = 0;
+      object["down"] = 0;
+    }
+
+    this.props.onAddItemCallback(object);
+  }
+
+  render() {
+    return <AutoComplete
+            hintText = "Add city, landmark"
+            dataSource    = {this.state.dataSource}
+            onNewRequest = {this.onNewRequest} />
+  }
 }
 
 export default AddItem

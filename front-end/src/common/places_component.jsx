@@ -15,6 +15,13 @@ import Avatar from 'material-ui/Avatar';
 import ChromeReaderModeSVG from 'material-ui/svg-icons/action/chrome-reader-mode';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
+import {
+  SocketProvider,
+  socketConnect,
+} from 'socket.io-react';
+
+import io from 'socket.io-client';
+
 /* STYLES */
 const rightBox = {
 	padding: '0px'
@@ -46,18 +53,26 @@ const descStyle = {
 	fontSize: '14px'
 }
 
-
 class Places extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			consoleClosed: true,
-			dataDetailbar: {}
+			dataDetailbar: {},
+			items: []
 		};
 	}
 
 	toggleConsole(){
 		this.setState({consoleClosed: !this.state.consoleClosed});
+	}
+
+	onAddItemHandler(obj){
+		var arr = this.state.items;
+		arr.push(obj);
+		this.setState({items: arr});
+		console.log("places");
+		console.log(this.state.items);
 	}
 
 	onDetailsClickHandler(id){
@@ -100,7 +115,7 @@ class Places extends Component {
 									<p style={descStyle}>Add, manage, and vote places you want to visit</p>	
 								</Col>
 								<Col xs={3} style={{margin:0, padding:0}}>
-									<AddItem />
+									<AddItem onAddItemCallback={this.onAddItemHandler.bind(this)}/>
 								</Col>
 								<Col xs={5} style={{paddingTop:'11px',paddingBottom:'2px',margin:0}}>
 									<RaisedButton
@@ -113,7 +128,7 @@ class Places extends Component {
 							</Row>
 							<Row>
 								<Col xs={7} style={rightBox}>
-									<Planner style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
+									<Planner items={this.state.items} style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
 								</Col>
 								<Col xs={5} style={{paddingLeft:'0px'}}>
 									<ChatConsole/>
@@ -128,7 +143,7 @@ class Places extends Component {
 									<p style={descStyle}>Add, manage, and vote places you want to visit</p>	
 								</Col>
 								<Col xs={3} style={{margin:0, padding:0}}>
-									<AddItem />
+									<AddItem onAddItemCallback={this.onAddItemHandler.bind(this)}/>
 								</Col>
 								<Col xs={5} style={{paddingTop:'11px',paddingBottom:'2px',margin:0}}>
 									<RaisedButton
@@ -141,7 +156,7 @@ class Places extends Component {
 							</Row>
 							<Row>
 								<Col xs={7} style={rightBox}>
-									<Planner style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
+									<Planner items={this.state.items} style={rightBox} onDetailClickCallback={this.onDetailsClickHandler.bind(this)}/>
 								</Col>
 								<Col xs={5} style={{paddingLeft:'0px'}}>
 									<Detailbar title={dataDetailbar.title} desc={dataDetailbar.desc} imageUrl={dataDetailbar.imageUrl} />
