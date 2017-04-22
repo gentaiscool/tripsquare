@@ -56,16 +56,18 @@ const titleStyle = {
   paddingBottom: '5px'
 }
 
-const socket = io.connect("localhost:8081");
-socket.on('message', msg => console.log(msg));
+var socket;
 
 class ChatConsole extends Component {
     constructor(props){
       super(props);
 
+      socket = props.socket;
       const { cookies } = instanceOf(Cookies).isRequired;
       console.log(">>");
       console.log(Cookies);
+
+      socket.on("send_back", this.sendBack.bind(this));
 
       this.state = {
         message: "",
@@ -80,6 +82,22 @@ class ChatConsole extends Component {
         email: cookies.get('email')*/
       }
     }
+
+  sendBack(data){
+      var object = {
+        'name': "Emma Watson",
+        'imageUrl': "https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F8a6af7a7-1381-47d8-a9b8-c070e14d69e5.jpg",
+        'email': "emma@google.com",
+        'message': data,
+        'channelId': "id"
+      }
+
+      var arr = this.state.chatMessages;
+      arr.push(object);
+      this.setState({message: ''});
+      this.setState({chatMessages: arr});
+      console.log("send_back");
+  }
 
   changeMessage(event){
       //console.log("change: " + message);   
@@ -136,10 +154,8 @@ class ChatConsole extends Component {
                 </Col>
               </Row>
               <Row style={{margin:'0px', padding:'0px', height:'50px', background: 'rgba(225,225,225,0.8)'}}>
-                <Col xs={2}>
-                </Col>
-                <Col xs={7}>
-                  <TextField hintText="Message" style={{marginRight:'10px', width:'90%'}}
+                <Col xs={9}>
+                  <TextField hintText="Message" style={{marginLeft:'20px', marginRight:'10px', width:'90%'}}
                     value={this.state.message} onChange={this.changeMessage.bind(this)}
                   />
                 </Col>

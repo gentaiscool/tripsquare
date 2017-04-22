@@ -178,7 +178,7 @@ class Planner extends Component {
 					<Row style={{marginTop:'7px'}}>
 						<Col xs={12}>
 							<RecommendationPlanner/>
-							<Scrollbars style={{height:'480px',paddingRight:'0px'}}>
+							<Scrollbars style={{height:'400px',paddingRight:'0px'}}>
 								{items}
 							</Scrollbars>
 						</Col>

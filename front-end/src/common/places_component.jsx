@@ -29,7 +29,7 @@ import {
 
 import io from 'socket.io-client';
 
-var moment = require('moment');
+const socket = io.connect("localhost:8081");
 
 /* STYLES */
 const rightBox = {
@@ -250,7 +250,7 @@ class Places extends Component {
 							        </Dialog>
 							      </div>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
+											<Itinerary socket={socket} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
 											items={this.state.itineraryItems}/>
 										)
 									}
@@ -258,7 +258,7 @@ class Places extends Component {
 
 								{/* RIGHT BOX */}
 								<Col xs={5} style={{paddingLeft:'0px'}}>
-									<ChatConsole/>
+									<ChatConsole socket={socket}/>
 								</Col>
 							</Row>
 
@@ -310,7 +310,7 @@ class Places extends Component {
 							        </Dialog>
 							      </div>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
+											<Itinerary socket={socket} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
 											items={this.state.itineraryItems}/>
 										)
 									}

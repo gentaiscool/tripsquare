@@ -7,6 +7,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Avatar from 'material-ui/Avatar';
 
 import TrainSVG from 'material-ui/svg-icons/maps/train';
+import DriveEtaSVG from 'material-ui/svg-icons/notification/drive-eta';
+import DirectionsWalkSVG from 'material-ui/svg-icons/maps/directions-walk';
 
 import {
   List,
@@ -64,12 +66,36 @@ const sponsorIconStyle = {
 }
 
 const smallerRowStyle = {
-  marginBottom:'-10px'
+  fontFamily: 'Roboto Light',
+  marginBottom:'-10px',
+  padding:'0px'
 }
 
+var socket;
+
 class Transport extends Component {
+  receiver(data){
+    console.log(data);
+    this.setState({walkingTime: data.walkingTime, transitTime: data.transitTime, drivingTime: data.drivingTime});
+  }
+
   constructor(props) {
     super(props);
+
+    this.state = {
+      departure: this.props.departure,
+      arrival: this.props.arrival,
+    }
+
+    socket = this.props.socket;
+    socket.on(this.state.departure + "_" + this.state.arrival, this.receiver.bind(this));
+
+    var obj = {};
+    obj.departure = this.props.departure;
+    obj.arrival = this.props.arrival;
+
+    console.log("haha>>directions_api");
+    socket.emit("directions_api", obj);
   }
 
   render() {
@@ -86,9 +112,9 @@ class Transport extends Component {
             <p style={detailsText}><img src='http://i.imgur.com/yjcpE7N.png' 
             style={sponsorIconStyle}/> via Long Rd. to Safari Park</p>
           </Col>
-          <Col xs={3}>
+          <Col xs={3} style={smallerRowStyle}>
             {/* TIME TAKEN */}
-            <p style={detailsText}>33 min.</p>
+            <p style={detailsText}>17 mins</p>
           </Col>
         </Row>
         <Row style={smallerRowStyle}>
@@ -99,21 +125,28 @@ class Transport extends Component {
           <Col xs={6}>
             {/* ROUTE DETAILS */}
             <Row style={smallerRowStyle}>
-              <p style={detailsText}><TrainSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
-              via Shenzhen North Station</p>
+              <p style={detailsText}><DriveEtaSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
+              Drive</p>
             </Row>
             <Row style={smallerRowStyle}>
               <p style={detailsText}><TrainSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
-              via Huanzhong Line</p>
+              Transit</p>
+            </Row>
+            <Row style={smallerRowStyle}>
+              <p style={detailsText}><DirectionsWalkSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
+              Walk</p>
             </Row>
           </Col>
           <Col xs={3}>
             {/* TIME TAKEN */}
             <Row style={smallerRowStyle}>
-              <p style={detailsText}>48 min.</p>
+              <p style={detailsText}>{this.state.drivingTime}</p>
             </Row>
             <Row style={smallerRowStyle}>
-              <p style={detailsText}>54 min.</p>
+              <p style={detailsText}>{this.state.transitTime}</p>
+            </Row>
+            <Row style={smallerRowStyle}>
+              <p style={detailsText}>{this.state.walkingTime}</p>
             </Row>
           </Col>
         </Row>
@@ -124,3 +157,16 @@ class Transport extends Component {
 }
 
 export default Transport
+
+/*
+
+<Row style={smallerRowStyle}>
+    <p style={detailsText}><TrainSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
+    via Shenzhen North Station</p>
+  </Row>
+  <Row style={smallerRowStyle}>
+    <p style={detailsText}><TrainSVG style={{width:'20px', height: '20px', marginLeft:'5px'}} color="#969696"/>
+    via Huanzhong Line</p>
+  </Row>
+
+  */

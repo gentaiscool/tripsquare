@@ -17,9 +17,13 @@ import {
   ListItemIcon,
 } from 'material-ui/List';
 
+var socket;
+
 class Itinerary extends Component {
   constructor(props){
     super(props);
+
+    socket = props.socket;
   }
 
   onDetailsClickHandler(id){
@@ -47,6 +51,9 @@ class Itinerary extends Component {
                   type="train"
                   details="via Huanzhong Line"
                   time="54 min."
+                  departure="Shenzhen, China"
+                  arrival="Shenzhen Safari Park"
+                  socket={socket}
                   />
                 <div style={{marginTop:"10px"}}>
                   <Landmark 
