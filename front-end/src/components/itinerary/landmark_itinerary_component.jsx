@@ -91,7 +91,7 @@ const landmarkNameStyle = {
 
 const descStyle = {
   fontFamily: 'Roboto Light',
-  fontSize: '12px',
+  fontSize: '10px',
   margin: '0px',
   marginTop: '5px',
   padding: '0px'

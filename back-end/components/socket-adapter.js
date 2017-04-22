@@ -36,6 +36,12 @@ var SocketAdapter = function SocketAdapter(){
 					var newChannel = new Channel(channelId);
 					newChannel.newMessage(message);
 				}
+
+				for(var i=0; i<sockets.length; i++){
+					if(sockets[i] != socket){
+						sockets[i].emit("send_back", message);
+					}
+				}
 			});
 
 			socket.on('directions_api', function(data){

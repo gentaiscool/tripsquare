@@ -28262,7 +28262,7 @@
 								_react2.default.createElement(_recommendation_planner_component2.default, null),
 								_react2.default.createElement(
 									_reactCustomScrollbars.Scrollbars,
-									{ style: { height: '480px', paddingRight: '0px' } },
+									{ style: { height: '400px', paddingRight: '0px' } },
 									items
 								)
 							)
@@ -75545,7 +75545,7 @@
 
 	var descStyle = {
 	  fontFamily: 'Roboto Light',
-	  fontSize: '12px',
+	  fontSize: '10px',
 	  margin: '0px',
 	  marginTop: '5px',
 	  padding: '0px'
@@ -75643,16 +75643,7 @@
 	                      this.props.desc
 	                    )
 	                  ),
-	                  _react2.default.createElement(
-	                    _reactFlexboxGrid.Col,
-	                    { xs: 3, style: { padding: '0px', margin: '0px' } },
-	                    _react2.default.createElement(
-	                      'span',
-	                      { style: { fontFamily: 'Roboto Light', fontSize: '12px', padding: '0px', margin: '0px' } },
-	                      'added by you'
-	                    ),
-	                    _react2.default.createElement(_delete2.default, { style: { width: '20px', height: '20px', marginLeft: '5px' }, color: '#969696' })
-	                  )
+	                  _react2.default.createElement(_reactFlexboxGrid.Col, { xs: 3, style: { padding: '0px', margin: '0px' } })
 	                )
 	              )
 	            ),
@@ -76203,6 +76194,8 @@
 	    console.log(">>");
 	    console.log(_reactCookie.Cookies);
 
+	    socket.on("send_back", _this.sendBack.bind(_this));
+
 	    _this.state = {
 	      message: "",
 	      chatMessages: [],
@@ -76219,6 +76212,23 @@
 	  }
 
 	  _createClass(ChatConsole, [{
+	    key: 'sendBack',
+	    value: function sendBack(data) {
+	      var object = {
+	        'name': "Emma Watson",
+	        'imageUrl': "https://typeset-beta.imgix.net/rehost%2F2016%2F9%2F13%2F8a6af7a7-1381-47d8-a9b8-c070e14d69e5.jpg",
+	        'email': "emma@google.com",
+	        'message': data,
+	        'channelId': "id"
+	      };
+
+	      var arr = this.state.chatMessages;
+	      arr.push(object);
+	      this.setState({ message: '' });
+	      this.setState({ chatMessages: arr });
+	      console.log("send_back");
+	    }
+	  }, {
 	    key: 'changeMessage',
 	    value: function changeMessage(event) {
 	      //console.log("change: " + message);   
@@ -76296,11 +76306,10 @@
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
 	            { style: { margin: '0px', padding: '0px', height: '50px', background: 'rgba(225,225,225,0.8)' } },
-	            _react2.default.createElement(_reactFlexboxGrid.Col, { xs: 2 }),
 	            _react2.default.createElement(
 	              _reactFlexboxGrid.Col,
-	              { xs: 7 },
-	              _react2.default.createElement(_TextField2.default, { hintText: 'Message', style: { marginRight: '10px', width: '90%' },
+	              { xs: 9 },
+	              _react2.default.createElement(_TextField2.default, { hintText: 'Message', style: { marginLeft: '20px', marginRight: '10px', width: '90%' },
 	                value: this.state.message, onChange: this.changeMessage.bind(this)
 	              })
 	            ),
