@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import City from './itinerary/city_itinerary_component.jsx';
 import Landmark from './itinerary/landmark_itinerary_component.jsx';
+import Transport from './itinerary/transport_itinerary_component.jsx';
 
 import {
   List,
@@ -42,6 +43,11 @@ class Itinerary extends Component {
                   id="city_1"
                   />
                 </div>
+                <Transport
+                  type="train"
+                  details="via Huanzhong Line"
+                  time="54 min."
+                  />
                 <div style={{marginTop:"10px"}}>
                   <Landmark 
                   cityName="Shenzhen, China" 

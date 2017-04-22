@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Planner from '../components/planner_component.jsx';
 import Itinerary from '../components/itinerary_component.jsx';
 import ChatConsole from '../components/chat_console_component.jsx';
+import HttpRequest from '../components/utility/http_request_component.jsx'
 
 /* PLACES */
 import Sidebar from '../components/places/sidebar_component.jsx';
@@ -15,6 +16,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Avatar from 'material-ui/Avatar';
 import ChromeReaderModeSVG from 'material-ui/svg-icons/action/chrome-reader-mode';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import Request from 'react-http-request';
 
 import {
   SocketProvider,
@@ -61,7 +63,8 @@ class Places extends Component {
 			consoleClosed: true,
 			dataDetailbar: {},
 			items: [],
-			rightBoxPlanner: true
+			rightBoxPlanner: true,
+			itinerary_items: []
 		};
 	}
 

@@ -34,6 +34,7 @@
     "react-dom": "^15.3.0",
     "react-flexbox-grid": "^1.0.2",
     "react-google-login": "^2.8.7",
+    "react-http-request": "^1.0.3",
     "react-router": "^2.6.1",
     "react-tap-event-plugin": "^2.0.1",
     "socket.io-client": "^1.7.3",
