@@ -70,15 +70,15 @@
 
 	var _places_component2 = _interopRequireDefault(_places_component);
 
-	var _carComponent = __webpack_require__(514);
+	var _carComponent = __webpack_require__(517);
 
 	var _carComponent2 = _interopRequireDefault(_carComponent);
 
-	var _carDetailComponent = __webpack_require__(515);
+	var _carDetailComponent = __webpack_require__(518);
 
 	var _carDetailComponent2 = _interopRequireDefault(_carDetailComponent);
 
-	var _reactTapEventPlugin = __webpack_require__(516);
+	var _reactTapEventPlugin = __webpack_require__(519);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
@@ -27702,15 +27702,19 @@
 
 	var _planner_component2 = _interopRequireDefault(_planner_component);
 
-	var _chat_console_component = __webpack_require__(502);
+	var _itinerary_component = __webpack_require__(502);
+
+	var _itinerary_component2 = _interopRequireDefault(_itinerary_component);
+
+	var _chat_console_component = __webpack_require__(505);
 
 	var _chat_console_component2 = _interopRequireDefault(_chat_console_component);
 
-	var _sidebar_component = __webpack_require__(508);
+	var _sidebar_component = __webpack_require__(511);
 
 	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
 
-	var _detailbar_component = __webpack_require__(512);
+	var _detailbar_component = __webpack_require__(515);
 
 	var _detailbar_component2 = _interopRequireDefault(_detailbar_component);
 
@@ -27722,7 +27726,7 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _RaisedButton = __webpack_require__(505);
+	var _RaisedButton = __webpack_require__(508);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -27730,7 +27734,7 @@
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _chromeReaderMode = __webpack_require__(513);
+	var _chromeReaderMode = __webpack_require__(516);
 
 	var _chromeReaderMode2 = _interopRequireDefault(_chromeReaderMode);
 
@@ -27791,7 +27795,8 @@
 
 			_this.state = {
 				consoleClosed: true,
-				dataDetailbar: {}
+				dataDetailbar: {},
+				rightBoxPlanner: true
 			};
 			return _this;
 		}
@@ -27824,10 +27829,22 @@
 				this.setState({ dataDetailbar: dataDetailbar });
 			}
 		}, {
+			key: 'onPlannerClickHandler',
+			value: function onPlannerClickHandler() {
+				this.setState({ rightBoxPlanner: true });
+			}
+		}, {
+			key: 'onItineraryClickHandler',
+			value: function onItineraryClickHandler() {
+				console.log("places: onItineraryClickHandler");
+				this.setState({ rightBoxPlanner: false });
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var consoleClosed = this.state.consoleClosed;
 				var dataDetailbar = this.state.dataDetailbar;
+				var rightBoxPlanner = this.state.rightBoxPlanner;
 
 				return _react2.default.createElement(
 					_MuiThemeProvider2.default,
@@ -27841,9 +27858,13 @@
 							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 2, style: {} },
-								_react2.default.createElement(_sidebar_component2.default, null)
+								_react2.default.createElement(_sidebar_component2.default, {
+									onPlannerClickCallback: this.onPlannerClickHandler.bind(this),
+									onItineraryClickCallback: this.onItineraryClickHandler.bind(this)
+								})
 							),
-							!consoleClosed ? _react2.default.createElement(
+							!consoleClosed ? /* IF CHATBOX IS CLOSED */
+							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 10, style: {} },
 								_react2.default.createElement(
@@ -27876,7 +27897,13 @@
 											icon: _react2.default.createElement(_chromeReaderMode2.default, { color: 'rgba(240,240,240,1.0)', style: { marginBottom: '3px' } }),
 											label: _react2.default.createElement(
 												'span',
-												{ style: { fontFamily: "Roboto Regular", color: "rgba(70,70,70,1.0)", padding: '0px', margin: '0px', marginLeft: '5px' } },
+												{ style: {
+														fontFamily: "Roboto Regular",
+														color: "rgba(70,70,70,1.0)",
+														padding: '0px',
+														margin: '0px',
+														marginLeft: '5px'
+													} },
 												'Chat'
 											),
 											onClick: this.toggleConsole.bind(this)
@@ -27889,7 +27916,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										_react2.default.createElement(_planner_component2.default, { style: rightBox, onDetailClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -27897,7 +27924,8 @@
 										_react2.default.createElement(_chat_console_component2.default, null)
 									)
 								)
-							) : _react2.default.createElement(
+							) : /* IF CHATBOX IS OPENED */
+							_react2.default.createElement(
 								_reactFlexboxGrid.Col,
 								{ xs: 10, style: {} },
 								_react2.default.createElement(
@@ -27943,7 +27971,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										_react2.default.createElement(_planner_component2.default, { style: rightBox, onDetailClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -28090,7 +28118,7 @@
 			key: 'onDetailsClickHandler',
 			value: function onDetailsClickHandler(id) {
 				//console.log("planner");
-				this.props.onDetailClickCallback(id);
+				this.props.onDetailsClickCallback(id);
 			}
 		}, {
 			key: 'render',
@@ -40432,7 +40460,7 @@
 								{ style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
 								_react2.default.createElement(
 									_reactFlexboxGrid.Col,
-									{ xs: 7 },
+									{ xs: 12 },
 									_react2.default.createElement(_thumbUp2.default, { style: { marginRight: "10px", width: '20px', height: '20px' }, color: '#feb24c',
 										onClick: this.onClickUpHandler.bind(this) }),
 									_react2.default.createElement(
@@ -40447,22 +40475,6 @@
 										{ style: { marginLeft: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
 										numDown
 									)
-								),
-								_react2.default.createElement(
-									_reactFlexboxGrid.Col,
-									{ xs: 5, style: { display: "flex" } },
-									_react2.default.createElement(
-										'p',
-										{ style: dateStyle },
-										'25 Apr 2017'
-									),
-									_react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
-									_react2.default.createElement(
-										'p',
-										{ style: timeStyle },
-										'03.00 PM'
-									),
-									_react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
 								)
 							)
 						)
@@ -46201,7 +46213,7 @@
 								{ style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
 								_react2.default.createElement(
 									_reactFlexboxGrid.Col,
-									{ xs: 7 },
+									{ xs: 12 },
 									_react2.default.createElement(_thumbUp2.default, { style: { marginRight: "10px", width: '20px', height: '20px' }, color: '#feb24c',
 										onClick: this.onClickUpHandler.bind(this) }),
 									_react2.default.createElement(
@@ -46216,22 +46228,6 @@
 										{ style: { marginLeft: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
 										this.state.down
 									)
-								),
-								_react2.default.createElement(
-									_reactFlexboxGrid.Col,
-									{ xs: 5, style: { display: "flex" } },
-									_react2.default.createElement(
-										'p',
-										{ style: dateStyle },
-										'25 Apr 2017'
-									),
-									_react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
-									_react2.default.createElement(
-										'p',
-										{ style: timeStyle },
-										'03.00 PM'
-									),
-									_react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
 								)
 							)
 						)
@@ -47958,9 +47954,670 @@
 
 	var _reactFlexboxGrid = __webpack_require__(250);
 
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
 	var _reactCustomScrollbars = __webpack_require__(412);
 
-	var _Divider = __webpack_require__(503);
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _city_itinerary_component = __webpack_require__(503);
+
+	var _city_itinerary_component2 = _interopRequireDefault(_city_itinerary_component);
+
+	var _landmark_itinerary_component = __webpack_require__(504);
+
+	var _landmark_itinerary_component2 = _interopRequireDefault(_landmark_itinerary_component);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Itinerary = function (_Component) {
+	  _inherits(Itinerary, _Component);
+
+	  function Itinerary(props) {
+	    _classCallCheck(this, Itinerary);
+
+	    return _possibleConstructorReturn(this, (Itinerary.__proto__ || Object.getPrototypeOf(Itinerary)).call(this, props));
+	  }
+
+	  _createClass(Itinerary, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      // console.log("Itinerary");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Grid,
+	          { fluid: true, style: { padding: '0px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Row,
+	            null,
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Col,
+	              { xs: 12, style: {} },
+	              _react2.default.createElement(
+	                _reactCustomScrollbars.Scrollbars,
+	                { style: { height: '480px', paddingRight: '0px' } },
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { marginTop: "10px" } },
+	                  _react2.default.createElement(_city_itinerary_component2.default, {
+	                    cityName: 'Shenzhen, China',
+	                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg',
+	                    desc: 'One of China\'s wealthiest cities',
+	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "city_1"),
+	                    id: 'city_1'
+	                  })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { marginTop: "10px" } },
+	                  _react2.default.createElement(_landmark_itinerary_component2.default, {
+	                    cityName: 'Shenzhen, China',
+	                    landmarkName: 'Shenzhen Safari Park',
+	                    imageUrl: 'http://static.hk.groupon-content.net/07/82/1332308568207.jpg',
+	                    desc: 'first zoo in China to uncage animals',
+	                    id: 'landmark_2',
+	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "landmark_2")
+	                  })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Itinerary;
+	}(_react.Component);
+
+	exports.default = Itinerary;
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Avatar = __webpack_require__(441);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _thumbUp = __webpack_require__(443);
+
+	var _thumbUp2 = _interopRequireDefault(_thumbUp);
+
+	var _thumbDown = __webpack_require__(456);
+
+	var _thumbDown2 = _interopRequireDefault(_thumbDown);
+
+	var _schedule = __webpack_require__(457);
+
+	var _schedule2 = _interopRequireDefault(_schedule);
+
+	var _insertInvitation = __webpack_require__(458);
+
+	var _insertInvitation2 = _interopRequireDefault(_insertInvitation);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var containerStyle = {
+	  background: 'rgba(250,250,250,1.0)'
+	};
+
+	var headerStyle = {
+	  fontFamily: 'Roboto Bold',
+	  background: 'rgba(40, 40, 40, 1.0)',
+	  color: 'rgba(250, 250, 250, 1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingTop: '5px',
+	  paddingBottom: '5px',
+	  paddingLeft: '27px',
+	  paddingRight: '10px',
+	  borderColor: 'rgba(240,240,240,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  marginRight: '0px',
+	  width: '100%'
+	};
+
+	var boxStyle = {
+	  background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))'
+	};
+
+	var imageBoxStyle = {
+	  display: 'flex',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,1.0)',
+	  background: 'rgba(250,250,250,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  borderTopLeftRadius: '10px',
+	  borderBottomLeftRadius: '10px'
+	};
+
+	var imageStyle = {
+	  maxWidth: '100%',
+	  maxHeight: '100%',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,0.8)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid'
+	};
+
+	var dateStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px'
+	};
+
+	var timeStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px',
+	  marginLeft: '10px'
+	};
+
+	var cityNameStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '25px',
+	  margin: '0px',
+	  padding: '0px'
+	};
+
+	var descStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  margin: '0px',
+	  marginTop: '5px',
+	  padding: '0px'
+	};
+
+	var City = function (_Component) {
+	  _inherits(City, _Component);
+
+	  function City(props) {
+	    _classCallCheck(this, City);
+
+	    var _this = _possibleConstructorReturn(this, (City.__proto__ || Object.getPrototypeOf(City)).call(this, props));
+
+	    _this.state = {
+	      up: 0,
+	      down: 0
+	    };
+	    return _this;
+	  }
+
+	  _createClass(City, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      //console.log("city");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'onClickUpHandler',
+	    value: function onClickUpHandler() {
+	      this.setState({ up: this.state.up + 1 });
+	    }
+	  }, {
+	    key: 'onClickDownHandler',
+	    value: function onClickDownHandler() {
+	      this.setState({ down: this.state.down + 1 });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var numUp = this.state.up;
+	      var numDown = this.state.down;
+
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Row,
+	          { style: { width: '100%', paddingLeft: '17px', borderRadius: '10px', paddingRight: '12px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 2, style: imageBoxStyle, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	            _react2.default.createElement(_Avatar2.default, {
+	              src: this.props.imageUrl,
+	              size: 80,
+	              style: imageStyle
+	            })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 10, style: boxStyle },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    'p',
+	                    { style: cityNameStyle },
+	                    this.props.cityName
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    'p',
+	                    { style: descStyle },
+	                    this.props.desc
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 7 },
+	                _react2.default.createElement(_thumbUp2.default, { style: { marginRight: "10px", width: '20px', height: '20px' }, color: '#feb24c',
+	                  onClick: this.onClickUpHandler.bind(this) }),
+	                _react2.default.createElement(
+	                  'span',
+	                  { style: { marginRight: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
+	                  numUp
+	                ),
+	                _react2.default.createElement(_thumbDown2.default, { style: { width: '20px', height: '20px' }, color: '#969696',
+	                  onClick: this.onClickDownHandler.bind(this) }),
+	                _react2.default.createElement(
+	                  'span',
+	                  { style: { marginLeft: "10px", fontSize: "15px", fontFamily: "Roboto Light" } },
+	                  numDown
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 5, style: { display: "flex" } },
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: dateStyle },
+	                  '25 Apr 2017'
+	                ),
+	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: timeStyle },
+	                  '03.00 PM'
+	                ),
+	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return City;
+	}(_react.Component);
+
+	exports.default = City;
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
+	var _MuiThemeProvider = __webpack_require__(266);
+
+	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Paper = __webpack_require__(429);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Avatar = __webpack_require__(441);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _thumbUp = __webpack_require__(443);
+
+	var _thumbUp2 = _interopRequireDefault(_thumbUp);
+
+	var _thumbDown = __webpack_require__(456);
+
+	var _thumbDown2 = _interopRequireDefault(_thumbDown);
+
+	var _schedule = __webpack_require__(457);
+
+	var _schedule2 = _interopRequireDefault(_schedule);
+
+	var _delete = __webpack_require__(491);
+
+	var _delete2 = _interopRequireDefault(_delete);
+
+	var _insertInvitation = __webpack_require__(458);
+
+	var _insertInvitation2 = _interopRequireDefault(_insertInvitation);
+
+	var _List = __webpack_require__(459);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var containerStyle = {
+	  background: 'rgba(250,250,250,1.0)'
+	};
+
+	var headerStyle = {
+	  fontFamily: 'Roboto Bold',
+	  background: 'rgba(40, 40, 40, 1.0)',
+	  color: 'rgba(250, 250, 250, 1.0)',
+	  fontSize: '14px',
+	  margin: '0px',
+	  paddingTop: '5px',
+	  paddingBottom: '5px',
+	  paddingLeft: '27px',
+	  paddingRight: '10px',
+	  borderColor: 'rgba(240,240,240,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  marginRight: '0px',
+	  width: '100%'
+	};
+
+	var boxStyle = {
+	  background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))'
+	};
+
+	var imageBoxStyle = {
+	  display: 'flex',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,1.0)',
+	  background: 'rgba(210,210,210,1.0)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid',
+	  borderTopLeftRadius: '10px',
+	  borderBottomLeftRadius: '10px'
+	};
+
+	var imageStyle = {
+	  maxWidth: '100%',
+	  maxHeight: '100%',
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  borderColor: 'rgba(230,230,230,0.8)',
+	  borderWidth: '2px',
+	  borderStyle: 'solid'
+	};
+
+	var dateStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px'
+	};
+
+	var timeStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  padding: '0px',
+	  margin: '0px',
+	  marginLeft: '10px'
+	};
+
+	var landmarkNameStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '25px',
+	  margin: '0px',
+	  padding: '0px'
+	};
+
+	var descStyle = {
+	  fontFamily: 'Roboto Light',
+	  fontSize: '12px',
+	  margin: '0px',
+	  marginTop: '5px',
+	  padding: '0px'
+	};
+
+	var Landmark = function (_Component) {
+	  _inherits(Landmark, _Component);
+
+	  function Landmark(props) {
+	    _classCallCheck(this, Landmark);
+
+	    var _this = _possibleConstructorReturn(this, (Landmark.__proto__ || Object.getPrototypeOf(Landmark)).call(this, props));
+
+	    _this.state = {
+	      up: 0,
+	      down: 0
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Landmark, [{
+	    key: 'onDetailsClickHandler',
+	    value: function onDetailsClickHandler(id) {
+	      //console.log("landmark");
+	      this.props.onDetailsClickCallback(id);
+	    }
+	  }, {
+	    key: 'onClickUpHandler',
+	    value: function onClickUpHandler() {
+	      this.setState({ up: this.state.up + 1 });
+	    }
+	  }, {
+	    key: 'onClickDownHandler',
+	    value: function onClickDownHandler() {
+	      this.setState({ down: this.state.down + 1 });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _MuiThemeProvider2.default,
+	        null,
+	        _react2.default.createElement(
+	          _reactFlexboxGrid.Row,
+	          { style: { width: '100%', paddingLeft: '17px', borderRadius: '10px', paddingRight: '12px' } },
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 2, style: imageBoxStyle, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	            _react2.default.createElement(_Avatar2.default, {
+	              src: this.props.imageUrl,
+	              size: 80,
+	              style: imageStyle
+	            })
+	          ),
+	          _react2.default.createElement(
+	            _reactFlexboxGrid.Col,
+	            { xs: 10, style: boxStyle },
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 9, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: landmarkNameStyle },
+	                      this.props.landmarkName
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 3, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: { fontFamily: 'Roboto Bold', padding: '0px', margin: '0px' } },
+	                      this.props.cityName
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactFlexboxGrid.Row,
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 9, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'p',
+	                      { style: descStyle },
+	                      this.props.desc
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactFlexboxGrid.Col,
+	                    { xs: 3, style: { padding: '0px', margin: '0px' } },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { style: { fontFamily: 'Roboto Light', fontSize: '12px', padding: '0px', margin: '0px' } },
+	                      'added by you'
+	                    ),
+	                    _react2.default.createElement(_delete2.default, { style: { width: '20px', height: '20px', marginLeft: '5px' }, color: '#969696' })
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactFlexboxGrid.Row,
+	              { style: { marginTop: '-1px', marginLeft: '-10px', padding: '7px', borderBottomRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
+	              _react2.default.createElement(
+	                _reactFlexboxGrid.Col,
+	                { xs: 12, style: { display: "flex" } },
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: dateStyle },
+	                  '25 Apr 2017'
+	                ),
+	                _react2.default.createElement(_insertInvitation2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' }),
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: timeStyle },
+	                  '03.00 PM'
+	                ),
+	                _react2.default.createElement(_schedule2.default, { style: { width: '20px', height: '20px', marginLeft: "7px", marginTop: "2px" }, color: '#969696' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Landmark;
+	}(_react.Component);
+
+	exports.default = Landmark;
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(182);
+
+	var _reactFlexboxGrid = __webpack_require__(250);
+
+	var _reactCustomScrollbars = __webpack_require__(412);
+
+	var _Divider = __webpack_require__(506);
 
 	var _Divider2 = _interopRequireDefault(_Divider);
 
@@ -47968,7 +48625,7 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _RaisedButton = __webpack_require__(505);
+	var _RaisedButton = __webpack_require__(508);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -47982,7 +48639,7 @@
 
 	var _List = __webpack_require__(459);
 
-	var _message_box_component = __webpack_require__(507);
+	var _message_box_component = __webpack_require__(510);
 
 	var _message_box_component2 = _interopRequireDefault(_message_box_component);
 
@@ -48123,7 +48780,7 @@
 	exports.default = ChatConsole;
 
 /***/ }),
-/* 503 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48133,7 +48790,7 @@
 	});
 	exports.default = undefined;
 
-	var _Divider = __webpack_require__(504);
+	var _Divider = __webpack_require__(507);
 
 	var _Divider2 = _interopRequireDefault(_Divider);
 
@@ -48142,7 +48799,7 @@
 	exports.default = _Divider2.default;
 
 /***/ }),
-/* 504 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -48221,7 +48878,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 505 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48231,7 +48888,7 @@
 	});
 	exports.default = undefined;
 
-	var _RaisedButton = __webpack_require__(506);
+	var _RaisedButton = __webpack_require__(509);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -48240,7 +48897,7 @@
 	exports.default = _RaisedButton2.default;
 
 /***/ }),
-/* 506 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -48742,7 +49399,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 507 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48889,7 +49546,7 @@
 	exports.default = MessageBox;
 
 /***/ }),
-/* 508 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48908,7 +49565,7 @@
 
 	var _reactFlexboxGrid = __webpack_require__(250);
 
-	var _Divider = __webpack_require__(503);
+	var _Divider = __webpack_require__(506);
 
 	var _Divider2 = _interopRequireDefault(_Divider);
 
@@ -48916,15 +49573,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(509);
+	var _accountBox = __webpack_require__(512);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(510);
+	var _list = __webpack_require__(513);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(511);
+	var _viewQuilt = __webpack_require__(514);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -49086,6 +49743,17 @@
 	      this.setState({ hover_flag_itinerary: !this.state.hover_flag_itinerary });
 	    }
 	  }, {
+	    key: 'onItineraryClickHandler',
+	    value: function onItineraryClickHandler() {
+	      console.log("sidebar: onItineraryClickHandler");
+	      this.props.onItineraryClickCallback();
+	    }
+	  }, {
+	    key: 'onPlannerClickHandler',
+	    value: function onPlannerClickHandler() {
+	      this.props.onPlannerClickCallback();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var planStyle = {
@@ -49147,7 +49815,8 @@
 	            {
 	              onMouseEnter: this.hoverPlanEvent.bind(this),
 	              onMouseLeave: this.hoverPlanEvent.bind(this),
-	              style: planStyle },
+	              style: planStyle,
+	              onClick: this.onPlannerClickHandler.bind(this) },
 	            _react2.default.createElement(_viewQuilt2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
@@ -49160,7 +49829,8 @@
 	            {
 	              onMouseEnter: this.hoverItineraryEvent.bind(this),
 	              onMouseLeave: this.hoverItineraryEvent.bind(this),
-	              style: itiStyle },
+	              style: itiStyle,
+	              onClick: this.onItineraryClickHandler.bind(this) },
 	            _react2.default.createElement(_list2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
@@ -49320,7 +49990,7 @@
 	exports.default = Sidebar;
 
 /***/ }),
-/* 509 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49357,7 +50027,7 @@
 	exports.default = ActionAccountBox;
 
 /***/ }),
-/* 510 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49394,7 +50064,7 @@
 	exports.default = ActionList;
 
 /***/ }),
-/* 511 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49431,7 +50101,7 @@
 	exports.default = ActionViewQuilt;
 
 /***/ }),
-/* 512 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49450,7 +50120,7 @@
 
 	var _reactFlexboxGrid = __webpack_require__(250);
 
-	var _Divider = __webpack_require__(503);
+	var _Divider = __webpack_require__(506);
 
 	var _Divider2 = _interopRequireDefault(_Divider);
 
@@ -49458,15 +50128,15 @@
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _accountBox = __webpack_require__(509);
+	var _accountBox = __webpack_require__(512);
 
 	var _accountBox2 = _interopRequireDefault(_accountBox);
 
-	var _list = __webpack_require__(510);
+	var _list = __webpack_require__(513);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _viewQuilt = __webpack_require__(511);
+	var _viewQuilt = __webpack_require__(514);
 
 	var _viewQuilt2 = _interopRequireDefault(_viewQuilt);
 
@@ -49640,7 +50310,7 @@
 	exports.default = Detailbar;
 
 /***/ }),
-/* 513 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49677,7 +50347,7 @@
 	exports.default = ActionChromeReaderMode;
 
 /***/ }),
-/* 514 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49750,7 +50420,7 @@
 	exports.default = Car;
 
 /***/ }),
-/* 515 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49892,11 +50562,11 @@
 	exports.default = CarDetail;
 
 /***/ }),
-/* 516 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(8);
-	var defaultClickRejectionStrategy = __webpack_require__(517);
+	var defaultClickRejectionStrategy = __webpack_require__(520);
 
 	var alreadyInjected = false;
 
@@ -49918,14 +50588,14 @@
 	  alreadyInjected = true;
 
 	  __webpack_require__(46).injection.injectEventPluginsByName({
-	    'TapEventPlugin':       __webpack_require__(518)(shouldRejectClick)
+	    'TapEventPlugin':       __webpack_require__(521)(shouldRejectClick)
 	  });
 	};
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 517 */
+/* 520 */
 /***/ (function(module, exports) {
 
 	module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -49936,7 +50606,7 @@
 
 
 /***/ }),
-/* 518 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -49960,14 +50630,14 @@
 
 	"use strict";
 
-	var EventConstants = __webpack_require__(519);
+	var EventConstants = __webpack_require__(522);
 	var EventPluginUtils = __webpack_require__(48);
 	var EventPropagators = __webpack_require__(45);
 	var SyntheticUIEvent = __webpack_require__(79);
-	var TouchEventUtils = __webpack_require__(520);
+	var TouchEventUtils = __webpack_require__(523);
 	var ViewportMetrics = __webpack_require__(80);
 
-	var keyOf = __webpack_require__(521);
+	var keyOf = __webpack_require__(524);
 	var topLevelTypes = EventConstants.topLevelTypes;
 
 	var isStartish = EventPluginUtils.isStartish;
@@ -50113,7 +50783,7 @@
 
 
 /***/ }),
-/* 519 */
+/* 522 */
 /***/ (function(module, exports) {
 
 	/**
@@ -50209,7 +50879,7 @@
 	module.exports = EventConstants;
 
 /***/ }),
-/* 520 */
+/* 523 */
 /***/ (function(module, exports) {
 
 	/**
@@ -50257,7 +50927,7 @@
 
 
 /***/ }),
-/* 521 */
+/* 524 */
 /***/ (function(module, exports) {
 
 	"use strict";

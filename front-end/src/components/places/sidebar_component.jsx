@@ -133,24 +133,33 @@ class Sidebar extends Component {
     }
 
     getDefaultProps(){
-        return {
-            isSelected: false
-        };
+      return {
+          isSelected: false
+      };
     }
 
     getInitialState(){
-        return {
-            hover_flag_plan: false,
-            hover_flag_itinerary: false
-        };
+      return {
+          hover_flag_plan: false,
+          hover_flag_itinerary: false
+      };
     }
 
     hoverPlanEvent(){
-        this.setState({hover_flag_plan: !this.state.hover_flag_plan});
+      this.setState({hover_flag_plan: !this.state.hover_flag_plan});
     }
 
     hoverItineraryEvent(){
-        this.setState({hover_flag_itinerary: !this.state.hover_flag_itinerary});
+      this.setState({hover_flag_itinerary: !this.state.hover_flag_itinerary});
+    }
+
+    onItineraryClickHandler(){
+      console.log("sidebar: onItineraryClickHandler")
+      this.props.onItineraryClickCallback();
+    }
+
+    onPlannerClickHandler(){
+      this.props.onPlannerClickCallback();
     }
 
     render(){
@@ -186,22 +195,28 @@ class Sidebar extends Component {
                       style={onlineIconStyle} 
                 />
                 <p style={usernameStyle}>@kharisds</p>
-                
               </Row>
+
+              {/* PLAN LIST ITEM */}
               <Row
                 onMouseEnter={this.hoverPlanEvent.bind(this)}
                 onMouseLeave={this.hoverPlanEvent.bind(this)}
-                style={planStyle}>
+                style={planStyle}
+                onClick={this.onPlannerClickHandler.bind(this)}>
                 <ViewQuiltSVG style={{marginTop:'5px',marginRight:'10px'}} color="white"/>
                 <p style={optionStyle}>PLAN</p>
               </Row>
+
+              {/* ITINERARY LIST ITEM */}
               <Row
                 onMouseEnter={this.hoverItineraryEvent.bind(this)}
                 onMouseLeave={this.hoverItineraryEvent.bind(this)}
-                style={itiStyle}>
+                style={itiStyle}
+                onClick={this.onItineraryClickHandler.bind(this)}>
                 <ListSVG style={{marginTop:'5px',marginRight:'10px'}} color="white"/>
                 <p style={optionStyle}>ITENERARY</p>
               </Row>
+
               {/* TRIPS TITLE */}
               <Row
                 style={{paddingLeft: '10px', marginTop: "15px"}}>
