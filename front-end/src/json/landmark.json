@@ -3,445 +3,519 @@ var landmarks = [
         "id": "landmark_1",
         "city": "Hong Kong",
         "landmark":"Victoria Peak",
-        "landmarkImageUrl": "http://www.bubblymoments.com//wp-content/uploads/2017/03/IMG_4901.jpg"
+        "landmarkImageUrl": "http://www.bubblymoments.com//wp-content/uploads/2017/03/IMG_4901.jpg",
+        "desc":"Victoria Peak is a mountain in the western half of Hong Kong Island. It is also known as Mount Austin, and locally as The Peak."
     },
     {
         "id": "landmark_2",
         "city":"Hong Kong",
         "landmark":"Stanley Market",
-        "landmarkImageUrl": "http://www.indiandirectoryhk.com/images/articles/hkstanley.jpg"
+        "landmarkImageUrl": "http://www.indiandirectoryhk.com/images/articles/hkstanley.jpg",
+        "desc":"Stanley Market is a street market in Stanley on Hong Kong Island, Hong Kong. The street is a typical example of a traditional old open-air market in Hong Kong and has since become a major tourist attraction, well known for its bargains."
     },
     {
         "id": "landmark_3",
         "city":"Hong Kong",
         "landmark":"The Hong Kong Observation Wheel",
-        "landmarkImageUrl": "http://thaifootprint.com/wp-content/uploads/2016/12/P1450929-1024x684-800x600.jpg"
+        "landmarkImageUrl": "http://thaifootprint.com/wp-content/uploads/2016/12/P1450929-1024x684-800x600.jpg",
+        "desc":"The Hong Kong Observation Wheel is a 60-metre tall Ferris wheel located on the Central and Wan Chai Reclamation overlooking Victoria Harbour in Hong Kong."
     },
     {
         "id": "landmark_4",
         "city":"Hong Kong",
         "landmark":"Lan Kwai Fong",
-        "landmarkImageUrl": "https://s-media-cache-ak0.pinimg.com/originals/03/d8/01/03d8014d017adfda21c5710646a542ce.jpg"
+        "landmarkImageUrl": "https://s-media-cache-ak0.pinimg.com/originals/03/d8/01/03d8014d017adfda21c5710646a542ce.jpg",
+        "desc":"Lan Kwai Fong is a small square of streets in Central, Hong Kong. The area was dedicated to hawkers before the Second World War, but underwent a renaissance in the mid-1980s."
     },
     {
         "id": "landmark_5",
         "city":"Hong Kong",
         "landmark":"Temple Street Night Market",
-        "landmarkImageUrl": "https://c1.staticflickr.com/3/2948/33301878740_64d4f73ea8_c.jpg"
+        "landmarkImageUrl": "https://c1.staticflickr.com/3/2948/33301878740_64d4f73ea8_c.jpg",
+        "desc":"Temple Street is a street located in the areas of Jordan and Yau Ma Tei in Kowloon, Hong Kong. It is known for its night market and as one of the busiest flea markets at night in the territory."
     },
     {
         "id": "landmark_6",
         "city":"Hong Kong",
         "landmark":"Ladies' Market",
-        "landmarkImageUrl": "http://images.neverendingvoyage.com/wp-content/uploads/2011/09/ladies_market_hong_kong.jpg"
+        "landmarkImageUrl": "http://images.neverendingvoyage.com/wp-content/uploads/2011/09/ladies_market_hong_kong.jpg",
+        "desc":"The premier fashionista destination in Hong Kong, both tourists and residents trawl the stalls to find what's the latest clothes, bags, accessories and more."
     },
     {
         "id": "landmark_7",
         "city":"Hong Kong",
         "landmark":"Ocean Park Hong Kong",
-        "landmarkImageUrl": "http://1.bp.blogspot.com/-_-ihSyFLh9Y/UU7BYqaHUeI/AAAAAAAAAKg/eY_ohY1JcYU/s1600/Ocean-Park-Hong-Kong-Photos+06.jpg"
+        "landmarkImageUrl": "http://1.bp.blogspot.com/-_-ihSyFLh9Y/UU7BYqaHUeI/AAAAAAAAAKg/eY_ohY1JcYU/s1600/Ocean-Park-Hong-Kong-Photos+06.jpg",
+        "desc":"Ocean Park Hong Kong, commonly known as Ocean Park, is a marine mammal park, oceanarium, animal theme park and amusement park situated in Wong Chuk Hang and Nam Long Shan in the Southern District of Hong Kong."
     },
     {
         "id": "landmark_8",
         "city":"Hong Kong",
         "landmark":"Hong Kong Disneyland",
-        "landmarkImageUrl": "http://www.maritour.com/wp-content/uploads/2016/02/Hongkong-disneyland-800x600.jpg"
+        "landmarkImageUrl": "http://www.maritour.com/wp-content/uploads/2016/02/Hongkong-disneyland-800x600.jpg",
+        "desc":"Hong Kong Disneyland is a theme park located on reclaimed land in Penny's Bay, Lantau Island. It is the first theme park located inside the Hong Kong Disneyland Resort and it is owned and managed by the Hong Kong International Theme Parks."
     },
     {
         "id": "landmark_9",
         "city":"Hong Kong",
         "landmark":"Wong Tai Sin Temple",
-        "landmarkImageUrl": "https://www.justgola.com/media/a/00/12/73934_lg_1.jpeg"
+        "landmarkImageUrl": "https://www.justgola.com/media/a/00/12/73934_lg_1.jpeg",
+        "desc":"Wong Tai Sin Temple is a well known shrine and major tourist attraction in Hong Kong. It is dedicated to Wong Tai Sin, or the Great Immortal Wong."
     },
     {
         "id": "landmark_10",
         "city":"Hong Kong",
         "landmark":"Clock Tower",
-        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3832373932373937"
+        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3832373932373937",
+        "desc":"The Clock Tower is a landmark in Hong Kong. It is located on the southern shore of Tsim Sha Tsui, Kowloon. It is the only remnant of the original site of the former Kowloon Station on the Kowloon-Canton Railway."
     },
     {
         "id": "landmark_11",
         "city":"Hong Kong",
         "landmark":"Causeway Bay",
-        "landmarkImageUrl": "http://webluxo.com.br/home/wp-content/uploads/2016/11/causeway-bay-hong-kong.jpg"
+        "landmarkImageUrl": "http://webluxo.com.br/home/wp-content/uploads/2016/11/causeway-bay-hong-kong.jpg",
+        "desc":"Causeway Bay is a heavily built-up area of Hong Kong, located on Hong Kong Island, and covering parts of Wan Chai District. The Cantonese name is also romanized as Tung Lo Wan as in Tung Lo Wan Road."
     },
     {
         "id": "landmark_12",
         "city":"Hong Kong",
         "landmark":"Cat Street",
-        "landmarkImageUrl": "http://www.discoverhongkong.com/eng/images/shop/where-to-shop/large/3.2.3.3-Cat-Street_03.jpg"
+        "landmarkImageUrl": "http://www.discoverhongkong.com/eng/images/shop/where-to-shop/large/3.2.3.3-Cat-Street_03.jpg",
+        "desc":"Cat Street is a historic street packed with antiques and curios."
     },
     {
         "id": "landmark_13",
         "city":"Hong Kong",
         "landmark":"Comix Home Base",
-        "landmarkImageUrl": "http://www.discoverhongkong.com/eng/images/see-do/culture-heritage/large/1.4.5.1.20-Comix-Home-Base_03c.jpg"
+        "landmarkImageUrl": "http://www.discoverhongkong.com/eng/images/see-do/culture-heritage/large/1.4.5.1.20-Comix-Home-Base_03c.jpg",
+        "desc":"Green House is a block of 10 tenement houses located in 1–11, Mallory Street and 6–12 Burrows Street, Wan Chai, Hong Kong. It is named from the green colour painted on the external walls of the building."
     },
     {
         "id": "landmark_14",
         "city":"Hong Kong",
         "landmark":"Avenue of Stars",
-        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3832373932313232"
+        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3832373932313232",
+        "desc":"The Avenue of Stars, modelled on the Hollywood Walk of Fame, is located along the Victoria Harbour waterfront in Tsim Sha Tsui, Hong Kong. It honours celebrities of the Hong Kong film industry."
     },
     {
         "id": "landmark_15",
         "city":"Hong Kong",
         "landmark":"Golden Bauhinia Square (and HKCEC)",
-        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d383737353531"
+        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d383737353531",
+        "desc":"The Golden Bauhinia Square is an open area in Wan Chai, Hong Kong. The square was named after the giant statue of a golden Bauhinia blakeana at the centre of the area, situated outside the Hong Kong."
     },
     {
         "id": "landmark_16",
         "city":"Hong Kong",
         "landmark":"Sai Kung Seafood Street",
-        "landmarkImageUrl": "http://www.discoverhongkong.com/ca/images/dine-drink/where-to-go/large/2.2.2.1-sai-kung_03.jpg"
+        "landmarkImageUrl": "http://www.discoverhongkong.com/ca/images/dine-drink/where-to-go/large/2.2.2.1-sai-kung_03.jpg",
+        "desc":"The village of Sai Kung is also noted locally for its seafood restaurants, many of which congregate on the seafront, known as ‘Seafood Street’."
     },
     {
         "id": "landmark_17",
         "city":"Hong Kong",
         "landmark":"The Big Buddha and Po Lin Monastery",
-        "landmarkImageUrl": "https://images.theoutbound.com/uploads/1444190986533/6p7m79kc1bn/6a47fe37bba4fb3778acb9b016b68276?h=420&auto=format&q=50&h=600&w=900"
+        "landmarkImageUrl": "https://images.theoutbound.com/uploads/1444190986533/6p7m79kc1bn/6a47fe37bba4fb3778acb9b016b68276?h=420&auto=format&q=50&h=600&w=900",
+        "desc":"Po Lin Monastery is a Buddhist monastery, located on Ngong Ping Plateau, on Lantau Island, Hong Kong"
     },
     {
         "id": "landmark_18",
         "city":"Hong Kong",
         "landmark":"Duddell Street Steps & Gas Lamps",
-        "landmarkImageUrl": "https://travelblog.expedia.com.sg/wp-content/uploads/2015/06/duddell-street-hk.jpg?w=756&h=567&crop=1"
+        "landmarkImageUrl": "https://travelblog.expedia.com.sg/wp-content/uploads/2015/06/duddell-street-hk.jpg?w=756&h=567&crop=1",
+        "desc":"Be transported back to the duskier world of the 19th century along the Duddell Street Steps, as Hong Kong's last four remaining gas lanterns light the way."
     },
     {
         "id": "landmark_19",
         "city":"Hong Kong",
         "landmark":"Hong Kong University of Science and Technology",
-        "landmarkImageUrl": "http://www.businessinsider.in/photo/51521166/The-worlds-top-24-universities-for-studying-business-and-management/18-The-Hong-Kong-University-of-Science-and-Technology-84-4-HKUST-keeps-the-same-position-in-this-years-QS-ranking-for-the-best-business-and-management-degrees-as-it-did-in-2015-The-universitys-business-programmes-scored-well-across-the-board-but-did-particularly-well-in-the-citations-per-paper-category-.jpg"
+        "landmarkImageUrl": "http://www.businessinsider.in/photo/51521166/The-worlds-top-24-universities-for-studying-business-and-management/18-The-Hong-Kong-University-of-Science-and-Technology-84-4-HKUST-keeps-the-same-position-in-this-years-QS-ranking-for-the-best-business-and-management-degrees-as-it-did-in-2015-The-universitys-business-programmes-scored-well-across-the-board-but-did-particularly-well-in-the-citations-per-paper-category-.jpg",
+        "desc":"The Hong Kong University of Science and Technology is a public research university in Clear Water Bay Peninsula, Hong Kong. Established in 1991, it is the territory's youngest higher learning institution with no precursory existence."
     },
     {
         "id": "landmark_20",
         "city":"Hong Kong",
         "landmark":"Repulse Bay",
-        "landmarkImageUrl": "http://static.panoramio.com/photos/large/47110998.jpg"
+        "landmarkImageUrl": "http://static.panoramio.com/photos/large/47110998.jpg",
+        "desc":"Repulse Bay is a bay in the southern part of Hong Kong Island, located in the Southern District, Hong Kong."
     },
     {
         "id": "landmark_21",
         "city":"Hong Kong",
         "landmark":"Hong Kong Museum of History",
-        "landmarkImageUrl": "https://photos.travelblog.org/Photos/40144/883336/f/8474049-Hong-Kong-Museum-of-History-0.jpg"
+        "landmarkImageUrl": "https://photos.travelblog.org/Photos/40144/883336/f/8474049-Hong-Kong-Museum-of-History-0.jpg",
+        "desc":"The Hong Kong Museum of History is a museum which preserves Hong Kong's historical and cultural heritage. It is located next to the Hong Kong Science Museum, in Tsim Sha Tsui, Kowloon, Hong Kong."
     },
     {
         "id": "landmark_22",
         "city":"Hong Kong",
         "landmark":"Hong Kong Zoological and Botanical Garden",
-        "landmarkImageUrl": "http://images5.fotop.net/albums6/tptravel/zoological/CIMG2228.jpg"
+        "landmarkImageUrl": "http://images5.fotop.net/albums6/tptravel/zoological/CIMG2228.jpg",
+        "desc":"The Hong Kong Zoological and Botanical Gardens is one of the oldest zoological and botanical centres in the world. It occupies an area of 5.6 hectares at Mid-levels, on the northern slope of Victoria Peak in Hong Kong."
     },
     {
         "id": "landmark_23",
         "city":"Hong Kong",
         "landmark":"Hong Kong Science Museum",
-        "landmarkImageUrl": "http://gia.info.gov.hk/general/201311/07/P201311070464_photo_1060996.JPG"
+        "landmarkImageUrl": "http://gia.info.gov.hk/general/201311/07/P201311070464_photo_1060996.JPG",
+        "desc":"The Hong Kong Science Museum is a science-themed museum in Tsim Sha Tsui East, Kowloon Peninsula, Hong Kong, located next to the Hong Kong Museum of History. The museum has Cathay Pacific's first DC3 airliner suspended from the ceiling."
     },
     {
         "id": "landmark_24",
         "city":"Hong Kong",
         "landmark":"Victoria Park",
-        "landmarkImageUrl": "http://static.panoramio.com/photos/large/10805516.jpg"
+        "landmarkImageUrl": "http://static.panoramio.com/photos/large/10805516.jpg",
+        "desc":"Victoria Park is a public park in Hong Kong, named after Queen Victoria of the United Kingdom. It is located in Causeway Bay, on the north of Hong Kong Island, between Causeway Bay and Tin Hau MTR stations."
     },
     {
         "id": "landmark_25",
         "city":"Macau",
         "landmark":"Ruins of St. Paul's",
-        "landmarkImageUrl": "http://4.bp.blogspot.com/-bhznntsFbjI/UGKPtKKUDjI/AAAAAAAAAMA/DjTwPkHW2dA/s1600/200612121354988676.jpg"
+        "landmarkImageUrl": "http://4.bp.blogspot.com/-bhznntsFbjI/UGKPtKKUDjI/AAAAAAAAAMA/DjTwPkHW2dA/s1600/200612121354988676.jpg",
+        "desc":"The Ruins of St. Paul's are the ruins of a 17th-century complex in Santo António, Macau, China. It includes what was originally St. Paul's College and the Church of St. Paul also known as \"Mater Dei\"."
     },
     {
         "id": "landmark_26",
         "city":"Macau",
         "landmark":"Senado Square",
-        "landmarkImageUrl": "https://dir-photo.s3.amazonaws.com/thumbnail/850x1200s/9e/91/ea/IMG-6253-48-1397619098.jpg"
+        "landmarkImageUrl": "https://dir-photo.s3.amazonaws.com/thumbnail/850x1200s/9e/91/ea/IMG-6253-48-1397619098.jpg",
+        "desc":"The Senado Square, or Senate Square, is a paved town square in Sé, Macau, China and part of the UNESCO Historic Centre of Macau World Heritage Site."
     },
     {
         "id": "landmark_27",
         "city":"Macau",
         "landmark":"Macau Tower",
-        "landmarkImageUrl": "http://www.heenatours.in/heenaadmin/app/webroot/upload/tourmaster/Day-3shutterstock_11312438531473571573-(1)31473765410.jpg"
+        "landmarkImageUrl": "http://www.heenatours.in/heenaadmin/app/webroot/upload/tourmaster/Day-3shutterstock_11312438531473571573-(1)31473765410.jpg",
+        "desc":"Macau Tower Convention & Entertainment Centre, also known as Macau Tower, is a tower located in Sé, Macau, China. The tower measures 338 m in height from ground level to the highest point."
     },
     {
         "id": "landmark_28",
         "city":"Macau",
         "landmark":"A-Ma Temple",
-        "landmarkImageUrl": "http://www.mokemana.com/images/detailed/11/Temple_Of_Ama_ffaf-br.jpg?t=1458270364"
+        "landmarkImageUrl": "http://www.mokemana.com/images/detailed/11/Temple_Of_Ama_ffaf-br.jpg?t=1458270364",
+        "desc":"The A-Ma Temple is a temple to the Chinese sea-goddess Mazu located in São Lourenço, Macau, China. Built in 1488, the temple is one of the oldest in Macau and thought to be the settlement's namesake."
     },
     {
         "id": "landmark_29",
         "city":"Macau",
         "landmark":"The Venetian Macao",
-        "landmarkImageUrl": "http://macau-pro.asia/107-thickbox_default/the-venetian-macao-resort-hotel.jpg"
+        "landmarkImageUrl": "http://macau-pro.asia/107-thickbox_default/the-venetian-macao-resort-hotel.jpg",
+        "desc":"Offering only suites, 3000 of them and all more than 70sqm, The Venetian Macao is an incredible, immersive hotel experience.  350 world-class shopping choices line a masterfully reconstructed Grand Canal, bridges spanning each bank, just as they do in Venice."
     },
     {
         "id": "landmark_30",
         "city":"Macau",
         "landmark":"City of Dreams",
-        "landmarkImageUrl": "http://somuchpoker.com/wp-content/uploads/2015/03/City-of-Dreams-Macau.jpg"
+        "landmarkImageUrl": "http://somuchpoker.com/wp-content/uploads/2015/03/City-of-Dreams-Macau.jpg",
+        "desc":"City of Dreams is a resort and casino in Cotai, Macau, China. It is built, owned and managed by Melco Crown Entertainment, formerly known as Melco PBL Entertainment. City of Dreams is Melco's second mega-sized property in Macau."
     },
     {
         "id": "landmark_31",
         "city":"Macau",
         "landmark":"Sun Yat Sen Park",
-        "landmarkImageUrl": "http://timeout-test.candrholdings.com/media/content/large/20452_Sun-Yat-Sen_full.jpg"
+        "landmarkImageUrl": "http://timeout-test.candrholdings.com/media/content/large/20452_Sun-Yat-Sen_full.jpg",
+        "desc":"Sun Yat Sen Memorial Park, originally named Western Park, is a waterfront park in the Sai Ying Pun area of Hong Kong Island, facing Victoria Harbour. It is the only park in Hong Kong named for a Chinese historic figure."
     },
     {
         "id": "landmark_32",
         "city":"Macau",
         "landmark":"Macau Fisherman's Wharf",
-        "landmarkImageUrl": "http://static1-velaeasy.readyplanet.com/www.globaltravelthailand.com/images/content/original-1483259585972.jpg"
+        "landmarkImageUrl": "http://static1-velaeasy.readyplanet.com/www.globaltravelthailand.com/images/content/original-1483259585972.jpg",
+        "desc":"Located at Macau’s outer harbour, within 5-minutes’ walk from the Macau Ferry Terminal and Heliport, this is the largest leisure and themed entertainment complex in Macau Peninsula."
     },
     {
         "id": "landmark_33",
         "city":"Macau",
         "landmark":"Fortaleza do Monte",
-        "landmarkImageUrl": "https://welt.reisen/wp-content/uploads/2016/12/Fortaleza-do-Monte.jpg"
+        "landmarkImageUrl": "https://welt.reisen/wp-content/uploads/2016/12/Fortaleza-do-Monte.jpg",
+        "desc":"Fortaleza do Monte is a fort in Santo António in Macau SAR, China. It is the historical military centre of Macau. The Fortaleza forms part of the \"Historic Centre of Macau\" and is a UNESCO World Heritage Site."
     },
     {
         "id": "landmark_34",
         "city":"Macau",
         "landmark":"Avenida de Almeida Ribeiro",
-        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3839393333343431"
+        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d3839393333343431",
+        "desc":"Avenida de Almeida Ribeiro, also commonly known as San Ma Lo, is the main avenue in the heart of Macau Peninsula."
     },
     {
         "id": "landmark_35",
         "city":"Jakarta",
         "landmark":"Monas",
-        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d38313033363931"
+        "landmarkImageUrl": "https://media-cdn.sygictraveldata.com/media/800x600/612664395a40232133447d33247d38313033363931",
+        "desc":"The National Monument is a 132 m tower in the centre of Merdeka Square, Central Jakarta, symbolizing the fight for Indonesia. It is the national monument of the Republic of Indonesia, built to commemorate the struggle for Indonesian independence."
     },
     {
         "id": "landmark_36",
         "city":"Jakarta",
         "landmark":"Ancol Dreamland",
-        "landmarkImageUrl": "data:image/jpeg;base64,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"
+        "landmarkImageUrl": "data:image/jpeg;base64,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",
+        "desc":"Taman Impian Jaya Ancol otherwise known as Ancol Dreamland is an integral part of Ancol Bay City, a resort destination located along Jakarta's waterfront, in Ancol Kelurahan, Pademangan, Indonesia."
     },
     {
         "id": "landmark_37",
         "city":"Jakarta",
         "landmark":"Istiqlal Mosque",
-        "landmarkImageUrl": "http://www.inseasia.com/wp-content/uploads/2015/01/Istiqlal-Mosque.jpg"
+        "landmarkImageUrl": "http://www.inseasia.com/wp-content/uploads/2015/01/Istiqlal-Mosque.jpg",
+        "desc":"Istiqlal Mosque, or Masjid Istiqlal, in Jakarta, Indonesia is the largest mosque in Southeast Asia and the third largest Sunni mosque in term of capacity."
     },
     {
         "id": "landmark_38",
         "city":"Jakarta",
         "landmark":"Taman Mini Indonesia Indah",
-        "landmarkImageUrl": "http://travelguides.asia/wp-content/uploads/2017/02/Taman_Mini_.jpg"
+        "landmarkImageUrl": "http://travelguides.asia/wp-content/uploads/2017/02/Taman_Mini_.jpg",
+        "desc":"Taman Mini Indonesia Indah or \"Beautiful Indonesia Miniature Park\" is a culture-based recreational area located in East Jakarta, Indonesia. It has an area of about 250 acres."
     },
     {
         "id": "landmark_39",
         "city":"Jakarta",
         "landmark":"National Museum of Indonesia",
-        "landmarkImageUrl": "http://pix1.agoda.net/hotelimages/335/335020/335020_16060820560043301970.jpg?s=800x"
+        "landmarkImageUrl": "http://pix1.agoda.net/hotelimages/335/335020/335020_16060820560043301970.jpg?s=800x",
+        "desc":"The National Museum of Indonesia, is an archeological, historical, ethnological, and geographical museum located in Jalan Medan Merdeka Barat, Central Jakarta, right on the west side of Merdeka Square."
     },
     {
         "id": "landmark_40",
         "city":"Jakarta",
         "landmark":"Kota Tua",
-        "landmarkImageUrl": "http://i0.wp.com/www.gulalives.co/wp-content/uploads/2016/06/kota-tua-1.jpg?fit=800%2C600"
+        "landmarkImageUrl": "http://i0.wp.com/www.gulalives.co/wp-content/uploads/2016/06/kota-tua-1.jpg?fit=800%2C600",
+        "desc":"Kota Tua Jakarta, officially known as Kota Tua, is a neighborhood comprising the original downtown area of Jakarta, Indonesia. It is also known as Oud Batavia, Benedenstad, or Kota Lama."
     },
     {
         "id": "landmark_41",
         "city":"Jakarta",
         "landmark":"Ragunan Zoo",
-        "landmarkImageUrl": "http://4.bp.blogspot.com/-ofIbUdAqBf0/U2phyIgcxXI/AAAAAAAAADs/2SwVlsAbHX8/s1600/image135yn3.jpg"
+        "landmarkImageUrl": "http://4.bp.blogspot.com/-ofIbUdAqBf0/U2phyIgcxXI/AAAAAAAAADs/2SwVlsAbHX8/s1600/image135yn3.jpg",
+        "desc":"Ragunan Zoo is a 140-hectare zoo located in Pasar Minggu, South Jakarta, Indonesia. It is home to over 270 species of animals, 171 species of flora, and employs over 450 people."
     },
     {
         "id": "landmark_42",
         "city":"Jakarta",
         "landmark":"Wayang Museum",
-        "landmarkImageUrl": "https://s-media-cache-ak0.pinimg.com/originals/c0/4e/4b/c04e4bc0d0c5d57ad88c64d4538e5242.jpg"
+        "landmarkImageUrl": "https://s-media-cache-ak0.pinimg.com/originals/c0/4e/4b/c04e4bc0d0c5d57ad88c64d4538e5242.jpg",
+        "desc":"The Wayang Museum is a museum dedicated to Javan wayang puppetry. The museum is located in Kota Tua, Jakarta, Indonesia."
     },
     {
         "id": "landmark_43",
         "city":"Jakarta",
         "landmark":"Waterbom",
-        "landmarkImageUrl": "http://www.pergiberwisata.com/wp-content/uploads/2016/08/wahana-waterbom-park-bali.jpg"
+        "landmarkImageUrl": "http://www.pergiberwisata.com/wp-content/uploads/2016/08/wahana-waterbom-park-bali.jpg",
+        "desc":"Expansive, manicured water park renowned for lots of winding slides, pools & family-friendly fun."
     },
     {
         "id": "landmark_44",
         "city":"Jakarta",
         "landmark":"Bunderan HI",
-        "landmarkImageUrl": "https://jorfijeckiphotography.files.wordpress.com/2011/01/bundaran-hi-2.jpg"
+        "landmarkImageUrl": "https://jorfijeckiphotography.files.wordpress.com/2011/01/bundaran-hi-2.jpg",
+        "desc":"Selamat Datang Monument, also known as the Monumen Bundaran HI or Monumen Bunderan HI, is a monument located in Central Jakarta, Indonesia."
     },
     {
         "id": "landmark_45",
         "city":"Bali",
         "landmark":"Tanah Lot",
-        "landmarkImageUrl": "http://blue-marlin-bali.com/wp-content/uploads/2016/06/173-tanah-lot-temple2-800x600.jpg"
+        "landmarkImageUrl": "http://blue-marlin-bali.com/wp-content/uploads/2016/06/173-tanah-lot-temple2-800x600.jpg",
+        "desc":"Tanah Lot is a rock formation off the Indonesian island of Bali. It is home to the pilgrimage temple Pura Tanah Lot, a popular tourist and cultural icon for photography."
     },
     {
         "id": "landmark_46",
         "city":"Bali",
         "landmark":"Seminyak",
-        "landmarkImageUrl": "http://www.asiawebdirect.com/media/images/hotels/55010/494431.jpg"
+        "landmarkImageUrl": "http://www.asiawebdirect.com/media/images/hotels/55010/494431.jpg",
+        "desc":"Seminyak is a beach resort area at the southern end of Bali, Indonesia, with many luxury hotels, villas and spas, as well as high-end shopping and restaurants. Sleek bars and clubs with busy sunset scenes line Seminyak and Petitenget beaches, which are wide, west-facing stretches of Indian Ocean shoreline with gray sand and good surfing conditions."
     },
     {
         "id": "landmark_47",
         "city":"Bali",
         "landmark":"Mount Batur",
-        "landmarkImageUrl": "http://2.bp.blogspot.com/-tMYV5doM2-A/VJeI0vYgJhI/AAAAAAAAHhY/DffFAPsx9u4/s1600/titlle%2Bg%2Bbatur.jpg"
+        "landmarkImageUrl": "http://2.bp.blogspot.com/-tMYV5doM2-A/VJeI0vYgJhI/AAAAAAAAHhY/DffFAPsx9u4/s1600/titlle%2Bg%2Bbatur.jpg",
+        "desc":"Mount Batur is an active volcano located at the center of two concentric calderas north west of Mount Agung on the island of Bali, Indonesia. The south east side of the larger 10×13 km caldera contains a caldera lake."
     },
     {
         "id": "landmark_48",
         "city":"Bali",
         "landmark":"Uluwatu Temple",
-        "landmarkImageUrl": "http://vistaloka.com/wp-content/uploads/2016/12/Vistaloka-34.jpg?i=1"
+        "landmarkImageUrl": "http://vistaloka.com/wp-content/uploads/2016/12/Vistaloka-34.jpg?i=1",
+        "desc":"Uluwatu Temple is a Balinese sea temple in Uluwatu. The temple is regarded as one of the sad kahyangan and is dedicated to Sang Hyang Widhi Wasa in his manifestation as Rudra."
     },
     {
         "id": "landmark_49",
         "city":"Bali",
         "landmark":"Jimbaran",
-        "landmarkImageUrl": "http://i1.trekearth.com/photos/1868/drnja-jimbaran-hsg.jpg"
+        "landmarkImageUrl": "http://i1.trekearth.com/photos/1868/drnja-jimbaran-hsg.jpg",
+        "desc":"Jimbaran is a fishing village and coastal resort south of Kuta on the Indonesian island of Bali. Jimbaran Bay has a long beach with calm waters. It's lined with fish restaurants and backed by tropical forest. At its northern end, colorful boats are pulled up by the lively, open-air Kedonganan fish market. Southwest of the bay are Dreamland Beach and Balangan Beach, known for their strong surf waves."
     },
     {
         "id": "landmark_50",
         "city":"Bali",
         "landmark":"Goa Gajah",
-        "landmarkImageUrl": "http://thetravelerguide.com/pictures/bali/goa-gajah.jpg"
+        "landmarkImageUrl": "http://thetravelerguide.com/pictures/bali/goa-gajah.jpg",
+        "desc":"Goa Gajah, or Elephant Cave, is located on the island of Bali near Ubud, in Indonesia. Built in the 9th century, it served as a sanctuary."
     },
     {
         "id": "landmark_51",
         "city":"Bali",
         "landmark":"Kuta",
-        "landmarkImageUrl": "https://i1.wp.com/www.surfinbali.com/wp-content/uploads/2013/05/kuta-sunset.jpg"
+        "landmarkImageUrl": "https://i1.wp.com/www.surfinbali.com/wp-content/uploads/2013/05/kuta-sunset.jpg",
+        "desc":"Kuta is a beach and resort area in the south of the island of Bali, Indonesia. One of Bali's first tourist developments, it's best known for its party-centric atmosphere and surfing in the Indian Ocean. Kuta's long, consistent waves make it a popular surf spot, particularly for beginners, with plenty of outfitters offering board rentals and surf lessons."
     },
     {
         "id": "landmark_52",
         "city":"Bali",
         "landmark":"Legian",
-        "landmarkImageUrl": "http://www.baliforyou.com/gallery/The_Legian/photo_0_161201.jpg"
+        "landmarkImageUrl": "http://www.baliforyou.com/gallery/The_Legian/photo_0_161201.jpg",
+        "desc":"Legian is a suburban and beach area on the west coast of Bali just north of Kuta and south of Seminyak the area between Jl. Melasti and Jl. Dhyana Pura. Administratively it is a subdistrict of Kuta District of Badung Regency."
     },
     {
         "id": "landmark_53",
         "city":"Bali",
         "landmark":"Nusa Dua",
-        "landmarkImageUrl": "http://pix4.agoda.net/hotelimages/412/412759/412759_15081014200033967601.jpg?s=800x"
+        "landmarkImageUrl": "http://pix4.agoda.net/hotelimages/412/412759/412759_15081014200033967601.jpg?s=800x",
+        "desc":"Nusa Dua is an area in the southern part of Bali, Indonesia, known as an enclave of large 5-star resorts. It is located 22 kilometers from Denpasar, the provincial capital of Bali, and administered under South Kuta District."
     },
     {
         "id": "landmark_54",
         "city":"Bali",
         "landmark":"Sanur Beach",
-        "landmarkImageUrl": "http://corural.com/wp-content/uploads/2014/10/sanur-beach-bali-sunrise.jpg"
+        "landmarkImageUrl": "http://corural.com/wp-content/uploads/2014/10/sanur-beach-bali-sunrise.jpg",
+        "desc":"Sanur is a seaside town in the southeast of the island of Bali, in Indonesia. Its long stretch of beach offers shallow waters. Colorful jukung fishing boats rest on the sand, backed by a paved cycling path. The Pura Blanjong temple is built from coral and has inscriptions dating from the 10th century. The leafy main street Jalan Danau Tamblingan is lined with art galleries and restaurants."
     },
     {
         "id": "landmark_55",
         "city":"Seoul",
         "landmark":"Gyeongbokgung",
-        "landmarkImageUrl": "http://ryetour.net/korea/wp-content/uploads/2015/04/800px-Gyeongbokgung-KeunJeongJeon.jpg"
+        "landmarkImageUrl": "http://ryetour.net/korea/wp-content/uploads/2015/04/800px-Gyeongbokgung-KeunJeongJeon.jpg",
+        "desc":"Gyeongbokgung, also known as Gyeongbokgung Palace or Gyeongbok Palace, was the main royal palace of the Joseon dynasty. Built in 1395, it is located in northern Seoul, South Korea."
     },
     {
         "id": "landmark_56",
         "city":"Seoul",
         "landmark":"Myeong-dong",
-        "landmarkImageUrl": "https://www.colourbox.com/preview/4756409-streets-of-myeong-dong-south-korea.jpg"
+        "landmarkImageUrl": "https://www.colourbox.com/preview/4756409-streets-of-myeong-dong-south-korea.jpg",
+        "desc":""
     },
     {
         "id": "landmark_57",
         "city":"Seoul",
         "landmark":"Changdeokgung",
-        "landmarkImageUrl": "https://blognyamukti.files.wordpress.com/2015/09/changdeokgung-donhwamun.jpg"
+        "landmarkImageUrl": "https://blognyamukti.files.wordpress.com/2015/09/changdeokgung-donhwamun.jpg",
+        "desc":"Myeongdong is a dong in Jung-gu, Seoul, South Korea between Chungmu-ro, Eulji-ro, and Namdaemun-ro. It covers 0.99 km² with a population of 3,409 and is mostly a commercial area, being one of Seoul's main shopping and tourism districts."
     },
     {
         "id": "landmark_58",
         "city":"Seoul",
         "landmark":"N Seoul Tower",
-        "landmarkImageUrl": "https://farm4.staticflickr.com/3791/14330725443_29a7c70467_c.jpg"
+        "landmarkImageUrl": "https://farm4.staticflickr.com/3791/14330725443_29a7c70467_c.jpg",
+        "desc":"The N Seoul Tower, officially the YTN Seoul Tower and commonly known as the Namsan Tower or Seoul Tower, is a communication and observation tower located on Namsan Mountain in central Seoul, South Korea. At 236m, it marks the highest point in Seoul."
     },
     {
         "id": "landmark_59",
         "city":"Seoul",
         "landmark":"Cheonggyecheon",
-        "landmarkImageUrl": "http://www.markjamesrussell.com/wp-content/uploads/2013/07/Cheonggyecheon-normal.jpg"
+        "landmarkImageUrl": "http://www.markjamesrussell.com/wp-content/uploads/2013/07/Cheonggyecheon-normal.jpg",
+        "desc":"Cheonggyecheon is a 10.9-kilometre-long, modern public recreation space in downtown Seoul, South Korea"
     },
     {
         "id": "landmark_60",
         "city":"Seoul",
         "landmark":"Namsam",
-        "landmarkImageUrl": "https://iseebela.files.wordpress.com/2015/02/p1014485.jpg"
+        "landmarkImageUrl": "https://iseebela.files.wordpress.com/2015/02/p1014485.jpg",
+        "desc":"Nam Mountain is a peak, 262 metres high, in the Jung-gu district of south central Seoul, South Korea. Although known as Mongmyeoksan, or 목멱산, in the past, it is now commonly referred to as Mt. Namsan."
     },
     {
         "id": "landmark_61",
         "city":"Seoul",
         "landmark":"Lotte World",
-        "landmarkImageUrl": "http://themeparkreview.com/forum/files/p1050402_0.jpg"
+        "landmarkImageUrl": "http://themeparkreview.com/forum/files/p1050402_0.jpg",
+        "desc":"Lotte World is a major recreation complex in Seoul, South Korea. It consists of the world's largest indoor theme park, an outdoor amusement park called \"Magic Island\", an artificial island inside a lake  linked by monorail, shopping malls, a luxury hotel, a Korean folk museum, sports facilities, and movie theaters."
     },
     {
         "id": "landmark_62",
         "city":"Seoul",
         "landmark":"War Memorial of Korea",
-        "landmarkImageUrl": "http://3.bp.blogspot.com/-ecfvP8nTQ6E/U_lEz-mwXeI/AAAAAAAAHFU/9vT-DBSlLpw/s1600/outdoor%2Bsoldiers%2Bfamilies%2Bmonument.jpg"
+        "landmarkImageUrl": "http://3.bp.blogspot.com/-ecfvP8nTQ6E/U_lEz-mwXeI/AAAAAAAAHFU/9vT-DBSlLpw/s1600/outdoor%2Bsoldiers%2Bfamilies%2Bmonument.jpg",
+        "desc":"War Memorial of Korea is located in Yongsan-dong, Yongsan-gu, Seoul, South Korea. It opened in 1994 on the former site of the army headquarters to exhibit and memorialize the military history of Korea."
     },
     {
         "id": "landmark_63",
         "city":"Seoul",
         "landmark":"Namsangol Hanok Village",
-        "landmarkImageUrl": "http://english.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=664&fileTy=MEDIA&fileNo=1&thumbTy=L"
+        "landmarkImageUrl": "http://english.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=664&fileTy=MEDIA&fileNo=1&thumbTy=L",
+        "desc":"Namsangol Hanok Village, also known as \"A Village of Traditional Houses in the Namsan Valley\", is a Korean village located in the area of Pil-dong neighborhood in Jung-gu, a central district of Seoul,  South Korea where hanok (한옥) or Korean traditional houses have been restored to preserve the original atmosphere of the area."
     },
     {
         "id": "landmark_64",
         "city":"Seoul",
         "landmark":"Bukhansan",
-        "landmarkImageUrl": "https://asfarasicantell.files.wordpress.com/2011/09/img_4459.jpg"
+        "landmarkImageUrl": "https://asfarasicantell.files.wordpress.com/2011/09/img_4459.jpg",
+        "desc":"Bukhansan, or Bukhan Mountain, is a mountain on the northern periphery of Seoul, South Korea. There are three major peaks, Baegundae 836.5 meters, Insubong 810.5 meters, Mangyeongdae 787.0 meters."
     },
     {
         "id": "landmark_65",
         "city":"Tokyo",
         "landmark":"Meiji Shrine",
-        "landmarkImageUrl": "https://farm9.staticflickr.com/8637/16642098708_f16bcb728b_c.jpg"
+        "landmarkImageUrl": "https://farm9.staticflickr.com/8637/16642098708_f16bcb728b_c.jpg",
+        "desc":"Meiji Shrine, located in Shibuya, Tokyo, is the Shinto shrine that is dedicated to the deified spirits of Emperor Meiji and his wife, Empress Shōken."
     },
     {
         "id": "landmark_66",
         "city":"Tokyo",
         "landmark":"Senso-ji",
-        "landmarkImageUrl": "http://3.bp.blogspot.com/-shrsyoFApWc/UdqgHMGLkiI/AAAAAAAAACw/2qyDfTp7UXQ/s1600/Senso-ji+Temple.jpg"
+        "landmarkImageUrl": "http://3.bp.blogspot.com/-shrsyoFApWc/UdqgHMGLkiI/AAAAAAAAACw/2qyDfTp7UXQ/s1600/Senso-ji+Temple.jpg",
+        "desc":"Sensō-ji is an ancient Buddhist temple located in Asakusa, Tokyo, Japan. It is Tokyo's oldest temple, and one of its most significant. Formerly associated with the Tendai sect of Buddhism, it became independent after World War II."
     },
     {
         "id": "landmark_67",
         "city":"Tokyo",
         "landmark":"Tokyo Tower",
-        "landmarkImageUrl": "https://planetyze.com/uploads/2017/01/3285/th/original.jpg"
+        "landmarkImageUrl": "https://planetyze.com/uploads/2017/01/3285/th/original.jpg",
+        "desc":"Tokyo Tower is a communications and observation tower in the Shiba-koen district of Minato, Tokyo, Japan. At 332.9 metres, it is the second-tallest structure in Japan."
     },
     {
         "id": "landmark_68",
         "city":"Tokyo",
         "landmark":"Tsukiji Fish Market",
-        "landmarkImageUrl": "http://japandailypress.com/wp-content/uploads/2013/12/246b896924.jpg"
+        "landmarkImageUrl": "http://japandailypress.com/wp-content/uploads/2013/12/246b896924.jpg",
+        "desc":"Sprawling wholesale fish market with an array of seafood & viewing areas for a popular tuna auction."
     },
     {
         "id": "landmark_69",
         "city":"Tokyo",
         "landmark":"Harajuku",
-        "landmarkImageUrl": "http://d17oknutsq9rw.cloudfront.net/wp-content/uploads/2016/05/16074633/Kawaii-Things-you-cant-Miss-in-Harajuku-1-800x600.jpg"
+        "landmarkImageUrl": "http://d17oknutsq9rw.cloudfront.net/wp-content/uploads/2016/05/16074633/Kawaii-Things-you-cant-Miss-in-Harajuku-1-800x600.jpg",
+        "desc":"Harajuku is a district in Shibuya, Tokyo, Japan. Harajuku is the common name given to a geographic area spreading from Harajuku Station to Omotesando, corresponding on official maps of Shibuya ward as Jingūmae 1 chōme to 4 chōme."
     },
     {
         "id": "landmark_70",
         "city":"Tokyo",
         "landmark":"Odaiba",
-        "landmarkImageUrl": "http://farm6.staticflickr.com/5279/7087267309_0bd048d77b_b.jpg"
+        "landmarkImageUrl": "http://farm6.staticflickr.com/5279/7087267309_0bd048d77b_b.jpg",
+        "desc":"Odaiba is a large artificial island in Tokyo Bay, Japan, across the Rainbow Bridge from central Tokyo."
     },
     {
         "id": "landmark_71",
         "city":"Tokyo",
         "landmark":"Ueno Park",
-        "landmarkImageUrl": "https://www.tabipalette.com/uploads/picture/picture/11/DSCN1990.JPG"
+        "landmarkImageUrl": "https://www.tabipalette.com/uploads/picture/picture/11/DSCN1990.JPG",
+        "desc":"Ueno Park is a spacious public park in the Ueno district of Taitō, Tokyo, Japan. The park was established in 1873 on lands formerly belonging to the temple of Kan'ei-ji."
     },
     {
         "id": "landmark_72",
         "city":"Tokyo",
         "landmark":"Shinjuku Gyoen",
-        "landmarkImageUrl": "http://www.snapjapan.com/sites/default/files/styles/1024x768_scale/public/business/bscool/attraction-japanese-garden-tokyo-shinjuku-gyoen-0003-0001-0001-flickr.jpg?itok=7JM8WBGo"
+        "landmarkImageUrl": "http://www.snapjapan.com/sites/default/files/styles/1024x768_scale/public/business/bscool/attraction-japanese-garden-tokyo-shinjuku-gyoen-0003-0001-0001-flickr.jpg?itok=7JM8WBGo",
+        "desc":"Shinjuku Gyoen National Garden is a large park and garden in Shinjuku and Shibuya, Tokyo, Japan. It was originally a residence of the Naitō family in the Edo period."
     },
     {
         "id": "landmark_73",
         "city":"Tokyo",
         "landmark":"Tokyo Imperial Palace",
-        "landmarkImageUrl": "https://farm2.staticflickr.com/1271/1298829813_be3aef82d8_o.jpg"
+        "landmarkImageUrl": "https://farm2.staticflickr.com/1271/1298829813_be3aef82d8_o.jpg",
+        "desc":"The Tokyo Imperial Palace is the primary residence of the Emperor of Japan. It is a large park-like area located in the Chiyoda ward of Tokyo and contains buildings including the main palace, the private residences of the Imperial Family, an archive, museums and administrative offices."
     },
     {
         "id": "landmark_74",
         "city":"Tokyo",
         "landmark":"Tokyo National Museum",
-        "landmarkImageUrl": "http://1.bp.blogspot.com/-1L6VeCxa8aU/UB6KHKWOA1I/AAAAAAAAAHc/KDTBmZqVST0/s1600/TokyoNationalMuseum.jpg"
+        "landmarkImageUrl": "http://1.bp.blogspot.com/-1L6VeCxa8aU/UB6KHKWOA1I/AAAAAAAAAHc/KDTBmZqVST0/s1600/TokyoNationalMuseum.jpg",
+        "desc":"The Tokyo National Museum, or TNM, established in 1872, is the oldest Japanese national museum, the largest art museum in Japan and one of the largest art museums in the world."
     },
 ]
 

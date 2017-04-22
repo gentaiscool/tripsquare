@@ -26,25 +26,8 @@ const containerStyle = {
 	background: 'rgba(250,250,250,1.0)'
 }
 
-const headerStyle = {
-  fontFamily: 'Roboto Bold',
-  background: 'rgba(40, 40, 40, 1.0)',
-  color: 'rgba(250, 250, 250, 1.0)',
-  fontSize: '14px',
-  margin: '0px',
-  paddingTop: '5px',
-  paddingBottom: '5px',
-  paddingLeft:'27px',
-  paddingRight:'10px',
-  borderColor: 'rgba(240,240,240,1.0)',
-  borderWidth: '2px',
-  borderStyle: 'solid',
-  marginRight: '0px',
-  width: '100%'
-}
-
 const boxStyle = {
-	background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7))',
+	background: '#f2d182',
 }
 
 const imageBoxStyle = {
@@ -52,7 +35,7 @@ const imageBoxStyle = {
 	alignItems: 'center',
 	justifyContent: 'center',
 	borderColor: 'rgba(230,230,230,1.0)',
-	background: 'rgba(250,250,250,1.0)',
+	background: '#f4bf42',
 	borderWidth: '2px',
 	borderStyle: 'solid',
 	borderTopLeftRadius: '10px',
@@ -91,6 +74,15 @@ const cityNameStyle = {
 	padding: '0px'
 }
 
+const headerStyle = {
+	fontFamily: 'Roboto Light',
+	fontSize: '12px',
+	margin: '0px',
+	marginTop: '0px',
+	padding: '0px',
+	lineHeight: '14px'
+}
+
 const descStyle = {
 	fontFamily: 'Roboto Light',
 	fontSize: '12px',
@@ -100,7 +92,7 @@ const descStyle = {
 	lineHeight: '14px'
 }
 
-class City extends Component {
+class RecommendationPlanner extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -122,50 +114,36 @@ class City extends Component {
        return (
        		<MuiThemeProvider>
 				<Row style={{width:'100%', paddingLeft:'17px',borderRadius: '10px', paddingRight:'12px'}}>
-					<Col xs={2} style={imageBoxStyle} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
+					<Col xs={2} style={imageBoxStyle}>
 						<Avatar
-				          src={this.props.imageUrl}
-				          size={80}
+				          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Sleeping_Beauty_Castle_Disneyland_Anaheim_2013.jpg/250px-Sleeping_Beauty_Castle_Disneyland_Anaheim_2013.jpg"
+				          size={60}
 				          style={imageStyle}
 				        />
 					</Col>
 					<Col xs={10} style={boxStyle}>
 						<Row style={{padding:'10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
-							<Col xs={12} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
+							<Col xs={12}>
 								<Row>
 									<Col xs={9} style={{padding:'0px', margin:'0px'}}>
-										<p style={cityNameStyle}>{this.props.cityName}</p>
+										<p style={headerStyle}>Don't miss this</p> 
+										<p style={cityNameStyle}>"HK Disneyland"</p>
 									</Col>
 									<Col xs={1}>
 									</Col>
 									<Col xs={2} style={{padding:'0px', margin:'0px'}}>
-										<FloatingActionButton mini={true} secondary={true} style={{marginLeft:'40px'}}>
-											<ContentAdd />
-										</FloatingActionButton>
+										<p style={{fontFamily:'Roboto Bold', padding:'0px', margin:'0px', display:"flex", justifyContent:"right"}}>Recommendation</p>
 									</Col>
 						       	</Row>
 						       	<Row>
 						       		<Col xs={9} style={{padding:'0px', margin:'0px'}}>
-										<p style={descStyle}>{this.props.desc}</p>
+										<p style={descStyle}>Enjoy the best holiday in Hong Kong</p>
 									</Col>
 									<Col xs={3} style={{padding:'0px', margin:'0px'}}>
 										
 									</Col>
 						       	</Row>
 					       	</Col>
-				       	</Row>
-				       	<Row style={{marginTop:'-1px', marginLeft: '-10px', padding:'7px', borderBottomRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
-							<Col xs={7}>
-								<ThumbUpSVG style={{marginRight:"10px", width:'20px', height:'20px'}} color="#feb24c"
-								onClick={this.onClickUpHandler.bind(this, this.props.id)}/>
-								<span style={{marginRight:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{this.props.up}</span>
-								<ThumbDownSVG style={{width:'20px', height:'20px'}} color="#969696"
-								onClick={this.onClickDownHandler.bind(this, this.props.id)}/>
-								<span style={{marginLeft:"10px", fontSize:"15px", fontFamily:"Roboto Light"}}>{this.props.down}</span>
-							</Col>
-							<Col xs={5} style={{display:"flex"}}>
-								
-							</Col>
 				       	</Row>
 					</Col>
 				</Row>
@@ -174,4 +152,4 @@ class City extends Component {
     }
 }
 
-export default City
+export default RecommendationPlanner

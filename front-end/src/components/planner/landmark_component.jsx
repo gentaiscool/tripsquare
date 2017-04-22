@@ -87,7 +87,7 @@ const timeStyle = {
 
 const landmarkNameStyle = {
 	fontFamily: 'Roboto Light',
-	fontSize: '25px',
+	fontSize: '22px',
 	margin: '0px',
 	padding: '0px'
 }
@@ -97,7 +97,8 @@ const descStyle = {
 	fontSize: '12px',
 	margin: '0px',
 	marginTop: '5px',
-	padding: '0px'
+	padding: '0px',
+	lineHeight: '14px'
 }
 
 class Landmark extends Component {

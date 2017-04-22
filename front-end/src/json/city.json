@@ -1,161 +1,186 @@
 var cities = [
+   
     { 
         "id": "city_1",
         "country": "China",
         "city": "Hong Kong",
-        "cityImageUrl": "http://www.bernard-gallay.com/fichiersTinyMCE/Hong_Kong_.jpg"
+        "cityImageUrl": "http://www.bernard-gallay.com/fichiersTinyMCE/Hong_Kong_.jpg",
+        "desc":"Hong Kong is an autonomous territory, and former British colony, in southeastern China. Its vibrant, densely populated urban centre is a major port and global financial hub with a skyscraper-studded skyline. "
     },
     { 
         "id": "city_2",
         "country": "China",
         "city": "Macau",
-        "cityImageUrl": "http://www.lastminute.com/hotels/img/city/Macau-MO.jpg"
+        "cityImageUrl": "http://www.lastminute.com/hotels/img/city/Macau-MO.jpg",
+        "desc":"Macau is an autonomous region on the south coast of China, across the Pearl River Delta from Hong Kong. A Portuguese territory until 1999, it reflects a mix of cultural influences. Its giant casinos and malls on the Cotai Strip, which joins the islands of Taipa and Coloane, have earned it the nickname, \"Las Vegas of Asia.\""
     },
     { 
         "id": "city_3",
         "country": "Indonesia",
         "city": "Jakarta",
-        "cityImageUrl": "http://www.cruisemapper.com/images/ports/576-large-f312a9a5c03f8d919f2f7702d84c1b09.jpg"
-    }
-    ,
+        "cityImageUrl": "http://www.cruisemapper.com/images/ports/576-large-f312a9a5c03f8d919f2f7702d84c1b09.jpg",
+        "desc":"Jakarta, is the capital and most populous city of the Republic of Indonesia. Located on the northwest coast of the world's most populous island of Java, Jakarta is the country's economic, cultural and political centre, with a population of 10,075,310 as of 2014."
+    },
     { 
         "id": "city_4",
         "country": "Indonesia",
         "city": "Bali",
-        "cityImageUrl": "http://ttw.wlimg.com/package-images/photo-big/dir_14/394034/92373.jpg"
-    }
-    ,
+        "cityImageUrl": "http://ttw.wlimg.com/package-images/photo-big/dir_14/394034/92373.jpg",
+        "desc":"Bali is an Indonesian island known for its forested volcanic mountains, iconic rice paddies, beaches and coral reefs. The island is home to religious sites such as cliffside Uluwatu Temple. To the south, the beachside city of Kuta has lively bars, while Seminyak, Sanur and Nusa Dua are popular resort towns. "
+    },
     { 
         "id": "city_5",
         "country": "South Korea",
         "city": "Seoul",
-        "cityImageUrl": "https://farm4.staticflickr.com/3791/14330725443_29a7c70467_c.jpg"
+        "cityImageUrl": "https://farm4.staticflickr.com/3791/14330725443_29a7c70467_c.jpg",
+        "desc":"Seoul, the capital of South Korea, is a huge metropolis where modern skyscrapers, high-tech subways and pop culture meet Buddhist temples, palaces and street markets. Notable attractions include futuristic Dongdaemun Design Plaza, a convention hall with curving architecture and a rooftop park."
     },
     { 
         "id": "city_6",
         "country": "Singapore",
         "city": "Singapore",
-        "cityImageUrl": "http://travelballoon.in/wp-content/uploads/2015/10/31-800x600.jpg"
-    },
-    { 
-        "id": "city_1",
-        "country": "Philippines",
-        "city": "Manila",
-        "cityImageUrl": "https://staycationphilippines.com/wp-content/uploads/2016/02/EDSA-Shangri-la-Manila.jpg"
+        "cityImageUrl": "http://travelballoon.in/wp-content/uploads/2015/10/31-800x600.jpg",
+        "desc":"Singapore, an island city-state off southern Malaysia, is a global financial center with a tropical climate and multicultural population. Its colonial core centers on the Padang, a cricket field since the 1830s and now flanked by grand buildings such as City Hall, with its 18 Corinthian columns."
     },
     { 
         "id": "city_7",
-        "country": "Thailand",
-        "city": "Bangkok",
-        "cityImageUrl": "https://i1.wp.com/shopjj.co/wp-content/uploads/shopjj-temple-bangkok-01.jpg?resize=800%2C600"
+        "country": "Philippines",
+        "city": "Manila",
+        "cityImageUrl": "https://staycationphilippines.com/wp-content/uploads/2016/02/EDSA-Shangri-la-Manila.jpg",
+        "desc":"The Philippines is a Southeast Asian country in the Western Pacific, comprising more than 7,000 islands. Its capital, Manila, is famous for its waterfront promenade and centuries-old Chinatown, Binondo. Intramuros, a walled city in colonial times, is the heart of Old Manila. "
     },
     { 
         "id": "city_8",
-        "country": "India",
-        "city": "New Delhi",
-        "cityImageUrl": "http://ificould.co.za/wp-content/gallery/destination-delhi/New-Delhi-Temple.jpg"
+        "country": "Thailand",
+        "city": "Bangkok",
+        "cityImageUrl": "https://i1.wp.com/shopjj.co/wp-content/uploads/shopjj-temple-bangkok-01.jpg?resize=800%2C600",
+        "desc":"Bangkok, Thailand’s capital, is a large city known for ornate shrines and vibrant street life. The boat-filled Chao Phraya River feeds its network of canals, flowing past the Rattanakosin royal district, home to opulent Grand Palace and its sacred Wat Phra Kaew Temple."
     },
     { 
         "id": "city_9",
-        "country": "Vietnam",
-        "city": "Hanoi",
-        "cityImageUrl": "http://www.lastminute.com/flights/lastminute/img/hanoi.jpg"
+        "country": "India",
+        "city": "New Delhi",
+        "cityImageUrl": "http://ificould.co.za/wp-content/gallery/destination-delhi/New-Delhi-Temple.jpg",
+        "desc":"New Delhi is the capital of India and one of Delhi city's 11 districts. Although colloquially Delhi and New Delhi are used interchangeably to refer to the National Capital Territory of Delhi, these are two distinct entities, with New Delhi forming a small part of Delhi."
     },
     { 
         "id": "city_10",
-        "country": "Malaysia",
-        "city": "Kuala Lumpur",
-        "cityImageUrl": "http://www.kirpaltravels.com/images/international/singapore-malaysia-tour/twin-tower-kuala-lumpur.jpg"
+        "country": "Vietnam",
+        "city": "Hanoi",
+        "cityImageUrl": "http://www.lastminute.com/flights/lastminute/img/hanoi.jpg",
+        "desc":"Hanoi, the capital of Vietnam, is known for its centuries-old architecture and a rich culture with Southeast Asian, Chinese and French influences. At its heart is the chaotic Old Quarter, where the narrow streets are roughly arranged by trade. "
     },
     { 
         "id": "city_11",
         "country": "Japan",
         "city": "Tokyo",
-        "cityImageUrl": "http://www.holidaytravel.co/userfiles/images/Tokyo-Main-Image-800x600.jpg"
+        "cityImageUrl": "http://www.holidaytravel.co/userfiles/images/Tokyo-Main-Image-800x600.jpg",
+        "desc":"Tokyo, Japan’s busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods. The Imperial Palace sits amid large public gardens."
     },
     { 
         "id": "city_12",
         "country": "India",
         "city": "Dhaka",
-        "cityImageUrl": "http://www.nomadic-by-nature.com/wordpress/wp-content/uploads/2015/01/Dhaka-Travel-2-of-8.jpg"
+        "cityImageUrl": "http://www.nomadic-by-nature.com/wordpress/wp-content/uploads/2015/01/Dhaka-Travel-2-of-8.jpg",
+        "desc":"Dhaka is the capital city of Bangladesh, in southern Asia. Set beside the Buriganga River, it’s at the center of national government, trade and culture. The 17th-century old city was the Mughal capital of Bengal, and many palaces and mosques remain."
     },
     { 
         "id": "city_13",
         "country": "India",
         "city": "Kolkata",
-        "cityImageUrl": "http://www.lastminute.com/hotels/img/city/Kolkata-WB-IN.jpg"
+        "cityImageUrl": "http://www.lastminute.com/hotels/img/city/Kolkata-WB-IN.jpg",
+        "desc":"Kolkata (formerly Calcutta) is the capital of India's West Bengal state. Founded as an East India Company trading post, it was India's capital under the British Raj from 1773–1911. Today it’s known for its grand colonial architecture, art galleries and cultural festivals."
     },
     { 
         "id": "city_14",
         "country": "Indonesia",
         "city": "Bandung",
-        "cityImageUrl": "http://vogueandvino.com/wp-content/uploads/2016/04/What-to-See-and-Do-When-in-Bandung.jpg"
+        "cityImageUrl": "http://vogueandvino.com/wp-content/uploads/2016/04/What-to-See-and-Do-When-in-Bandung.jpg",
+        "desc":"Bandung, capital of Indonesia’s West Java province, is a large city set amid volcanoes and tea plantations. It's known for colonial and art deco architecture, a lively, university-town feel and – thanks to its 768m elevation – relatively cool tropical weather. Bandung is also a shopping destination, with fashion outlets clustered along Jalan Setiabudi and Jalan Riau in the Dago district."
     },
     { 
         "id": "city_15",
         "country": "Indonesia",
         "city": "Surabaya",
-        "cityImageUrl": "http://3.bp.blogspot.com/-HglO5xU6cyE/U6j1P6kbNAI/AAAAAAAABFw/gg2wLLQY7HY/s1600/surabaya.jpg"
+        "cityImageUrl": "http://3.bp.blogspot.com/-HglO5xU6cyE/U6j1P6kbNAI/AAAAAAAABFw/gg2wLLQY7HY/s1600/surabaya.jpg",
+        "desc":"Surabaya is a port city on the Indonesian island of Java. A vibrant, sprawling metropolis, it mixes modern skyscrapers with canals and buildings from its Dutch colonial past. It has a thriving Chinatown and an Arab Quarter whose Ampel Mosque dates to the 15th century."
     },
     { 
         "id": "city_16",
         "country": "Indonesia",
         "city": "Yogyakarta",
-        "cityImageUrl": "http://dafamhotels.com/_archive-hotel/_tourism/Yogyakarta/Yogyakarta_discover_parangtritis.jpg"
+        "cityImageUrl": "http://dafamhotels.com/_archive-hotel/_tourism/Yogyakarta/Yogyakarta_discover_parangtritis.jpg",
+        "desc":"Yogyakarta (often called “Jogja”) is a city on the Indonesian island of Java known for its traditional arts and cultural heritage. Its ornate 18th-century royal complex, or kraton, encompasses the still-inhabited Sultan’s Palace. Also within the kraton are numerous open-air pavilions that host classical Javanese dance shows and concerts of gamelan music, characterized by gongs, chimes and plucked string instruments."
     },
     { 
         "id": "city_17",
         "country": "Malaysia",
         "city": "Kuching",
-        "cityImageUrl": "http://www.cruisemapper.com/images/ports/1118-large-b3fa4f988725e16b3fd0d6097a109cb1.jpg"
+        "cityImageUrl": "http://www.cruisemapper.com/images/ports/1118-large-b3fa4f988725e16b3fd0d6097a109cb1.jpg",
+        "desc":"Kuching, capital of the Malaysian state of Sarawak on the island of Borneo, is a bustling, diverse city of old colonial buildings and modern towers. Along its Sarawak River waterfront are food vendors, shophouses selling handicrafts and an esplanade with views of 19th-century landmarks: The Astana, former palace of the White Rajahs, and Fort Margherita, built to thwart pirates."
     },
     { 
         "id": "city_18",
         "country": "Malaysia",
         "city": "Penang",
-        "cityImageUrl": "http://13076-presscdn-0-15.pagely.netdna-cdn.com/wp-content/uploads/georgetown-penang-skyline.jpg"
+        "cityImageUrl": "http://13076-presscdn-0-15.pagely.netdna-cdn.com/wp-content/uploads/georgetown-penang-skyline.jpg",
+        "desc":"Penang is a Malaysian state located on the northwest coast of Peninsular Malaysia, by the Malacca Strait. Known as the Silicon Valley of the East for its industries, Penang is also one of the most urbanised and economically-important states in the country."
     },
     { 
         "id": "city_19",
         "country": "Thailand",
         "city": "Pattaya",
-        "cityImageUrl": "http://www.condorentpattayabeach.com/graphics/big/view-talay-6-pattaya-view.jpg"
+        "cityImageUrl": "http://www.condorentpattayabeach.com/graphics/big/view-talay-6-pattaya-view.jpg",
+        "desc":"Pattaya is a city on Thailand’s eastern Gulf coast known for its beaches. A quiet fishing village as recently as the 1960s, it’s now lined with resort hotels, high-rise condos, shopping malls, cabaret bars and 24-hour clubs. Nearby, hillside Wat Phra Yai Temple features an 18m-tall golden Buddha."
     },
     { 
         "id": "city_20",
         "country": "Thailand",
         "city": "Chiang Mai",
-        "cityImageUrl": "http://www.lastminute.com/flights/lastminute/img/chiang.jpg"
+        "cityImageUrl": "http://www.lastminute.com/flights/lastminute/img/chiang.jpg",
+        "desc":"Chiang Mai is a city in mountainous northern Thailand. Founded in 1296, it was capital of the independent Lanna Kingdom until 1558. Its Old City area still retains vestiges of walls and moats from its history as a cultural and religious center. It’s also home to hundreds of elaborate Buddhist temples, including 14th-century Wat Phra Singh and 15th-century Wat Chedi Luang, adorned with carved serpents."
     },
     { 
         "id": "city_21",
         "country": "Philippines",
         "city": "Cebu",
-        "cityImageUrl": "http://gabatravelandtours.com/wp-content/uploads/2016/02/cebu.jpg"
+        "cityImageUrl": "http://gabatravelandtours.com/wp-content/uploads/2016/02/cebu.jpg",
+        "desc":"Cebu is a 1st provincial income class island province of the Philippines located in the Central Visayas (Region VII) region, and consisting of the main island itself and 167 surrounding islands and islets. Its capital is Cebu City, the oldest city and first capital of the Philippines, which is politically independent from the provincial government."
     },
     { 
         "id": "city_22",
         "country": "Taiwan",
         "city": "Taipei",
-        "cityImageUrl": "http://www.forbesindia.com/media/images/2017/Jan/img_91683_taipeicity-ss-343027613_sm.jpg"
+        "cityImageUrl": "http://www.forbesindia.com/media/images/2017/Jan/img_91683_taipeicity-ss-343027613_sm.jpg",
+        "desc":"Taipei, the capital of Taiwan, is a modern metropolis with Japanese colonial lanes, busy shopping streets and contemporary buildings. The skyline is crowned by the 509m-tall, bamboo-shaped Taipei 101 skyscraper, with upscale shops at the base and a rapid elevator to an observatory near the top. Taipei is also known for its lively street-food scene and many night markets, including expansive Shilin market."
     },
     { 
         "id": "city_23",
         "country": "Taiwan",
         "city": "Taichung",
-        "cityImageUrl": "https://farm8.staticflickr.com/7755/17141522199_213ea5124f_c.jpg"
+        "cityImageUrl": "https://farm8.staticflickr.com/7755/17141522199_213ea5124f_c.jpg",
+        "desc":"Taichung is an industrial city on the western side of central Taiwan. It’s a gateway for exploring the island’s mountainous interior, including nature areas like Sun Moon Lake, popular for boating and hiking. In the bustling city center are museums, temples and the ornate brick Taichung Station, a legacy of the Japanese colonial period (1895–1945)."
     },
     { 
         "id": "city_24",
         "country": "Japan",
         "city": "Kyotango",
-        "cityImageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Kumitanigawa_in_Kumihama-cho_Kyotango.jpg"
+        "cityImageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Kumitanigawa_in_Kumihama-cho_Kyotango.jpg",
+        "desc":"Kyōtango is a city located in Kyoto Prefecture, Japan. The modern city of Kyōtango was established on April 1, 2004, from the merger of the towns of Mineyama and Omiya, the towns of Amino, Tango, and Yasaka, and the town of Kumihama."
     },
     { 
         "id": "city_25",
         "country": "South Korea",
         "city": "Incheon",
-        "cityImageUrl": "https://superjchung.files.wordpress.com/2010/01/songdo-city-under-construction.jpg"
+        "cityImageUrl": "https://superjchung.files.wordpress.com/2010/01/songdo-city-under-construction.jpg",
+        "desc":"Incheon, a South Korean city bordering the capital of Seoul, has long been a transportation hub. The ultramodern, massive Incheon International Airport, with railway connections to Seoul, features a casino, spa and golf course. Yeonan Pier, close to the popular Incheon Fish Market, is the starting point for many boat tours. "
+    },
+    { 
+        "id": "city_26",
+        "country": "Malaysia",
+        "city": "Kuala Lumpur",
+        "cityImageUrl": "http://www.kirpaltravels.com/images/international/singapore-malaysia-tour/twin-tower-kuala-lumpur.jpg",
+        "desc":"Kuala Lumpur is the capital of Malaysia. Its modern skyline is dominated by the 451m-tall Petronas Twin Towers, a pair of glass-and-steel-clad skyscrapers with Islamic motifs. The towers also offer a public skybridge and observation deck."
     },
 ]
 

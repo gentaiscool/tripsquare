@@ -98,9 +98,16 @@ class AddItem extends Component {
 
     this.state = {
       dataSource : autocompleteList,
-      inputValue : ''
+      inputValue : '',
+      searchText : ''
     }
   }
+
+  onHandleUpdateInput(searchText) {
+    this.setState({
+      searchText: searchText
+    });
+  };
 
   onNewRequest(inputValue) {
     console.log(inputValue);
@@ -118,16 +125,18 @@ class AddItem extends Component {
       object["up"] = 0;
       object["down"] = 0;
     }
-
+    this.setState({searchText: ''});
     this.props.onAddItemCallback(object);
   }
 
   render() {
     return <AutoComplete
             hintText = "Add city, landmark"
-            dataSource    = {this.state.dataSource}
+            searchText = {this.state.searchText}
+            updateInput = {this.onHandleUpdateInput}
+            dataSource = {this.state.dataSource}
             onNewRequest = {this.onNewRequest}
-            filter={AutoComplete.caseInsensitiveFilter}
+            filter = {AutoComplete.caseInsensitiveFilter}
             openOnFocus={true} />
   }
 }

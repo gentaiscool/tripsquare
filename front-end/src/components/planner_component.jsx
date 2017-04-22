@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import City from './planner/city_component.jsx';
 import Landmark from './planner/landmark_component.jsx';
+import RecommendationPlanner from './planner/recommendation_planner_component.jsx';
 import AddItem from './places/add_item_component.jsx';
 
 import {
@@ -108,13 +109,7 @@ class Planner extends Component {
 
     render(){
       function compare(a, b) {
-      	if(a["up"] < b["up"]){
-      		return 1;
-      	} else if(a["up"] == b["up"]){
-      		return a["down"] > b["down"];
-      	} else{
-      		return -1;
-      	}
+      	return (a["up"]-a["down"] < b["up"]-b["down"]);
 	  }
 
       //sort items
@@ -147,7 +142,7 @@ class Planner extends Component {
       		return  <div style={{marginTop:"10px"}}>
 				<City cityName={item["city"]} 
 				imageUrl={item["cityImageUrl"]}
-				desc="Description"
+				desc={item["desc"]}
 				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
 				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
 				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
@@ -160,7 +155,7 @@ class Planner extends Component {
       		return <Landmark cityName={item["city"]} 
 				landmarkName={item["landmark"]} 
 				imageUrl={item["landmarkImageUrl"]}
-				desc="Description"
+				desc={item["desc"]}
 				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
 				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
 				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
@@ -174,8 +169,9 @@ class Planner extends Component {
        return (
        		<MuiThemeProvider>
 				<Grid fluid style={{padding:'0px'}}>
-					<Row>
-						<Col xs={12} style={{}}>
+					<Row style={{marginTop:'7px'}}>
+						<Col xs={12}>
+							<RecommendationPlanner/>
 							<Scrollbars style={{height:'480px',paddingRight:'0px'}}>
 								{items}
 							</Scrollbars>

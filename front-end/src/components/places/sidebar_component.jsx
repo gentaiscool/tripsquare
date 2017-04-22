@@ -214,7 +214,7 @@ class Sidebar extends Component {
                 style={itiStyle}
                 onClick={this.onItineraryClickHandler.bind(this)}>
                 <ListSVG style={{marginTop:'5px',marginRight:'10px'}} color="white"/>
-                <p style={optionStyle}>ITENERARY</p>
+                <p style={optionStyle}>ITINERARY</p>
               </Row>
 
               {/* TRIPS TITLE */}

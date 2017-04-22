@@ -78,22 +78,32 @@ class Places extends Component {
 	}
 
 	onDetailsClickHandler(id){
-		var dataDetailbar = {};
-		if(id == "city_1"){
-			dataDetailbar = {
-				id: id,
-				title: "Shenzhen, China",
-				desc: "One of China's wealthiest cities.",
-				imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg"
-			}
-		} else{
-			dataDetailbar = {
-				id: id,
-				title: "Shenzhen Safari Park",
-				desc: "Shenzhen Safari Park is the first zoo in China to uncage animals. With green mountains to the north as its barrier, it is like a bright pearl in the bustling metropolis. Covering an area of 158 acres (640,000 square meters), there are more than 300 kinds of wild animals, in total 10,000 from all over the earth. Many of them are rare animals, such as giant pandas, south China tigers, golden monkeys, Siberian tigers, flamingos, giraffes, zebras, and Asian elephants. Visitors can not only take a close look of the animals, appreciating their amusing performances, but also enjoy the thrilling Motorcycle and Car Stunt Show at night.",
-				imageUrl: "http://static.hk.groupon-content.net/07/82/1332308568207.jpg"
-			}
-		}
+		let cities = {};
+		let landmarks = {};
+
+		let cityJSON = require('../json/city.json').default;
+	    let landmarkJSON = require('../json/landmark.json').default;
+
+	    for(let i=0; i<cityJSON.length; i++){
+	      cities[cityJSON[i]["id"]] = cityJSON[i];
+	    }
+
+	    for(let i=0; i<landmarkJSON.length; i++){
+	      landmarks[landmarkJSON[i]["id"]] = landmarkJSON[i];
+	    }
+
+	    let dataDetailbar = {};
+
+	    dataDetailbar["id"] = id;
+	    if(cities.hasOwnProperty(id)){
+	      dataDetailbar["title"] = cities[id]["city"];
+	      dataDetailbar["imageUrl"] = cities[id]["cityImageUrl"];
+	      dataDetailbar["desc"] = cities[id]["desc"];
+	    } else{
+	      dataDetailbar["title"] = landmarks[id]["landmark"];
+	      dataDetailbar["imageUrl"] = landmarks[id]["landmarkImageUrl"];
+	      dataDetailbar["desc"] = landmarks[id]["desc"];
+	    }
 
 		this.setState({dataDetailbar: dataDetailbar});
 	}

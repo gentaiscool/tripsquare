@@ -115,7 +115,7 @@ class ChatConsole extends Component {
     				<Grid fluid style={headerStyle}>
               <Row style={{borderBottomWidth: '2px', borderBottomStyle: 'solid', borderBottomColor:'rgba(70,70,70,0.3)', paddingLeft: '10px', height:'60px', margin:'0px', background:'rgba(238,238,238,1.0)',alignItems:'center',justifyContent:'left'}}>
                 <Col xs={6} style={{margin:'0px', padding:'0px'}}>
-                  <p style={titleStyle}>CONSOLE</p>
+                  <p style={titleStyle}>Group Chat</p>
                 </Col>
                 <Col xs={6} style={{margin:'0px', padding:'0px', display:'flex', justifyContent:'right'}}>
                   <Avatar
