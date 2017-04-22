@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
 
 import Planner from '../components/planner_component.jsx';
 import Itinerary from '../components/itinerary_component.jsx';
@@ -24,6 +28,8 @@ import {
 } from 'socket.io-react';
 
 import io from 'socket.io-client';
+
+var moment = require('moment');
 
 /* STYLES */
 const rightBox = {
@@ -56,7 +62,10 @@ const descStyle = {
 	fontSize: '14px'
 }
 
+
+
 class Places extends Component {
+
 	constructor(props){
 		super(props);
 		this.state = {
@@ -64,7 +73,11 @@ class Places extends Component {
 			dataDetailbar: {},
 			items: [],
 			rightBoxPlanner: true,
-			itineraryItems: []
+			itineraryItems: [],
+			addDialogOpen: false,
+			currentActDate: '',
+			currentActTime: '',
+			currentItineraryId: ''
 		};
 	}
 
@@ -78,6 +91,47 @@ class Places extends Component {
 		this.setState({items: arr});
 		console.log("places");
 		console.log(this.state.items);
+	}
+
+	onAddToItineraryHandler(id){
+		console.log("add to itinerary: " + id);
+		// OPEN DIALOG
+		this.setState({addDialogOpen: true, currentItineraryId: id});
+	}
+
+	addItemToItineraries(obj) {
+		var arr = this.state.itineraryItems;
+		arr.push(obj);
+		this.setState({itineraryItems: arr});
+		console.log("itineraries");
+		console.log(this.state.itineraryItems);
+	}
+
+	handleDialogClose() {
+		this.setState({addDialogOpen: false});
+		
+		let obj = {};
+		obj.id = this.state.currentItineraryId;
+		obj.time = this.state.currentActTime;
+		obj.date = this.state.currentActDate;
+
+		// TRIGGER FUNCTION HERE
+		this.addItemToItineraries(obj);
+	}
+
+	getTime(date) {
+		var stringTime = '';
+		var hour = date.getHours();
+		if (hour < 10) {
+			stringTime = stringTime + '0';
+		}
+		stringTime = stringTime + hour + ':';
+		var minutes = date.getMinutes();
+		if (minutes < 10) {
+			stringTime += stringTime + '0';
+		}
+		stringTime = stringTime + minutes;
+		return stringTime;
 	}
 
 	onDetailsClickHandler(id){
@@ -120,12 +174,15 @@ class Places extends Component {
 		this.setState({rightBoxPlanner: false});
 	}
 
-	onAddToItineraryHandler(id){
-		console.log("add to itinerary: " + id);
-		
-	}
-
     render(){
+    	const actions = [
+      <FlatButton
+        label="Ok"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleDialogClose.bind(this)}
+      />,
+    ];
     	const consoleClosed = this.state.consoleClosed;
     	const dataDetailbar = this.state.dataDetailbar;
     	const rightBoxPlanner = this.state.rightBoxPlanner;
@@ -167,13 +224,34 @@ class Places extends Component {
 								</Col>
 							</Row>
 
-
 							<Row>
 								<Col xs={7} style={rightBox}>
 									{rightBoxPlanner ? (
-											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items}  style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+										<div>
+											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} 
+											items={this.state.items}  style={rightBox} 
+											onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Dialog
+							          title="Pick a Date and Time for this Activity"
+							          actions={actions}
+							          modal={false}
+							          open={this.state.addDialogOpen}
+							          onRequestClose={this.handleDialogClose.bind(this)}
+
+							        >
+							          <DatePicker hintText="Pick a date" 
+							          onChange={(x, event) => {this.setState({currentActDate:event.toDateString()})}}
+							          />
+							          <TimePicker hintText="Pick a time"
+							          onChange={(x, event) => {this.setState({
+							          	currentActTime:this.getTime(event)
+							          })}}
+							           />
+							        </Dialog>
+							      </div>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
+											items={this.state.itineraryItems}/>
 										)
 									}
 								</Col>
@@ -209,9 +287,31 @@ class Places extends Component {
 								{/* LEFT BOX */}
 								<Col xs={7} style={rightBox}>
 								{rightBoxPlanner ? (
-											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<div>
+											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} 
+											items={this.state.items}  style={rightBox} 
+											onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Dialog
+							          title="Pick a Date and Time for this Activity"
+							          actions={actions}
+							          modal={false}
+							          open={this.state.addDialogOpen}
+							          onRequestClose={this.handleDialogClose.bind(this)}
+
+							        >
+							          <DatePicker hintText="Pick a date" 
+							          onChange={(x, event) => {this.setState({currentActDate:event.toDateString()})}}
+							          />
+							          <TimePicker hintText="Pick a time"
+							          onChange={(x, event) => {this.setState({
+							          	currentActTime:this.getTime(event)
+							          })}}
+							           />
+							        </Dialog>
+							      </div>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}
+											items={this.state.itineraryItems}/>
 										)
 									}
 								</Col>
