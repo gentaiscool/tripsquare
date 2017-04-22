@@ -74696,6 +74696,11 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  { style: { marginTop: "10px" } },
+	                  _react2.default.createElement(_transport_component2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: { marginTop: "10px" } },
 	                  _react2.default.createElement(_landmark_itinerary_component2.default, {
 	                    cityName: 'Shenzhen, China',
 	                    landmarkName: 'Shenzhen Safari Park',
@@ -74704,11 +74709,6 @@
 	                    id: 'landmark_2',
 	                    onDetailsClickCallback: this.onDetailsClickHandler.bind(this, "landmark_2")
 	                  })
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { style: { marginTop: "10px" } },
-	                  _react2.default.createElement(_transport_component2.default, null)
 	                )
 	              )
 	            )
@@ -75266,7 +75266,8 @@
 	  borderStyle: 'solid',
 	  marginLeft: '10px',
 	  marginRight: '18px',
-	  paddingBottom: '6px'
+	  paddingBottom: '6px',
+	  marginTop: '3px'
 	};
 
 	var recommendText = {

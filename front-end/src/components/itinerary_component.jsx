@@ -44,16 +44,6 @@ class Itinerary extends Component {
                   />
                 </div>
                 <div style={{marginTop:"10px"}}>
-                  <Landmark 
-                  cityName="Shenzhen, China" 
-                  landmarkName="Shenzhen Safari Park" 
-                  imageUrl="http://static.hk.groupon-content.net/07/82/1332308568207.jpg"
-                  desc="first zoo in China to uncage animals"
-                  id="landmark_2"
-                  onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "landmark_2")}
-                  />
-                </div>
-                <div style={{marginTop:"10px"}}>
                   {/*<Transport
                   type="uber"
                   details="via Long Rd. to Safari Park"
@@ -70,6 +60,16 @@ class Itinerary extends Component {
                   time="54 min."
                   />*/}
                   <Transport/>
+                </div>
+                <div style={{marginTop:"10px"}}>
+                  <Landmark 
+                  cityName="Shenzhen, China" 
+                  landmarkName="Shenzhen Safari Park" 
+                  imageUrl="http://static.hk.groupon-content.net/07/82/1332308568207.jpg"
+                  desc="first zoo in China to uncage animals"
+                  id="landmark_2"
+                  onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "landmark_2")}
+                  />
                 </div>
               </Scrollbars>
             </Col>
