@@ -27811,7 +27811,8 @@
 				consoleClosed: true,
 				dataDetailbar: {},
 				items: [],
-				rightBoxPlanner: true
+				rightBoxPlanner: true,
+				itineraryItems: []
 			};
 			return _this;
 		}
@@ -27872,6 +27873,11 @@
 			value: function onItineraryClickHandler() {
 				console.log("places: onItineraryClickHandler");
 				this.setState({ rightBoxPlanner: false });
+			}
+		}, {
+			key: 'onAddToItineraryHandler',
+			value: function onAddToItineraryHandler(id) {
+				console.log("add to itinerary: " + id);
 			}
 		}, {
 			key: 'render',
@@ -27950,7 +27956,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { onAddToItineraryCallback: this.onAddToItineraryHandler.bind(this), items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -28005,7 +28011,7 @@
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
 										{ xs: 7, style: rightBox },
-										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
+										rightBoxPlanner ? _react2.default.createElement(_planner_component2.default, { onAddToItineraryCallback: this.onAddToItineraryHandler.bind(this), items: this.state.items, style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) }) : _react2.default.createElement(_itinerary_component2.default, { style: rightBox, onDetailsClickCallback: this.onDetailsClickHandler.bind(this) })
 									),
 									_react2.default.createElement(
 										_reactFlexboxGrid.Col,
@@ -28177,6 +28183,11 @@
 				console.log("down>" + downs[id] + " " + id);
 			}
 		}, {
+			key: 'onAddToItineraryHandler',
+			value: function onAddToItineraryHandler(id) {
+				this.props.onAddToItineraryCallback(id);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				function compare(a, b) {
@@ -28212,6 +28223,7 @@
 								onDetailsClickCallback: this.onDetailsClickHandler.bind(this, item["id"]),
 								onUpClickCallback: this.onUpClickHandler.bind(this, item["id"]),
 								onDownClickCallback: this.onDownClickHandler.bind(this, item["id"]),
+								onAddToItineraryCallback: this.onAddToItineraryHandler.bind(this, item["id"]),
 								id: item["id"],
 								up: item["up"],
 								down: item["down"]
@@ -28225,6 +28237,7 @@
 							onDetailsClickCallback: this.onDetailsClickHandler.bind(this, item["id"]),
 							onUpClickCallback: this.onUpClickHandler.bind(this, item["id"]),
 							onDownClickCallback: this.onDownClickHandler.bind(this, item["id"]),
+							onAddToItineraryCallback: this.onAddToItineraryHandler.bind(this, item["id"]),
 							id: item["id"],
 							up: item["up"],
 							down: item["down"]
@@ -40502,6 +40515,12 @@
 				this.props.onDownClickCallback(id);
 			}
 		}, {
+			key: 'onAddToItineraryHandler',
+			value: function onAddToItineraryHandler(id) {
+				console.log("add");
+				this.props.onAddToItineraryCallback(id);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -40527,23 +40546,23 @@
 								{ style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
 								_react2.default.createElement(
 									_reactFlexboxGrid.Col,
-									{ xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+									{ xs: 12 },
 									_react2.default.createElement(
 										_reactFlexboxGrid.Row,
 										null,
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 9, style: { padding: '0px', margin: '0px' } },
+											{ xs: 9, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												'p',
 												{ style: cityNameStyle },
 												this.props.cityName
 											)
 										),
-										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 1 }),
+										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 1, onClick: this.onDetailsClickHandler.bind(this, this.props.id) }),
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 2, style: { padding: '0px', margin: '0px' } },
+											{ xs: 2, style: { padding: '0px', margin: '0px' }, onClick: this.onAddToItineraryHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												_FloatingActionButton2.default,
 												{ mini: true, secondary: true, style: { marginLeft: '40px' } },
@@ -40556,14 +40575,14 @@
 										null,
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 9, style: { padding: '0px', margin: '0px' } },
+											{ xs: 9, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												'p',
 												{ style: descStyle },
 												this.props.desc
 											)
 										),
-										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 3, style: { padding: '0px', margin: '0px' } })
+										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 3, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) })
 									)
 								)
 							),
@@ -46704,6 +46723,12 @@
 				this.props.onDownClickCallback();
 			}
 		}, {
+			key: 'onAddToItineraryHandler',
+			value: function onAddToItineraryHandler(id) {
+				console.log("add");
+				this.props.onAddToItineraryCallback(id);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -46729,23 +46754,23 @@
 								{ style: { padding: '10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle: 'solid', borderWidth: '2px', borderColor: 'rgba(230,230,230,0.8)' } },
 								_react2.default.createElement(
 									_reactFlexboxGrid.Col,
-									{ xs: 12, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
+									{ xs: 12 },
 									_react2.default.createElement(
 										_reactFlexboxGrid.Row,
 										null,
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 9, style: { padding: '0px', margin: '0px' } },
+											{ xs: 9, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												'p',
 												{ style: landmarkNameStyle },
 												this.props.landmarkName
 											)
 										),
-										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 1 }),
+										_react2.default.createElement(_reactFlexboxGrid.Col, { xs: 1, onClick: this.onDetailsClickHandler.bind(this, this.props.id) }),
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 2, style: { padding: '0px', margin: '0px' } },
+											{ xs: 2, style: { padding: '0px', margin: '0px' }, onClick: this.onAddToItineraryHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												_FloatingActionButton2.default,
 												{ mini: true, secondary: true, style: { marginLeft: '40px' } },
@@ -46758,7 +46783,7 @@
 										null,
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 9, style: { padding: '0px', margin: '0px' } },
+											{ xs: 9, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												'p',
 												{ style: descStyle },
@@ -46767,7 +46792,7 @@
 										),
 										_react2.default.createElement(
 											_reactFlexboxGrid.Col,
-											{ xs: 3, style: { padding: '0px', margin: '0px' } },
+											{ xs: 3, style: { padding: '0px', margin: '0px' }, onClick: this.onDetailsClickHandler.bind(this, this.props.id) },
 											_react2.default.createElement(
 												'p',
 												{ style: { fontFamily: 'Roboto Bold', padding: '0px', margin: '0px', display: "flex", justifyContent: "right" } },
@@ -87187,7 +87212,7 @@
 	                { style: notifTextStyle },
 	                '1'
 	              ),
-	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	              _react2.default.createElement('img', { src: 'http://i.imgur.com/2UuV4FG.png',
 	                style: notifIconStyle
 	              })
 	            )
@@ -87212,7 +87237,7 @@
 	                { style: notifTextStyle },
 	                '4'
 	              ),
-	              _react2.default.createElement('img', { src: 'http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png',
+	              _react2.default.createElement('img', { src: 'http://i.imgur.com/2UuV4FG.png',
 	                style: notifIconStyle
 	              })
 	            )

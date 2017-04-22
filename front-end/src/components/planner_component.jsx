@@ -107,6 +107,10 @@ class Planner extends Component {
 		console.log("down>" + downs[id] + " " + id);
 	}
 
+	onAddToItineraryHandler(id){
+		this.props.onAddToItineraryCallback(id);
+	}
+
     render(){
       function compare(a, b) {
       	return (a["up"]-a["down"] < b["up"]-b["down"]);
@@ -146,6 +150,7 @@ class Planner extends Component {
 				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
 				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
 				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
+				onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this, item["id"])}
 				id={item["id"]}
 				up={item["up"]}
 				down={item["down"]}
@@ -159,6 +164,7 @@ class Planner extends Component {
 				onDetailsClickCallback={this.onDetailsClickHandler.bind(this, item["id"])}
 				onUpClickCallback={this.onUpClickHandler.bind(this, item["id"])}
 				onDownClickCallback={this.onDownClickHandler.bind(this, item["id"])}
+				onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this, item["id"])}
 				id={item["id"]}
 				up={item["up"]}
 				down={item["down"]}

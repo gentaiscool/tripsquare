@@ -64,7 +64,7 @@ class Places extends Component {
 			dataDetailbar: {},
 			items: [],
 			rightBoxPlanner: true,
-			itinerary_items: []
+			itineraryItems: []
 		};
 	}
 
@@ -120,6 +120,11 @@ class Places extends Component {
 		this.setState({rightBoxPlanner: false});
 	}
 
+	onAddToItineraryHandler(id){
+		console.log("add to itinerary: " + id);
+		
+	}
+
     render(){
     	const consoleClosed = this.state.consoleClosed;
     	const dataDetailbar = this.state.dataDetailbar;
@@ -166,7 +171,7 @@ class Places extends Component {
 							<Row>
 								<Col xs={7} style={rightBox}>
 									{rightBoxPlanner ? (
-											<Planner items={this.state.items}  style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items}  style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										) : (
 											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										)
@@ -204,7 +209,7 @@ class Places extends Component {
 								{/* LEFT BOX */}
 								<Col xs={7} style={rightBox}>
 								{rightBoxPlanner ? (
-											<Planner items={this.state.items} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										) : (
 											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										)

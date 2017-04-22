@@ -118,6 +118,11 @@ class Landmark extends Component {
 		this.props.onDownClickCallback();
 	}
 
+	onAddToItineraryHandler(id){
+		console.log("add");
+		this.props.onAddToItineraryCallback(id);
+	}
+
     render(){
        return (
        		<MuiThemeProvider>
@@ -131,24 +136,24 @@ class Landmark extends Component {
 					</Col>
 					<Col xs={10} style={boxStyle}>
 						<Row style={{padding:'10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
-							<Col xs={12} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
+							<Col xs={12}>
 								<Row>
-									<Col xs={9} style={{padding:'0px', margin:'0px'}}>
+									<Col xs={9} style={{padding:'0px', margin:'0px'}} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
 										<p style={landmarkNameStyle}>{this.props.landmarkName}</p>
 									</Col>
-									<Col xs={1}>
+									<Col xs={1} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
 									</Col>
-									<Col xs={2} style={{padding:'0px', margin:'0px'}}>
+									<Col xs={2} style={{padding:'0px', margin:'0px'}} onClick={this.onAddToItineraryHandler.bind(this, this.props.id)}>
 										<FloatingActionButton mini={true} secondary={true} style={{marginLeft:'40px'}}>
 											<ContentAdd />
 										</FloatingActionButton>
 									</Col>
 						       	</Row>
 						       	<Row>
-						       		<Col xs={9} style={{padding:'0px', margin:'0px'}}>
+						       		<Col xs={9} style={{padding:'0px', margin:'0px'}} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
 										<p style={descStyle}>{this.props.desc}</p>
 									</Col>
-									<Col xs={3} style={{padding:'0px', margin:'0px'}}>
+									<Col xs={3} style={{padding:'0px', margin:'0px'}} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
 										<p style={{fontFamily:'Roboto Bold', padding:'0px', margin:'0px', display:"flex", justifyContent:"right"}}>{this.props.cityName}</p>
 										
 									</Col>

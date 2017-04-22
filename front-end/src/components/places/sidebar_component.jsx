@@ -182,12 +182,12 @@ class Sidebar extends Component {
       }
 
        return (
-       		<MuiThemeProvider>
-    				<Grid fluid style={{background:'rgba(62,50,50,1.0)',paddingLeft:'9px',paddingRight:'9px',paddingTop:'20px',height:'100%'}}>
-    					<Row style={{}}>
+          <MuiThemeProvider>
+            <Grid fluid style={{background:'rgba(62,50,50,1.0)',paddingLeft:'9px',paddingRight:'9px',paddingTop:'20px',height:'100%'}}>
+              <Row style={{}}>
                 <div style={{marginBottom:'10px'}}>
-      						<p style={titleStyle}>Journey to the West</p>
-      						<p style={dateStyle}>10 April - 15 June</p>
+                  <p style={titleStyle}>Journey to the West</p>
+                  <p style={dateStyle}>10 April - 15 June</p>
                 </div>
               </Row>
               <Row style={{paddingLeft:'15px'}}>
@@ -229,7 +229,7 @@ class Sidebar extends Component {
                 </Col>
                 <Col xs={3}>
                   <p style={notifTextStyle}>1</p>
-                  <img src='http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png' 
+                  <img src='http://i.imgur.com/2UuV4FG.png' 
                       style={notifIconStyle} 
                   />
                 </Col>
@@ -241,7 +241,7 @@ class Sidebar extends Component {
                 </Col>
                 <Col xs={3}>
                   <p style={notifTextStyle}>4</p>
-                  <img src='http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png' 
+                  <img src='http://i.imgur.com/2UuV4FG.png' 
                       style={notifIconStyle} 
                   />
                 </Col>
@@ -287,14 +287,14 @@ class Sidebar extends Component {
                       style={onlineIconStyle} 
                 />
                 <p style={memberNameStyle}>Johnny</p>
-    					</Row>
+              </Row>
 
             {/* INVITE PEOPLE */}
             <Row style={{paddingLeft:'15px'}}>
               <p style={optionStyle}>+ Invite people</p>
             </Row>
-    				</Grid>
-    			</MuiThemeProvider>
+            </Grid>
+          </MuiThemeProvider>
        )
     }
 }
