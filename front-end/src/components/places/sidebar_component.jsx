@@ -123,11 +123,13 @@ const memberNameStyle = {
   paddingLeft: '7px'
 }
 
-
 class Sidebar extends Component {
     constructor(props) {
       super(props);
-      this.state = {hover_flag: false};
+      this.state = {
+        hover_flag_plan: false, 
+        hover_flag_itinerary: false
+      };
     }
 
     getDefaultProps(){
@@ -138,22 +140,36 @@ class Sidebar extends Component {
 
     getInitialState(){
         return {
-            hover_flag: false
+            hover_flag_plan: false,
+            hover_flag_itinerary: false
         };
     }
 
-    hoverEvent(){
-        this.setState({hover_flag: !this.state.hover_flag});
+    hoverPlanEvent(){
+        this.setState({hover_flag_plan: !this.state.hover_flag_plan});
+    }
+
+    hoverItineraryEvent(){
+        this.setState({hover_flag_itinerary: !this.state.hover_flag_itinerary});
     }
 
     render(){
-      var liStyle = {
+      var planStyle = {
         background: 'rgba(0,0,0,0)',
         paddingLeft: '10px'
       };
       
-      if (this.state.hover_flag) {
-        liStyle['background'] = '#880000';
+      if (this.state.hover_flag_plan) {
+        planStyle['background'] = '#880000';
+      }
+
+      var itiStyle = {
+        background: 'rgba(0,0,0,0)',
+        paddingLeft: '10px'
+      };
+      
+      if (this.state.hover_flag_itinerary) {
+        itiStyle['background'] = '#880000';
       }
 
        return (
@@ -173,16 +189,16 @@ class Sidebar extends Component {
                 
               </Row>
               <Row
-                onMouseEnter={this.hoverEvent.bind(this)}
-                onMouseLeave={this.hoverEvent.bind(this)}
-                style={liStyle}>
+                onMouseEnter={this.hoverPlanEvent.bind(this)}
+                onMouseLeave={this.hoverPlanEvent.bind(this)}
+                style={planStyle}>
                 <ViewQuiltSVG style={{marginTop:'5px',marginRight:'10px'}} color="white"/>
                 <p style={optionStyle}>PLAN</p>
               </Row>
               <Row
-                onMouseEnter={this.hoverEvent.bind(this)}
-                onMouseLeave={this.hoverEvent.bind(this)}
-                style={{paddingLeft: '10px'}}>
+                onMouseEnter={this.hoverItineraryEvent.bind(this)}
+                onMouseLeave={this.hoverItineraryEvent.bind(this)}
+                style={itiStyle}>
                 <ListSVG style={{marginTop:'5px',marginRight:'10px'}} color="white"/>
                 <p style={optionStyle}>ITENERARY</p>
               </Row>

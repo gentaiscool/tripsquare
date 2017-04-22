@@ -49053,7 +49053,10 @@
 
 	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
-	    _this.state = { hover_flag: false };
+	    _this.state = {
+	      hover_flag_plan: false,
+	      hover_flag_itinerary: false
+	    };
 	    return _this;
 	  }
 
@@ -49068,24 +49071,39 @@
 	    key: 'getInitialState',
 	    value: function getInitialState() {
 	      return {
-	        hover_flag: false
+	        hover_flag_plan: false,
+	        hover_flag_itinerary: false
 	      };
 	    }
 	  }, {
-	    key: 'hoverEvent',
-	    value: function hoverEvent() {
-	      this.setState({ hover_flag: !this.state.hover_flag });
+	    key: 'hoverPlanEvent',
+	    value: function hoverPlanEvent() {
+	      this.setState({ hover_flag_plan: !this.state.hover_flag_plan });
+	    }
+	  }, {
+	    key: 'hoverItineraryEvent',
+	    value: function hoverItineraryEvent() {
+	      this.setState({ hover_flag_itinerary: !this.state.hover_flag_itinerary });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var liStyle = {
+	      var planStyle = {
 	        background: 'rgba(0,0,0,0)',
 	        paddingLeft: '10px'
 	      };
 
-	      if (this.state.hover_flag) {
-	        liStyle['background'] = '#880000';
+	      if (this.state.hover_flag_plan) {
+	        planStyle['background'] = '#880000';
+	      }
+
+	      var itiStyle = {
+	        background: 'rgba(0,0,0,0)',
+	        paddingLeft: '10px'
+	      };
+
+	      if (this.state.hover_flag_itinerary) {
+	        itiStyle['background'] = '#880000';
 	      }
 
 	      return _react2.default.createElement(
@@ -49127,9 +49145,9 @@
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
 	            {
-	              onMouseEnter: this.hoverEvent.bind(this),
-	              onMouseLeave: this.hoverEvent.bind(this),
-	              style: liStyle },
+	              onMouseEnter: this.hoverPlanEvent.bind(this),
+	              onMouseLeave: this.hoverPlanEvent.bind(this),
+	              style: planStyle },
 	            _react2.default.createElement(_viewQuilt2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
@@ -49140,9 +49158,9 @@
 	          _react2.default.createElement(
 	            _reactFlexboxGrid.Row,
 	            {
-	              onMouseEnter: this.hoverEvent.bind(this),
-	              onMouseLeave: this.hoverEvent.bind(this),
-	              style: { paddingLeft: '10px' } },
+	              onMouseEnter: this.hoverItineraryEvent.bind(this),
+	              onMouseLeave: this.hoverItineraryEvent.bind(this),
+	              style: itiStyle },
 	            _react2.default.createElement(_list2.default, { style: { marginTop: '5px', marginRight: '10px' }, color: 'white' }),
 	            _react2.default.createElement(
 	              'p',
