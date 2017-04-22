@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import City from './itinerary/city_itinerary_component.jsx';
 import Landmark from './itinerary/landmark_itinerary_component.jsx';
+import Transport from './itinerary/transport_component.jsx';
 
 import {
   List,
@@ -35,7 +36,7 @@ class Itinerary extends Component {
               <Scrollbars style={{height:'480px',paddingRight:'0px'}}>
                 <div style={{marginTop:"10px"}}>
                   <City 
-                  cityName="Shenzhen, China" 
+                  cityName="Shopping in Shenzhen, China" 
                   imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shenzhen_Skyline_from_Nanshan.jpg/360px-Shenzhen_Skyline_from_Nanshan.jpg"
                   desc="One of China's wealthiest cities"
                   onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "city_1")}
@@ -51,6 +52,24 @@ class Itinerary extends Component {
                   id="landmark_2"
                   onDetailsClickCallback={this.onDetailsClickHandler.bind(this, "landmark_2")}
                   />
+                </div>
+                <div style={{marginTop:"10px"}}>
+                  {/*<Transport
+                  type="uber"
+                  details="via Long Rd. to Safari Park"
+                  time="33 min."
+                  />
+                  <Transport
+                  type="train"
+                  details="via Shenzhen North Station"
+                  time="48 min."
+                  />
+                  <Transport
+                  type="train"
+                  details="via Huanzhong Line"
+                  time="54 min."
+                  />*/}
+                  <Transport/>
                 </div>
               </Scrollbars>
             </Col>

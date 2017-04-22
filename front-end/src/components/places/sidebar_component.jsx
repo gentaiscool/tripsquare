@@ -229,7 +229,7 @@ class Sidebar extends Component {
                 </Col>
                 <Col xs={3}>
                   <p style={notifTextStyle}>1</p>
-                  <img src='http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png' 
+                  <img src='http://i.imgur.com/2UuV4FG.png' 
                       style={notifIconStyle} 
                   />
                 </Col>
@@ -241,7 +241,7 @@ class Sidebar extends Component {
                 </Col>
                 <Col xs={3}>
                   <p style={notifTextStyle}>4</p>
-                  <img src='http://www.iconsdb.com/icons/preview/persian-red/circle-xxl.png' 
+                  <img src='http://i.imgur.com/2UuV4FG.png' 
                       style={notifIconStyle} 
                   />
                 </Col>

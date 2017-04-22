@@ -4,11 +4,8 @@ import { Link } from 'react-router';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 
-import ThumbUpSVG from 'material-ui/svg-icons/action/thumb-up';
-import ThumbDownSVG from 'material-ui/svg-icons/action/thumb-down';
 import ScheduleSVG from 'material-ui/svg-icons/action/schedule';
 import DeleteSVG from 'material-ui/svg-icons/action/delete';
 import InsertInvitationSVG from 'material-ui/svg-icons/editor/insert-invitation';
@@ -100,23 +97,11 @@ const descStyle = {
 class Landmark extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      up: 0,
-      down: 0
-    }
   }
 
   onDetailsClickHandler(id) {
     //console.log("landmark");
     this.props.onDetailsClickCallback(id);
-  }
-
-  onClickUpHandler() {
-    this.setState({up : (this.state.up + 1)});
-  }
-
-  onClickDownHandler() {
-    this.setState({down : (this.state.down + 1)});
   }
 
     render(){
@@ -131,7 +116,14 @@ class Landmark extends Component {
                 />
           </Col>
           <Col xs={10} style={boxStyle}>
-            <Row style={{padding:'10px', marginLeft: '-10px', borderTopRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
+            <Row style={{
+              padding:'10px', 
+              marginLeft: '-10px', 
+              borderTopRightRadius: '10px', 
+              borderStyle:'solid', 
+              borderWidth:'2px', 
+              borderColor:'rgba(230,230,230,0.8)'
+            }}>
               <Col xs={12} onClick={this.onDetailsClickHandler.bind(this, this.props.id)}>
                 <Row>
                   <Col xs={9} style={{padding:'0px', margin:'0px'}}>
@@ -154,11 +146,19 @@ class Landmark extends Component {
                 </Row>
               </Col>
             </Row>
-            <Row style={{marginTop:'-1px', marginLeft: '-10px', padding:'7px', borderBottomRightRadius: '10px', borderStyle:'solid', borderWidth:'2px', borderColor:'rgba(230,230,230,0.8)'}}>
+            <Row style={{
+              marginTop:'-1px', 
+              marginLeft: '-10px', 
+              padding:'7px', 
+              borderBottomRightRadius: '10px', 
+              borderStyle:'solid', 
+              borderWidth:'2px', 
+              borderColor:'rgba(230,230,230,0.8)'
+            }}>
               <Col xs={12} style={{display:"flex"}}>
                 <p style={dateStyle}>25 Apr 2017</p>
                 <InsertInvitationSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
-                <p style={timeStyle}>03.00 PM</p>
+                <p style={timeStyle}>01.00 PM</p>
                 <ScheduleSVG style={{width:'20px', height:'20px', marginLeft:"7px", marginTop:"2px"}} color="#969696"/>
               </Col>
             </Row>
