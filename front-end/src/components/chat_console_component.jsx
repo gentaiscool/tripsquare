@@ -56,13 +56,13 @@ const titleStyle = {
   paddingBottom: '5px'
 }
 
-const socket = io.connect("localhost:8081");
-socket.on('message', msg => console.log(msg));
+var socket;
 
 class ChatConsole extends Component {
     constructor(props){
       super(props);
 
+      socket = props.socket;
       const { cookies } = instanceOf(Cookies).isRequired;
       console.log(">>");
       console.log(Cookies);

@@ -25,6 +25,8 @@ import {
 
 import io from 'socket.io-client';
 
+const socket = io.connect("localhost:8081");
+
 /* STYLES */
 const rightBox = {
 	padding: '0px'
@@ -122,7 +124,7 @@ class Places extends Component {
 
 	onAddToItineraryHandler(id){
 		console.log("add to itinerary: " + id);
-		
+
 	}
 
     render(){
@@ -173,14 +175,14 @@ class Places extends Component {
 									{rightBoxPlanner ? (
 											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items}  style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Itinerary socket={socket} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										)
 									}
 								</Col>
 
 								{/* RIGHT BOX */}
 								<Col xs={5} style={{paddingLeft:'0px'}}>
-									<ChatConsole/>
+									<ChatConsole socket={socket}/>
 								</Col>
 							</Row>
 
@@ -211,7 +213,7 @@ class Places extends Component {
 								{rightBoxPlanner ? (
 											<Planner onAddToItineraryCallback={this.onAddToItineraryHandler.bind(this)} items={this.state.items} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										) : (
-											<Itinerary style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
+											<Itinerary socket={socket} style={rightBox} onDetailsClickCallback={this.onDetailsClickHandler.bind(this)}/>
 										)
 									}
 								</Col>
