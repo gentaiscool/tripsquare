@@ -2,9 +2,7 @@ var dl = require('delivery');
 var fs = require('fs');
 var ffmpeg = require('fluent-ffmpeg');
 var Promise = require('promise');
-
-/* SETTINGS */
-var settings = require('../config/settings');
+var Channel = require('./channel');
 
 var SocketAdapter = function SocketAdapter(){
 
@@ -12,23 +10,31 @@ var SocketAdapter = function SocketAdapter(){
 	var sessions = {};
 	
 	var sockets = []; //anticipate garbage collection
+	var channels = [];
 
 	var context = "socket adapter";
 	var SocketAdapter = this;
 
-	this.init = function(_package, _socketio){
-		var package = _package;
+	this.init = function( _socketio){
 		var io = _socketio;
 
 		/* EVENTS */
 		io.on('connection', function(socket) {
 			sockets.push(socket);
+			console.log("new connection");
 
 			var delivery = dl.listen(socket);
 			var sessionId;
 
-			socket.on('send_text', function(data){
+			socket.on('message', function(data){
+				console.log("send_text: " + data);
+				var message = data.message;
+				var channelId = data.channelId;
 
+				if(!channels.hasOwnProperty(channelId)){
+					var newChannel = new Channel(channelId);
+					newChannel.newMessage(message);
+				}
 			});
 
 			socket.on('close', function(){
@@ -37,9 +43,7 @@ var SocketAdapter = function SocketAdapter(){
 
 			/* FRONT-END MESSAGE RETRIEVAL EVENTS */
 			// From dashboard to get session counts
-			socket.on('get_last_session', function(data){
-				Logger.log(context, "get_session_count");
-
+			socket.on('', function(data){
 				var promise = new Promise(
 					function(resolve, reject) {
 						var counts = MongoDBAdapter.getLastUserSession(data["user_id"], data["login_type"]);
@@ -52,15 +56,6 @@ var SocketAdapter = function SocketAdapter(){
 						});
 					}
 				);
-			});
-
-			delivery.on('receive.success', function(file){ // Retrieving audio recording
-				//get session Id
-				Logger.log(context, "message_speech_recording is triggered");
-				Logger.log(context, "message_speech_recording: " + file);
-				Logger.log(context, "Sending ACK");
-
-				package.requestAPIForSpeech(socket, file, package);
 			});
 		});
 	}
