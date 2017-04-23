@@ -56,7 +56,18 @@ const detailsText = {
   fontSize: '12px',
   color: 'rgb(3, 3, 3)',
   alignItems: 'right',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  padding:'0px'
+}
+
+const carpoolText = {
+  fontFamily: 'Roboto Light',
+  fontSize: '10px',
+  color: 'rgb(3, 3, 3)',
+  alignItems: 'right',
+  justifyContent: 'center',
+  marginTop: '-10px',
+  padding:'0px'
 }
 
 const sponsorIconStyle = {
@@ -109,8 +120,11 @@ class Transport extends Component {
           </Col>
           <Col xs={6}>
             {/* ROUTE DETAILS */}
-            <p style={detailsText}><img src='http://i.imgur.com/yjcpE7N.png' 
-            style={sponsorIconStyle}/> via Long Rd. to Safari Park</p>
+            <div style={detailsText}><img src='http://i.imgur.com/yjcpE7N.png' 
+            style={sponsorIconStyle}/> via Long Rd. to Safari Park</div>
+            <div style={carpoolText}><i>
+            Another group is also going here from your area. <u>Carpool</u> for a cheaper price!
+            </i></div>
           </Col>
           <Col xs={3} style={smallerRowStyle}>
             {/* TIME TAKEN */}

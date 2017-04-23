@@ -174,15 +174,16 @@ class Places extends Component {
 		this.setState({rightBoxPlanner: false});
 	}
 
-    render(){
+    render()
+    {
     	const actions = [
-      <FlatButton
-        label="Ok"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleDialogClose.bind(this)}
-      />,
-    ];
+	      <FlatButton
+	        label="Ok"
+	        primary={true}
+	        keyboardFocused={true}
+	        onTouchTap={this.handleDialogClose.bind(this)}
+	      />,
+	    ];
     	const consoleClosed = this.state.consoleClosed;
     	const dataDetailbar = this.state.dataDetailbar;
     	const rightBoxPlanner = this.state.rightBoxPlanner;
@@ -236,16 +237,14 @@ class Places extends Component {
 							          actions={actions}
 							          modal={false}
 							          open={this.state.addDialogOpen}
-							          onRequestClose={this.handleDialogClose.bind(this)}
-
-							        >
-							          <DatePicker hintText="Pick a date" 
-							          onChange={(x, event) => {this.setState({currentActDate:event.toDateString()})}}
-							          />
-							          <TimePicker hintText="Pick a time"
-							          onChange={(x, event) => {this.setState({
-							          	currentActTime:this.getTime(event)
-							          })}}
+							          onRequestClose={this.handleDialogClose.bind(this)}>
+								          <DatePicker hintText="Pick a date" 
+								          onChange={(x, event) => {this.setState({currentActDate:event.toDateString()})}}
+								          />
+								          <TimePicker hintText="Pick a time"
+								          onChange={(x, event) => {this.setState({
+								          	currentActTime:this.getTime(event)
+								          })}}
 							           />
 							        </Dialog>
 							      </div>

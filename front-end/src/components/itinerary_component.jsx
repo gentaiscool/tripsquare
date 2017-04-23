@@ -9,6 +9,8 @@ import Paper from 'material-ui/Paper';
 import City from './itinerary/city_itinerary_component.jsx';
 import Landmark from './itinerary/landmark_itinerary_component.jsx';
 import Transport from './itinerary/transport_itinerary_component.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
+import TimelineSVG from 'material-ui/svg-icons/action/timeline';
 
 import {
   List,
@@ -127,6 +129,28 @@ class Itinerary extends Component {
         names.push(landmarkName);
       }
     }
+
+    // // ADD AN OPTIMIZE BUTTON??
+    // content.push(
+    //   [
+    //   <Col xs={12} >
+    //   <Row style={{alignItems:'right', margin:'10px'}}>
+    //     <RaisedButton
+    //     backgroundColor="#a4c639"
+    //     icon={<TimelineSVG color="rgba(240,240,240,1.0)" style={{marginBottom: '3px'}} />}
+    //     align='right'
+    //     label={<span style={{
+    //       fontFamily: "Roboto Regular", 
+    //       color:"rgba(240,240,240,1.0)", 
+    //       padding:'0px', 
+    //       margin:'0px', 
+    //       marginLeft:'5px'}}>Optimize</span>}
+    //     onClick={this.optimizeItinerary.bind(this)}
+    //     />
+    //   </Row>
+    //   </Col>
+    //   ]
+    // )
 
     return (
       <MuiThemeProvider>
