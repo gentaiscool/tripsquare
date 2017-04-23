@@ -67,7 +67,10 @@ const carpoolText = {
   alignItems: 'right',
   justifyContent: 'center',
   marginTop: '-10px',
-  padding:'0px'
+  padding:'0px',
+  lineHeight: '12px',
+  paddingTop:'15px',
+  paddingBottom:'8px'
 }
 
 const sponsorIconStyle = {
@@ -121,7 +124,7 @@ class Transport extends Component {
           <Col xs={6}>
             {/* ROUTE DETAILS */}
             <div style={detailsText}><img src='http://i.imgur.com/yjcpE7N.png' 
-            style={sponsorIconStyle}/> via Long Rd. to Safari Park</div>
+            style={sponsorIconStyle}/> via Cherry St. to HK Disneyland</div>
             <div style={carpoolText}><i>
             Another group is also going here from your area. <u>Carpool</u> for a cheaper price!
             </i></div>

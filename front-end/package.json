@@ -1,7 +1,7 @@
 {
-  "name": "letrip",
+  "name": "tripsquare",
   "version": "1.0.0",
-  "description": "letrip",
+  "description": "tripsquare",
   "main": "index.js",
   "scripts": {
     "watch": "webpack -d --watch",
