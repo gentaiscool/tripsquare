@@ -1,4 +1,5 @@
-# tripsquare (Second Runner-Up Winner in HackUST 2017)
+# tripsquare 
+#### Second Runner-Up Winner in HackUST 2017
 A collaborative real-time travel app planner, helps families, friends to plan their trip effectively and away from congestion.
 
 Front-end:
