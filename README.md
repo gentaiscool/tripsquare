@@ -12,5 +12,7 @@ Back-end:
 - broadcast chat
 - request to Google Direction API for acquiring the most optimal route
 
-working with amazing team: Felicia Agatha (Front-end software engineer) and Kharis Daniel SetiaSabda (Designer and Presenter)
-my role is both Front-end and Back-end software engineer
+Our amazing team:
+- Genta Indra Winata - Ph.D. student (Electronic and Computer Engineering - HKUST)
+- Felicia Agatha - Undergraduate student (Computer Science Major - HKUST) 
+- Kharis Daniel Setiasabda - Undergraduate student (Chemical Engineering Major - PolyU)
